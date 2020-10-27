@@ -1,0 +1,944 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: 'Sharing Product Details'
+  description: 'The Open API serves the business functions associated with Products offered by the bank. '
+  termsOfService: 'https://www.cbb.gov.bh/terms-and-conditions-of-use/'
+  contact:
+    name: Mr. Martin Pinto 
+    email: martin@cbb.gov.bh
+  #Below field to be updated.
+  license:
+    name: ''
+    url: ''
+paths: 
+  /sharing-product-details:
+    get:
+      tags:
+        - Sharing Product Details
+      summary: Get Sharing Product Details
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200SharingProductDetailsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - TPPOAuth2Security:
+            - products  
+components:
+  parameters:
+    Authorisation:
+      in: header
+      name: Authorisation
+      required: true
+      description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
+      schema:
+        type: string
+    x-fapi-customer-ip-address:
+      in: header
+      name: x-fapi-customer-ip-address
+      required: false
+      description: The User/Customer's IP address if the User/Customer is currently logged in with the TPP.
+      schema:
+        type: string
+    x-fapi-auth-date:
+      in: header
+      name: x-fapi-auth-date
+      required: false
+      description: >-
+        The time when the User/Customer last logged in with the TPP. 
+
+        All dates in the HTTP headers are represented as RFC 7231 Full Dates. An
+        example is below: 
+
+        Wed, 27 May 2020 19:43:31 GMT+03:00
+      schema:
+        type: string
+        pattern: >-
+          ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
+          (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}
+          \d{2}:\d{2}:\d{2} (GMT|UTC)[+-][0-9]{2}:[0-9]{2}$
+    x-fapi-interaction-id:
+      in: header
+      name: x-fapi-interaction-id
+      required: false
+      description: An RFC4122 UID used as a correlation id.
+      schema:
+        type: string
+  responses:
+    #Error
+    400Error:
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    404Error:
+      description: Not found
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    406Error:
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    429Error:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    500Error:
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'              
+    #Sharing Product Details
+    200SharingProductDetailsRead:
+      description: Products Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadSharingProductDetails'  
+  schemas:
+    OBError:
+      type: object
+      properties:
+        ErrorCode:
+          description: 'Low level textual error code, e.g., BH.OBF.Field.Missing'
+          type: string
+          #Below is an example
+          x-namespaced-enum:
+            - BH.OBF.Field.Expected
+            - BH.OBF.Field.Invalid
+            - BH.OBF.Field.InvalidDate
+            - BH.OBF.Field.Missing
+            - BH.OBF.Field.Unexpected
+            - BH.OBF.Header.Invalid
+            - BH.OBF.Header.Missing
+            - BH.OBF.Reauthenticate
+            - BH.OBF.Resource.ConsentMismatch
+            - BH.OBF.Resource.InvalidConsentStatus
+            - BH.OBF.Resource.InvalidFormat
+            - BH.OBF.Resource.NotFound
+            - BH.OBF.Rules.AfterCutOffDateTime
+            - BH.OBF.Rules.DuplicateReference
+            - BH.OBF.Signature.Invalid
+            - BH.OBF.Signature.InvalidClaim
+            - BH.OBF.Signature.Malformed
+            - BH.OBF.Signature.Missing
+            - BH.OBF.Signature.MissingClaim
+            - BH.OBF.Signature.Unexpected
+            - BH.OBF.UnexpectedError
+            - BH.OBF.Unsupported.AccountIdentifier
+            - BH.OBF.Unsupported.AccountSecondaryIdentifier
+            - BH.OBF.Unsupported.Currency
+            - BH.OBF.Unsupported.Frequency
+            - BH.OBF.Unsupported.LocalInstrument
+            - BH.OBF.Unsupported.Scheme
+        Message:
+          description: >-
+            A description of the error that occurred. e.g., 'A mandatory field
+            isn't supplied' or 'RequestedExecutionDateTime must be in future'
+
+            OBIE doesn't standardise this field
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          description: >-
+            Recommended but optional reference to the JSON Path of the field
+            with error, e.g., Data.Initiation.InstructedAmount.Currency
+          type: string
+          minLength: 1
+          maxLength: 500
+        Url:
+          description: >-
+            URL to help remediate the problem, or provide more information, or
+            to API Reference, or help etc
+          type: string
+      required:
+        - ErrorCode
+        - Message
+      additionalProperties: false
+      minProperties: 1
+    OBErrorResponse:
+      description: >-
+        An array of detail error codes, and messages, and URLs to documentation
+        to help remediation.
+      type: object
+      properties:
+        Code:
+          description: 'High level textual error code, to help categorize the errors.'
+          type: string
+          minLength: 1
+          maxLength: 40
+        Id:
+          description: >-
+            A unique reference for the error instance, for audit purposes, in
+            case of unknown/unclassified errors.
+          type: string
+          minLength: 1
+          maxLength: 40
+        Message:
+          description: >-
+            Brief Error message, e.g., 'There is something wrong with the
+            request parameters provided'
+          type: string
+          minLength: 1
+          maxLength: 500
+        Errors:
+          items:
+            $ref: '#/components/schemas/OBError'
+          type: array
+          minItems: 1
+      required:
+        - Code
+        - Message
+        - Errors
+      additionalProperties: false                  
+    OBSupplementaryData:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: >-
+        Additional information that can not be captured in the structured fields
+        and/or any other specific block.  
+    OBReadSharingProductDetails:
+      type: object
+      required:
+        - Data
+      description: >-
+        Returns a collection of Sharing Product details.
+      properties:
+        Data:
+          type: object
+          description: Aligning with the read write specs structure.
+          properties:
+            CreditCards:
+              type: array
+              items:
+                type: object
+                description: >-
+                  'List of Credit card products'
+                required:
+                  - ProductDetails
+                properties:
+                  ProductDetails:
+                    type: object
+                    description: Product details associated with the all product categories.
+                    required:
+                    - CategoryName
+                    - CategoryCode
+                    - ProductDescription
+                    - ProductCode
+                    - SubProductCode
+                    - Segment
+                    properties:
+                      CategoryName:
+                        description: 'Producty category name used by ASPSPs'
+                        type: string
+                      CategoryCode:
+                        description: 'Product category code used by ASPSPs'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductDescription:
+                        description: 'A brief description of the product'
+                        type: string
+                        minLength: 1
+                        maxLength: 350
+                      ProductCode:
+                        description: 'Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      SubProductCode:
+                        description: 'Sub-Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductURL:
+                        description: 'Product URL'
+                        type: string
+                      Segment:
+                        description: 'Product segment such as lifestyle, travel, reward points, etc.'
+                        type: string
+                  Features:
+                    type: object
+                    description: >-
+                      'List of product features'                   
+                    properties:
+                      Currency:
+                        description: 'Payment and transaction currency as applicable on the selected card'
+                        type: string
+                      OnetimeFee:
+                        description: 'First time membership or fee in BHD payable on getting a card'
+                        type: number
+                      AnnualFeeAndCharges:
+                        description: 'Recurring fees and charges in BHD payable periodically'
+                        type: number
+                      FeeWaiver:
+                        description: 'This includes the conditions for fee waiver if any applicable on the selected card'
+                        type: string
+                      AddOnCards:
+                        description: 'This includes the conditions and limit for add on cards where a card holder can apply for add-on cards for his/her family under the same account'
+                        type: string
+                      CardLimit:
+                        description: 'Transaction limit offered by banks for the customer. This also includes the limits for sub transaction such as ATM withdrawal limit, merchant transaction limit, etc.'
+                        type: string
+                      InterestRates:
+                        description: 'Interest rate payable on repayment post due date'
+                        type: string
+                  Eligibility:
+                    type: object
+                    description: >-
+                      'This covers nationality, age, employment status, income and credit score'                   
+                    properties:
+                      DocumentsRequired:
+                        description: 'List of documents required for getting a credit card'
+                        type: string
+                      Age:
+                        description: 'Age'
+                        type: number
+                      EmploymentStatus:
+                        description: 'Employment status'
+                        type: string
+                      Income:
+                        description: 'Income'
+                        type: string
+                      CreditScore:
+                        description: 'Credit score'
+                        type: string  
+                  Benefits:
+                    type: object
+                    description: >-
+                      'List of Benefits offered by this product'                   
+                    properties:    
+                      OffersOnTheCard:
+                        description: 'Some cards have great offers and discounts if used with a particular vendor, website or company. Also banks have tie ups with offices, educational institutions etc. and offer them special rates'
+                        type: string
+                      RewardType:
+                        description: 'Some cards are specifically made to suit customers spending habits. For e.g. travel, aviation, lifestyle, shopping, cashback etc.'
+                        type: string
+                      RewardsProgram:
+                        description: 'Rewards program offered by Banks including cashback and redeemable options. Fuel charge waivers and airport lounge access will also be covered here'
+                        type: string
+                      JoiningGiftsOrBonus:
+                        description: 'To get customers to apply for their card, banks offer welcome gifts and bonuses. This could be some latest gadget or bonus points and miles.'
+                        type: string
+                      OtherBenefits:
+                        description: 'Additional benefits if any'
+                        type: string
+                  TermsAndConditions:
+                    type: object
+                    description: >-
+                      'This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements'                   
+                    properties:
+                      tnc-title:
+                        description: 'Terms and conditions title'
+                        type: string
+                      tnc-summary:
+                        description: 'Terms and conditions summary'
+                        type: string
+                      tnc-url:
+                        description: 'Terms and conditions URL'
+                        type: string
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'        
+            Loans:
+              type: array
+              items:
+                type: object
+                description: >-
+                  'List of Loans products'
+                required:
+                  - ProductDetails  
+                properties:
+                  ProductDetails:
+                    type: object
+                    description: Product details associated with the all product categories.
+                    required:
+                    - CategoryName
+                    - CategoryCode
+                    - ProductDescription
+                    - ProductCode
+                    - SubProductCode
+                    - Segment
+                    properties:
+                      CategoryName:
+                        description: 'Producty category name used by ASPSPs'
+                        type: string
+                      CategoryCode:
+                        description: 'Product category code used by ASPSPs'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductDescription:
+                        description: 'A brief description of the product'
+                        type: string
+                        minLength: 1
+                        maxLength: 350
+                      ProductCode:
+                        description: 'Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      SubProductCode:
+                        description: 'Sub-Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductURL:
+                        description: 'Product URL'
+                        type: string
+                      Segment:
+                        description: 'Product segment such as lifestyle, travel, reward points, etc.'
+                        type: string
+                  Features:
+                    type: object
+                    description: >-
+                      'List of product features'                   
+                    properties:
+                      Currency:
+                        description: 'Payment and transaction currency as applicable on the selected loan type'
+                        type: string
+                      InitialDeposit:
+                        description: 'Initial amount payable by the customer in BHD excluding taxes'
+                        type: string
+                      HandlingFees/Supplementary:
+                        description: 'Loan handling fees applicable for products in BHD excluding taxes'
+                        type: string
+                      MinTenure:
+                        description: 'Minimum duration of loan period in months'
+                        type: string
+                      MaxTenure:
+                        description: 'Maximum duration of loan period in months'
+                        type: string  
+                      InterestRates:
+                        description: 'Interest payable on repayment of the loan amount'
+                        type: string
+                  Eligibility:
+                    type: object
+                    description: >-
+                      'This covers nationality, age, employment status, income and credit score'                   
+                    properties:
+                      DocumentsRequired:
+                        description: 'List of documents required for getting a loan'
+                        type: string
+                      Age:
+                        description: 'Age of the loan applicant'
+                        type: number
+                      EmploymentStatus:
+                        description: 'Employment status of the loan applicant'
+                        type: string
+                      Income:
+                        description: 'Income of the loan applicant'
+                        type: string
+                      CreditScore:
+                        description: 'Credit score of the loan applicant'
+                        type: string   
+                      Collateral:
+                        description: 'list of collateral accepted against loan if applicable'
+                        type: string
+                  Benefits:
+                    type: object
+                    description: >-
+                      'List of Benefits offered by this product'                   
+                    properties:    
+                      BonusPack:
+                        description: 'Free Priority/ Premium/ Easy Banking plan with credit card, 360° reward and welcome offers'
+                        type: string
+                      FreeMortgageValueAssessment:
+                        description: 'Free assessment of the value of the mortgage'
+                        type: string
+                      AutoPaySetup:
+                        description: 'One stop pay'
+                        type: string
+                      E-cheque:
+                        description: 'option of e cheque clearance'
+                        type: string
+                      EarlyEMIPaymentOptions:
+                        description: 'Benefit of early payment options'
+                        type: string
+                      OtherBenefits:
+                        description: 'Additional benefits if any'
+                        type: string  
+                  TermsAndConditions:
+                    type: object
+                    description: >-
+                      'This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements'                   
+                    properties:
+                      tnc-title:
+                        description: 'Terms and conditions title'
+                        type: string
+                      tnc-summary:
+                        description: 'Any material conditions and specific features such as salary transfer, minimum equity for mortgage facility, loan to value ratio etc.'
+                        type: string
+                      tnc-url:
+                        description: 'Terms and conditions URL'
+                        type: string
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'        
+            CASA:
+              type: array
+              items:
+                type: object
+                description: >-
+                  'List of CASA products'
+                required:
+                  - ProductDetails  
+                properties:
+                  ProductDetails:
+                    type: object
+                    description: Product details associated with the all product categories.
+                    required:
+                    - CategoryName
+                    - CategoryCode
+                    - ProductDescription
+                    - ProductCode
+                    - SubProductCode
+                    - Segment
+                    properties:
+                      CategoryName:
+                        description: 'Producty category name used by ASPSPs'
+                        type: string
+                      CategoryCode:
+                        description: 'Product category code used by ASPSPs'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductDescription:
+                        description: 'A brief description of the product'
+                        type: string
+                        minLength: 1
+                        maxLength: 350
+                      ProductCode:
+                        description: 'Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      SubProductCode:
+                        description: 'Sub-Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductURL:
+                        description: 'Product URL'
+                        type: string
+                      Segment:
+                        description: 'Product segment such as lifestyle, travel, reward points, etc.'
+                        type: string
+                  Features:
+                    type: object
+                    description: >-
+                      'List of product features'                   
+                    properties:
+                      Currency:
+                        description: 'Payment and transaction currency as applicable on the selected CASA type'
+                        type: string
+                      MinBalanceMaintenance:
+                        description: 'Minimum balance to be maintained by the account holder in BHD'
+                        type: string
+                      HandlingFees/Supplementary:
+                        description: 'Account handling fees applicable for products in BHD excluding taxes per annum'
+                        type: string  
+                      OverdraftLimit:
+                        description: 'Limit offered by banks for the customer based on turnover and spending levels in BHD per month'
+                        type: string  
+                      InterestRates:
+                        description: 'Interest payable on repayment of the loan amount'
+                        type: string  
+                      DepositRate:
+                        description: 'Interest rate applicable for deposits only'
+                        type: string  
+                      MinDepositAmount:
+                        description: 'Minimum one time deposit amount in BHD'
+                        type: string
+                  Eligibility:
+                    type: object
+                    description: >-
+                      'This covers nationality, age, employment status, income and credit score'                   
+                    properties:
+                      DocumentsRequired:
+                        description: 'List of documents required for opening a current account'
+                        type: string
+                      Age:
+                        description: 'Age of the applicant'
+                        type: number
+                      EmploymentStatus:
+                        description: 'Employment status of the applicant'
+                        type: string
+                      Income:
+                        description: 'Income of the applicant'
+                        type: string
+                      CreditScore:
+                        description: 'Credit score of the applicant'
+                        type: string 
+                  Benefits:
+                    type: object
+                    description: >-
+                      'List of Benefits offered by this product'                   
+                    properties:    
+                      RelationshipManager:
+                        description: 'This covers the benefits of availing RM under few conditions'
+                        type: string
+                      ODprotection:
+                        description: 'Enjoy Current Account Overdraft Protection for clearing cheques'
+                        type: string
+                      MinBalance:
+                        description: 'This describes the minimum balance required to keep the account active'
+                        type: string
+                      AutoPaySetup:
+                        description: 'One stop pay'
+                        type: string
+                      MultipleDebitCards:
+                        description: 'This includes details of add on debit cards where a account holder can apply for add-on cards for his/her employees under the same account'
+                        type: string
+                      E-cheque:
+                        description: 'Option of e cheque clearance'
+                        type: string
+                      OtherBenefits:
+                        description: 'Additional benefits if any'
+                        type: string   
+                  TermsAndConditions:
+                    type: object
+                    description: >-
+                      'This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements'                   
+                    properties:
+                      tnc-title:
+                        description: 'Terms and conditions title'
+                        type: string
+                      tnc-summary:
+                        description: 'Terms and conditions summary'
+                        type: string
+                      tnc-url:
+                        description: 'Terms and conditions URL'
+                        type: string
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'        
+            Investment:
+              type: array
+              items:
+                type: object
+                description: >-
+                  'List of Investment products'
+                required:
+                  - ProductDetails   
+                properties:
+                  ProductDetails:
+                    type: object
+                    description: Product details associated with the all product categories.
+                    required:
+                    - CategoryName
+                    - CategoryCode
+                    - ProductDescription
+                    - ProductCode
+                    - SubProductCode
+                    - Segment
+                    properties:
+                      CategoryName:
+                        description: 'Producty category name used by ASPSPs'
+                        type: string
+                      CategoryCode:
+                        description: 'Product category code used by ASPSPs'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductDescription:
+                        description: 'A brief description of the product'
+                        type: string
+                        minLength: 1
+                        maxLength: 350
+                      ProductCode:
+                        description: 'Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      SubProductCode:
+                        description: 'Sub-Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductURL:
+                        description: 'Product URL'
+                        type: string
+                      Segment:
+                        description: 'Product segment such as lifestyle, travel, reward points, etc.'
+                        type: string
+                  Features:
+                    type: object
+                    description: >-
+                      'List of product features'                   
+                    properties:
+                      Currency:
+                        description: 'Payment and transaction currency as applicable on the selected Investment type'
+                        type: string
+                      MinInvestmentRequirement:
+                        description: 'Minimum investment required for opening the investment account in BHD'
+                        type: string
+                      HandlingFees/Supplementary:
+                        description: 'Account handling fees applicable for products in BHD excluding taxes per annum'
+                        type: string
+                      AnnualFees:
+                        description: 'Recurring fees and charges payable periodically in BHD excluding of taxes'
+                        type: string
+                      InvestmentTenure:
+                        description: 'Duration of investment period in months'
+                        type: string
+                      DepositRate:
+                        description: 'Interest rate applicable for deposits only'
+                        type: string
+                      HistoricInvestmentRate:
+                        description: 'This covers the historic rates that are gained by the investors in the selected fund'
+                        type: string
+                  Eligibility:
+                    type: object
+                    description: >-
+                      'This covers nationality, age, employment status, income and credit score'                   
+                    properties:
+                      DocumentsRequired:
+                        description: 'List of documents required'
+                        type: string
+                      Age:
+                        description: 'Age of the applicant'
+                        type: number
+                      EmploymentStatus:
+                        description: 'Employment status of the applicant'
+                        type: string
+                      Income:
+                        description: 'Income of the applicant'
+                        type: string
+                      CreditScore:
+                        description: 'Credit score of the applicant'
+                        type: string 
+                  Benefits:
+                    type: object
+                    description: >-
+                      'List of Benefits offered by this product'                   
+                    properties:
+                      SIPOptions:
+                        description: 'This covers the broader systematic investment plan option that a customer can opt for'
+                        type: string
+                      QuickerInvestmentWithdrawal:
+                        description: 'Customer can withdraw the investments within 24 hours of the request submitted'
+                        type: string  
+                      MinimumInvestment:
+                        description: 'This describes the minimum annual investment required to keep the account active'
+                        type: string
+                      AutoPaySetup:
+                        description: 'One stop pay'
+                        type: string
+                      OtherBenefits:
+                        description: 'Additional benefits if any'
+                        type: string   
+                  TermsAndConditions:
+                    type: object
+                    description: >-
+                      'This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements'                   
+                    properties:
+                      tnc-title:
+                        description: 'Terms and conditions title'
+                        type: string
+                      tnc-summary:
+                        description: 'Terms and conditions summary'
+                        type: string
+                      tnc-url:
+                        description: 'Terms and conditions URL'
+                        type: string
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'        
+            FundTransferServices:
+              type: array
+              items:
+                type: object
+                description: >-
+                  'List of Fund Transfer Services products'
+                required:
+                  - ProductDetails  
+                properties:
+                  ProductDetails:
+                    type: object
+                    description: Product details associated with the all product categories.
+                    required:
+                    - CategoryName
+                    - CategoryCode
+                    - ProductDescription
+                    - ProductCode
+                    - SubProductCode
+                    - Segment
+                    properties:
+                      CategoryName:
+                        description: 'Producty category name used by ASPSPs'
+                        type: string
+                      CategoryCode:
+                        description: 'Product category code used by ASPSPs'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductDescription:
+                        description: 'A brief description of the product'
+                        type: string
+                        minLength: 1
+                        maxLength: 350
+                      ProductCode:
+                        description: 'Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      SubProductCode:
+                        description: 'Sub-Product Code for Banks operational purpose'
+                        type: string
+                        minLength: 1
+                        maxLength: 40
+                      ProductURL:
+                        description: 'Product URL'
+                        type: string
+                      Segment:
+                        description: 'Product segment such as lifestyle, travel, reward points, etc.'
+                        type: string
+                  Features:
+                    type: object
+                    description: >-
+                      'List of product features'                   
+                    properties:
+                      Currency:
+                        description: 'Payment and transaction currency as applicable on the selected service type'
+                        type: string
+                      MinFundTransfer:
+                        description: 'Minimum fund transfer applicable for the type of service selected in BHD'
+                        type: string
+                      HandlingFees/Supplementary:
+                        description: 'Account handling fees applicable for products in BHD excluding taxes per annum'
+                        type: string
+                      TypesOfFundTransfer:
+                        description: 'This covers different type of fund transfer that banks offer to the customers'
+                        type: string
+                  Eligibility:
+                    type: object
+                    description: >-
+                      'This covers nationality, age, employment status, income and credit score'                   
+                    properties:
+                      DocumentsRequired:
+                        description: 'List of documents required'
+                        type: string
+                      Age:
+                        description: 'Age of the applicant'
+                        type: number
+                      EmploymentStatus:
+                        description: 'Employment status of the applicant'
+                        type: string
+                      Income:
+                        description: 'Income of the applicant'
+                        type: string
+                      CreditScore:
+                        description: 'Credit score of the applicant'
+                        type: string
+                  Benefits:
+                    type: object
+                    description: >-
+                      'List of Benefits offered by this product'                   
+                    properties:    
+                      InternationalPayment:
+                        description: 'International payment with other currency pay-outs'
+                        type: string
+                      OtherBenefits:
+                        description: 'Additional benefits if any'
+                        type: string   
+                  TermsAndConditions:
+                    type: object
+                    description: >-
+                      'This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements'                   
+                    properties:
+                      tnc-title:
+                        description: 'Terms and conditions title'
+                        type: string
+                      tnc-summary:
+                        description: 'Terms and conditions summary'
+                        type: string
+                      tnc-url:
+                        description: 'Terms and conditions URL'
+                        type: string
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'        
+  securitySchemes:
+    TPPOAuth2Security:
+      type: oauth2
+      description: TPP client credential authorisation flow with the ASPSP
+      flows:
+        clientCredentials:
+          #Below is an example  
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            products: Ability to read products information

@@ -1,0 +1,4610 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: Account and Transaction API Specification
+  description: OpenAPI for Account and Transaction API Specification
+  termsOfService: 'https://www.cbb.gov.bh/terms-and-conditions-of-use/'
+  contact:
+    name: Mr. Martin Pinto 
+    email: martin@cbb.gov.bh
+  #Below field contains dummy value.
+  license:
+    name: TBC-licence
+    url: 'tbc.com'
+paths: 
+  #Account Access Consents
+  /account-access-consents:
+    post:
+      tags:
+        - Account Access Consents
+      summary: Create Account Access Consents
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '201':
+          $ref: '#/components/responses/201AccountAccessConsentsCreated'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - TPPOAuth2Security:
+            - accounts
+      requestBody:
+        $ref: '#/components/requestBodies/OBWriteAccountAccessConsentRequest'
+  '/account-access-consents/{ConsentId}':
+    get:
+      tags:
+        - Account Access Consents
+      summary: Get Account Access Consents by ConsentId
+      parameters:
+        - $ref: '#/components/parameters/ConsentId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountAccessConsentsConsentIdRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - TPPOAuth2Security:
+            - accounts
+    patch:
+      tags:
+        - Account Access Consents
+      summary: Update Account Access Consent Status by ConsentId
+      parameters:
+        - $ref: '#/components/parameters/ConsentId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountAccessConsentsConsentIdPatched'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - TPPOAuth2Security:
+            - accounts
+      requestBody:
+        $ref: '#/components/requestBodies/OBPatchAccountAccessConsentRequest'      
+      
+  #Accounts          
+  /accounts:
+    get:
+      tags:
+        - Accounts
+      summary: Get Accounts
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+  '/accounts/{AccountId}':
+    get:
+      tags:
+        - Accounts
+      summary: Get Account by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+  
+  #Balances
+  '/accounts/{AccountId}/balances':
+    get:
+      tags:
+        - Balances
+      summary: Get Accounts Balances by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdBalancesRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /balances:
+    get:
+      tags:
+        - Balances
+      summary: Get Balances
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200BalancesRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+  
+  #Transactions
+  '/accounts/{AccountId}/transactions':
+    get:
+      tags:
+        - Transactions
+      summary: Get Accounts Trabnsactions by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+        - $ref: '#/components/parameters/FromBookingDateTimeParam'
+        - $ref: '#/components/parameters/ToBookingDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdTransactionsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /transactions:
+    get:
+      tags:
+        - Transactions
+      summary: Get Transactions
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+        - $ref: '#/components/parameters/FromBookingDateTimeParam'
+        - $ref: '#/components/parameters/ToBookingDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/200TransactionsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Beneficiaries
+  '/accounts/{AccountId}/beneficiaries':
+    get:
+      tags:
+        - Beneficiaries
+      summary: Get Accounts Beneficiaries by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdBeneficiariesRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /beneficiaries:
+    get:
+      tags:
+        - Beneficiaries
+      summary: Get Beneficiaries
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200BeneficiariesRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Direct Debits
+  '/accounts/{AccountId}/direct-debits':
+    get:
+      tags:
+        - Direct Debits
+      summary: Get Accounts Direct Debits by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdDirectDebitsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /direct-debits:
+    get:
+      tags:
+        - Direct Debits
+      summary: Get Direct Debits
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200DirectDebitsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts        
+     
+  #Standing Orders
+  '/accounts/{AccountId}/standing-orders':
+    get:
+      tags:
+        - Standing Orders
+      summary: Get Accounts Standing Orders by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdStandingOrdersRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /standing-orders:
+    get:
+      tags:
+        - Standing Orders
+      summary: Get Standing Orders
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200StandingOrdersRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Offers
+  '/accounts/{AccountId}/offers':
+    get:
+      tags:
+        - Offers
+      summary: Get Accounts Offers by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdOffersRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /offers:
+    get:
+      tags:
+        - Offers
+      summary: Get Offers
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200OffersRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Parties
+  '/accounts/{AccountId}/parties':
+    get:
+      tags:
+        - Parties
+      summary: Get Accounts Parties by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdPartiesRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/party':
+    get:
+      tags:
+        - Parties
+      summary: Get Accounts Party by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdPartyRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts 
+  /party:
+    get:
+      tags:
+        - Parties
+      summary: Get Party
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200PartyRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Future Dated Payments
+  '/accounts/{AccountId}/future-dated-payments':
+    get:
+      tags:
+        - Future Dated Payments
+      summary: Get Accounts Future Dated Payments by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdFutureDatedPaymentsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  /future-dated-payments:
+    get:
+      tags:
+        - Future Dated Payments
+      summary: Get Future Dated Payments
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200FutureDatedPaymentsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+            
+  #Statements
+  '/accounts/{AccountId}/statements':
+    get:
+      tags:
+        - Statements
+      summary: Get Accounts Statements by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+        - $ref: '#/components/parameters/FromStatementDateTimeParam'
+        - $ref: '#/components/parameters/ToStatementDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdStatementsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/statements/{StatementId}':
+    get:
+      tags:
+        - Statements
+      summary: Get Accounts Statement by AccountId and StatementId
+      parameters:
+        - $ref: '#/components/parameters/StatementId'
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdStatementsStatementIdRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/statements/{StatementId}/file':
+    get:
+      tags:
+        - Statements
+      summary: Get Accounts Statements File by AccountId and StatementId
+      parameters:
+        - $ref: '#/components/parameters/StatementId'
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/200AccountsAccountIdStatementsStatementIdFileRead
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  '/accounts/{AccountId}/statements/{StatementId}/transactions':
+    get:
+      tags:
+        - Statements
+      summary: Get Accounts Statement Tranactions by AccountId and StatementId
+      parameters:
+        - $ref: '#/components/parameters/StatementId'
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: >-
+            #/components/responses/200AccountsAccountIdStatementsStatementIdTransactionsRead
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+  /statements:
+    get:
+      tags:
+        - Statements
+      summary: Get Statements
+      parameters:
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+        - $ref: '#/components/parameters/FromStatementDateTimeParam'
+        - $ref: '#/components/parameters/ToStatementDateTimeParam'
+      responses:
+        '200':
+          $ref: '#/components/responses/200StatementsRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts          
+  
+  #Supplementary Account Info
+  '/accounts/{AccountId}/supplementary-account-info':
+    get:
+      tags:
+        - Supplementary Account Info 
+      summary: Get Accounts Supplementary Account Info by AccountId
+      parameters:
+        - $ref: '#/components/parameters/AccountId'
+        - $ref: '#/components/parameters/x-fapi-auth-date'
+        - $ref: '#/components/parameters/x-fapi-customer-ip-address'
+        - $ref: '#/components/parameters/x-fapi-interaction-id'
+        - $ref: '#/components/parameters/Authorisation'
+      responses:
+        '200':
+          $ref: '#/components/responses/200AccountsAccountIdSupplementaryAccountInfoRead'
+        '400':
+          $ref: '#/components/responses/400Error'
+        '401':
+          $ref: '#/components/responses/401Error'
+        '403':
+          $ref: '#/components/responses/403Error'
+        '404':
+          $ref: '#/components/responses/404Error'
+        '405':
+          $ref: '#/components/responses/405Error'
+        '406':
+          $ref: '#/components/responses/406Error'
+        '429':
+          $ref: '#/components/responses/429Error'
+        '500':
+          $ref: '#/components/responses/500Error'
+      security:
+        #Please refer security schemas for more detail
+        - PSUOAuth2Security:
+            - accounts
+  
+components:
+  parameters:
+    ConsentId:
+      name: ConsentId
+      in: path
+      description: Consent Id
+      required: true
+      schema:
+        type: string  
+    AccountId:
+      name: AccountId
+      in: path
+      description: Account Id
+      required: true
+      schema:
+        type: string    
+    StatementId:
+      name: StatementId
+      in: path
+      description: Statement Id
+      required: true
+      schema:
+        type: string
+    FromBookingDateTimeParam:
+      in: query
+      name: fromBookingDateTime
+      description: >-
+        The UTC ISO 8601 Date Time to filter transactions FROM
+
+        NB Time component is optional - set to 00:00:00 for just Date.
+
+        If the Date Time contains a timezone, the ASPSP must ignore the timezone
+        component.
+      schema:
+        type: string
+        format: date-time
+    ToBookingDateTimeParam:
+      in: query
+      name: toBookingDateTime
+      description: >-
+        The UTC ISO 8601 Date Time to filter transactions TO
+
+        NB Time component is optional - set to 00:00:00 for just Date.
+
+        If the Date Time contains a timezone, the ASPSP must ignore the timezone
+        component.
+      schema:
+        type: string
+        format: date-time      
+    FromStatementDateTimeParam:
+      in: query
+      name: fromStatementDateTime
+      description: >-
+        The UTC ISO 8601 Date Time to filter statements FROM
+
+        NB Time component is optional - set to 00:00:00 for just Date.
+
+        If the Date Time contains a timezone, the ASPSP must ignore the timezone
+        component.
+      schema:
+        type: string
+        format: date-time
+    ToStatementDateTimeParam:
+      in: query
+      name: toStatementDateTime
+      description: >-
+        The UTC ISO 8601 Date Time to filter statements TO
+
+        NB Time component is optional - set to 00:00:00 for just Date.
+
+        If the Date Time contains a timezone, the ASPSP must ignore the timezone
+        component.
+      schema:
+        type: string
+        format: date-time    
+    Authorisation:
+      in: header
+      name: Authorisation
+      required: true
+      description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
+      schema:
+        type: string
+    x-fapi-customer-ip-address:
+      in: header
+      name: x-fapi-customer-ip-address
+      required: false
+      description: The PSU's IP address if the PSU is currently logged in with the TPP.
+      schema:
+        type: string
+    x-fapi-auth-date:
+      in: header
+      name: x-fapi-auth-date
+      required: false
+      description: >-
+        The time when the PSU last logged in with the TPP. 
+
+        All dates in the HTTP headers are represented as RFC 7231 Full Dates. An
+        example is below: 
+
+        Wed, 27 May 2020 19:43:31 GMT+03:00
+      schema:
+        type: string
+        pattern: >-
+          ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2}
+          (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4}
+          \d{2}:\d{2}:\d{2} (GMT|UTC)[+-][0-9]{2}:[0-9]{2}$
+    x-fapi-interaction-id:
+      in: header
+      name: x-fapi-interaction-id
+      required: false
+      description: An RFC4122 UID used as a correlation id.
+      schema:
+        type: string
+  requestBodies:
+    OBWriteAccountAccessConsentRequest:
+      description: Default
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBAccountAccessConsentRequest'
+      required: true
+    OBPatchAccountAccessConsentRequest:
+      description: Default
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBPatchAccountAccessConsentRequest'
+      required: true  
+  responses:
+    #Error
+    400Error:
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    401Error:
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    403Error:
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    404Error:
+      description: Not found
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    405Error:
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    406Error:
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    429Error:
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+    500Error:
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'        
+    #Account Access Consents        
+    201AccountAccessConsentsCreated:
+      description: Account Access Consents Created
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBAccountAccessConsentResponse'        
+    200AccountAccessConsentsConsentIdPatched:
+      description: Account Access Consents Status Updated Successfully
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBAccountAccessConsentResponse'
+    200AccountAccessConsentsConsentIdRead:
+      description: Account Access Consents Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBAccountAccessConsentResponse'               
+    #Accounts        
+    200AccountsRead:
+      description: Accounts Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadAccount'
+    200AccountsAccountIdRead:
+      description: Accounts Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadAccount'        
+    #Balances        
+    200AccountsAccountIdBalancesRead:
+      description: Balances Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadBalance'
+    200BalancesRead:
+      description: Balances Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadBalance'        
+    #Transactions
+    200AccountsAccountIdTransactionsRead:
+      description: Transactions Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadTransaction'
+    200TransactionsRead:
+      description: Transactions Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadTransaction'        
+    
+    #Beneficiaries   
+    200AccountsAccountIdBeneficiariesRead:
+      description: Beneficiaries Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadBeneficiary'
+    200BeneficiariesRead:
+      description: Beneficiaries Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadBeneficiary'        
+    #Direct Debits
+    200AccountsAccountIdDirectDebitsRead:
+      description: Direct Debits Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit'
+    200DirectDebitsRead:
+      description: Direct Debits Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadDirectDebit'
+    #Standing Orders
+    200AccountsAccountIdStandingOrdersRead:
+      description: Standing Orders Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadStandingOrder'
+    200StandingOrdersRead:
+      description: Standing Orders Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadStandingOrder'        
+    #Offers
+    200AccountsAccountIdOffersRead:
+      description: Offers Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadOffer'
+    200OffersRead:
+      description: Offers Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadOffer'        
+    #Parties
+    200AccountsAccountIdPartiesRead:
+      description: Parties Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadParties'
+    200AccountsAccountIdPartyRead:
+      description: Parties Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadParty'   
+    200PartyRead:
+      description: Parties Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadParty'        
+    #Future Dated Payments
+    200AccountsAccountIdFutureDatedPaymentsRead:
+      description: Future Dated Payments Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadFutureDatedPayment'
+    200FutureDatedPaymentsRead:
+      description: Future Dated Payments Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadFutureDatedPayment'
+    #Statements
+    200AccountsAccountIdStatementsRead:
+      description: Statements Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadStatement'
+    200AccountsAccountIdStatementsStatementIdRead:
+      description: Statements Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadStatement'
+    200AccountsAccountIdStatementsStatementIdFileRead:
+      description: Statements Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/File'
+    200AccountsAccountIdStatementsStatementIdTransactionsRead:
+      description: Transactions Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadTransaction'                
+    200StatementsRead:
+      description: Statements Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadStatement'
+    #Products
+    200AccountsAccountIdSupplementaryAccountInfoRead:
+      description: Supplementary Account Info Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadSupplementaryAccountInfo'
+    
+            
+  schemas:
+    AccountId:
+      description: >-
+        A unique and immutable identifier used to identify the account resource.
+        This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40
+    TransactionId:
+      description: >-
+        Unique identifier for the transaction within an servicing institution.
+        This identifier is both unique and immutable.
+      type: string
+      minLength: 1
+      maxLength: 210  
+    BeneficiaryId:
+      description: >-
+        A unique and immutable identifier used to identify the beneficiary
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40  
+    DirectDebitId:
+      description: >-
+        A unique and immutable identifier used to identify the direct debit
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40  
+    StandingOrderId:
+      description: >-
+        A unique and immutable identifier used to identify the standing order
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40  
+    PartyId:
+      description: >-
+        A unique and immutable identifier used to identify the customer
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40
+    PartyNumber:
+      description: Number assigned by an agent to identify its customer.
+      type: string
+      minLength: 1
+      maxLength: 35
+    PhoneNumber:
+      description: >-
+        Collection of information that identifies a phone number, as defined by
+        telecom services.
+      type: string
+      pattern: '\+[0-9]{1,3}-[0-9()+\-]{1,30}'  
+    MobileNumber:
+      description: >-
+        Collection of information that identifies a mobile phone number, as
+        defined by telecom services.
+      type: string
+      pattern: '\+[0-9]{1,3}-[0-9()+\-]{1,30}'  
+    EmailAddress:
+      description: Address for electronic mail (e-mail).
+      type: string
+      minLength: 1
+      maxLength: 256
+    ActiveOrHistoricCurrencyCode:
+      description: >-
+        Identification of the currency in which the account is held. 
+
+        Usage: Currency should only be used in case one and the same account
+        number covers several currencies
+
+        and the initiating party needs to identify which currency needs to be
+        used for settlement on the account.
+      type: string
+      pattern: '^[A-Z]{3,3}$'  
+    ActiveOrHistoricCurrencyCodeMaintenanceAgency:
+      description: >-
+        A code allocated to a currency by a Maintenance Agency under an
+        international identification scheme, as described in the latest edition
+        of the international standard ISO 4217 "Codes for the representation of
+        currencies and funds".
+      type: string
+      pattern: '^[A-Z]{3,3}$'  
+    AddressLine:
+      description: >-
+        Information that locates and identifies a specific address for a
+        transaction entry, that is presented in free format text.
+      type: string
+      minLength: 1
+      maxLength: 70  
+    BookingDateTime:
+      description: >-
+        Date and time when a transaction entry is posted to an account on the
+        account servicer's books.
+
+        Usage: Booking date is the expected booking date, unless the status is
+        booked, in which case it is the actual booking date.All dates in the
+        JSON payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    OBActiveCurrencyAndAmount:
+      description: >-
+        A number of monetary units specified in an active currency where the
+        unit of currency is explicit and compliant with ISO 4217.
+      type: string
+      pattern: '^\d{1,13}$\|^\d{1,13}\.\d{1,5}$'  
+    Description:
+      description: Specifies the description of the account type.
+      type: string
+      minLength: 1
+      maxLength: 35  
+    DescriptionStatement:
+      description: Description that may be available for the statement fee.
+      type: string
+      minLength: 1
+      maxLength: 128
+    DescriptionStatementInterest:
+      description: Description that may be available for the statement interest.
+      type: string
+      minLength: 1
+      maxLength: 128  
+    OBAccountStatusCode:
+      description: Specifies the status of account resource in code form.
+      type: string
+      enum:
+        - Deleted
+        - Disabled
+        - Enabled
+        - Pending
+        - ProForma  
+    OBBalanceTypeCode:
+      description: 'Balance type, in a coded form.'
+      type: string
+      enum:
+        - ClosingAvailable
+        - ClosingBooked
+        - ClosingCleared
+        - Expected
+        - ForwardAvailable
+        - Information
+        - InterimAvailable
+        - InterimBooked
+        - InterimCleared
+        - OpeningAvailable
+        - OpeningBooked
+        - OpeningCleared
+        - PreviouslyClosedBooked    
+    OBExternalAccountTypeCode:
+      description: Specifies the type of account (personal or business).
+      type: string
+      enum:
+        - Business
+        - Personal    
+    OBExternalAccountSubTypeCode:
+      description: Specifies the sub type of account (product family group).
+      type: string
+      enum:
+        - ChargeCard
+        - CreditCard
+        - CurrentAccount
+        - EMoney
+        - Loan
+        - Mortgage
+        - PrePaidCard
+        - Savings    
+    CreationDateTime:
+      description: >-
+        Date and time at which the resource was created.All dates in the JSON
+        payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time
+    StartDateTime:
+      description: >-
+        Date and time at which the statement period starts.All dates in the JSON
+        payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    EndDateTime:
+      description: >-
+        Date and time at which the statement period ends.All dates in the JSON
+        payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time    
+    StatusUpdateDateTime:
+      description: >-
+        Date and time at which the resource status was updated.All dates in the
+        JSON payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    Links:
+      type: object
+      description: Links relevant to the payload
+      properties:
+        Self:
+          type: string
+          format: uri
+        First:
+          type: string
+          format: uri
+        Prev:
+          type: string
+          format: uri
+        Next:
+          type: string
+          format: uri
+        Last:
+          type: string
+          format: uri
+      additionalProperties: false
+      required:
+        - Self  
+    Meta:
+      title: MetaData
+      type: object
+      description: Meta Data relevant to the payload
+      properties:
+        TotalPages:
+          type: integer
+          format: int32
+        FirstAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+        LastAvailableDateTime:
+          $ref: '#/components/schemas/ISODateTime'
+      additionalProperties: false    
+    MaturityDate:
+      description: >-
+        Maturity date of the account.All dates in the JSON payloads are
+        represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    Nickname:
+      description: >-
+        The nickname of the account, assigned by the account owner in order to
+        provide an additional means of identification of the account.
+      type: string
+      minLength: 1
+      maxLength: 70  
+    Name:
+      description: >-
+        The account name is the name or names of the account owner(s)
+        represented at an account level, as displayed by the ASPSP's online
+        channels.
+
+        Note, the account name is not the product name or the nickname of the
+        account.
+      type: string
+      minLength: 1
+      maxLength: 70  
+    NameAgent:
+      description: >-
+        Name by which an agent is known and which is usually used to identify
+        that agent.
+      type: string
+      minLength: 1
+      maxLength: 140  
+    NameServiceUser:
+      description: Name of Service User.
+      type: string
+      minLength: 1
+      maxLength: 70
+    NameParty:
+      description: >-
+        Name by which a party is known and which is usually used to identify
+        that party.
+      type: string
+      minLength: 1
+      maxLength: 70  
+    FullLegalName:
+      description: Specifies a character string with a maximum length of 350 characters.
+      type: string
+      minLength: 1
+      maxLength: 350  
+    ISODateTime:
+      description: >-
+        All dates in the JSON payloads are represented in ISO 8601 date-time
+        format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time
+    Identification:
+      description: >-
+        Identification assigned by an institution to identify an account. This
+        identification is known by the account owner.
+      type: string
+      minLength: 1
+      maxLength: 256  
+    IdentificationFinancialInstitution:
+      description: >-
+        Unique and unambiguous identification of a financial institution or a
+        branch of a financial institution.
+      type: string
+      minLength: 1
+      maxLength: 35  
+    ServicingInstitutionIdentification:
+      description: Unique and unambiguous identification of the servicing institution.
+      type: string
+      minLength: 1
+      maxLength: 35  
+    OpeningDate:
+      description: >-
+        Date on which the account and related basic services are effectively
+        operational for the account owner.All dates in the JSON payloads are
+        represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    OBAccountAccessConsentResponse:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          required:
+            - ConsentId
+            - CreationDateTime
+            - Status
+            - StatusUpdateDateTime
+            - Permissions
+          properties:
+            ConsentId:
+              description: >-
+                Unique identification as assigned to identify the account access
+                consent resource.
+              type: string
+              minLength: 1
+              maxLength: 128
+            CreationDateTime:
+              $ref: '#/components/schemas/CreationDateTime'
+            Status:
+              description: Specifies the status of consent resource in code form.
+              type: string
+              enum:
+                - Authorised
+                - AwaitingAuthorisation
+                - Rejected
+                - Revoked
+            StatusUpdateDateTime:
+              $ref: '#/components/schemas/StatusUpdateDateTime'
+            Permissions:
+              type: array
+              items:
+                description: >-
+                  Specifies the Open Banking account access data types. This is
+                  a list of the data clusters being consented by the PSU, and
+                  requested for authorisation with the ASPSP.
+                type: string
+                enum:
+                  - ReadAccountsBasic
+                  - ReadAccountsDetail
+                  - ReadBalances
+                  - ReadBeneficiariesBasic
+                  - ReadBeneficiariesDetail
+                  - ReadDirectDebits
+                  - ReadOffers
+                  - ReadPAN
+                  - ReadParty
+                  - ReadPartyPSU
+                  - ReadSupplementaryAccountInfo
+                  - ReadFutureDatedPaymentsBasic
+                  - ReadFutureDatedPaymentsDetail
+                  - ReadStandingOrdersBasic
+                  - ReadStandingOrdersDetail
+                  - ReadStatementsBasic
+                  - ReadStatementsDetail
+                  - ReadTransactionsBasic
+                  - ReadTransactionsCredits
+                  - ReadTransactionsDebits
+                  - ReadTransactionsDetail
+              minItems: 1
+            TransactionFromDateTime:
+              description: >-
+                Specified start date and time for the transaction query period.
+
+                If this is not populated, the start date will be open ended, and
+                data will be returned from the earliest available
+                transaction.All dates in the JSON payloads are represented in
+                ISO 8601 date-time format. 
+
+                All date-time fields in responses must include the timezone. An
+                example is below:
+
+                2020-04-05T10:43:07+03:00
+              type: string
+              format: date-time
+            TransactionToDateTime:
+              description: >-
+                Specified end date and time for the transaction query period.
+
+                If this is not populated, the end date will be open ended, and
+                data will be returned to the latest available transaction.All
+                dates in the JSON payloads are represented in ISO 8601 date-time
+                format. 
+
+                All date-time fields in responses must include the timezone. An
+                example is below:
+
+                2020-04-05T10:43:07+03:00
+              type: string
+              format: date-time
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta' 
+    OBPatchAccountAccessConsentRequest:   
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          required:
+            - Status
+          properties:
+            Status:
+              description: Specifies the status of consent resource in code form.
+              type: string
+              enum:
+                - Revoked
+    OBAccountAccessConsentRequest:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          required:
+            - Permissions
+          properties:
+            Permissions:
+              type: array
+              items:
+                description: >-
+                  Specifies the Open Banking account access data types. This is
+                  a list of the data clusters being consented by the PSU, and
+                  requested for authorisation with the ASPSP.
+                type: string
+                enum:
+                  - ReadAccountsBasic
+                  - ReadAccountsDetail
+                  - ReadBalances
+                  - ReadBeneficiariesBasic
+                  - ReadBeneficiariesDetail
+                  - ReadDirectDebits
+                  - ReadOffers
+                  - ReadPAN
+                  - ReadParty
+                  - ReadPartyPSU
+                  - ReadSupplementaryAccountInfo
+                  - ReadFutureDatedPaymentsBasic
+                  - ReadFutureDatedPaymentsDetail
+                  - ReadStandingOrdersBasic
+                  - ReadStandingOrdersDetail
+                  - ReadStatementsBasic
+                  - ReadStatementsDetail
+                  - ReadTransactionsBasic
+                  - ReadTransactionsCredits
+                  - ReadTransactionsDebits
+                  - ReadTransactionsDetail
+              minItems: 1
+            TransactionFromDateTime:
+              description: >-
+                Specified start date and time for the transaction query period.
+
+                If this is not populated, the start date will be open ended, and
+                data will be returned from the earliest available
+                transaction.All dates in the JSON payloads are represented in
+                ISO 8601 date-time format. 
+
+                All date-time fields in responses must include the timezone. An
+                example is below:
+
+                2020-04-05T10:43:07+03:00
+              type: string
+              format: date-time
+            TransactionToDateTime:
+              description: >-
+                Specified end date and time for the transaction query period.
+
+                If this is not populated, the end date will be open ended, and
+                data will be returned to the latest available transaction.All
+                dates in the JSON payloads are represented in ISO 8601 date-time
+                format. 
+
+                All date-time fields in responses must include the timezone. An
+                example is below:
+
+                2020-04-05T10:43:07+03:00
+              type: string
+              format: date-time
+    OBReadAccount:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            Account:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBAccount'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    OBReadBalance:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          required:
+            - Balance
+          properties:
+            Balance:
+              type: array
+              items:
+                type: object
+                description: Set of elements used to define the balance details.
+                required:
+                  - AccountId
+                  - CreditDebitIndicator
+                  - Type
+                  - DateTime
+                  - Amount
+                properties:
+                  AccountId:
+                    $ref: '#/components/schemas/AccountId'
+                  CreditDebitIndicator:
+                    $ref: '#/components/schemas/OBCreditDebitCode'
+                  Type:
+                    $ref: '#/components/schemas/OBBalanceTypeCode'
+                  DateTime:
+                    description: >-
+                      Indicates the date (and time) of the balance.All dates in
+                      the JSON payloads are represented in ISO 8601 date-time
+                      format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2020-04-05T10:43:07+03:00
+                    type: string
+                    format: date-time
+                  Amount:
+                    type: object
+                    required:
+                      - Amount
+                      - Currency
+                    description: Amount of money of the cash balance.
+                    properties:
+                      Amount:
+                        $ref: >-
+                          #/components/schemas/OBActiveCurrencyAndAmount
+                      Currency:
+                        $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
+                  CreditLine:
+                    type: array
+                    items:
+                      type: object
+                      description: >-
+                        Set of elements used to provide details on the credit
+                        line.
+                      required:
+                        - Included
+                      properties:
+                        Included:
+                          description: >-
+                            Indicates whether or not the credit line is included
+                            in the balance of the account.
+
+                            Usage: If not present, credit line is not included
+                            in the balance amount of the account.
+                          type: boolean
+                        Type:
+                          description: 'Limit type, in a coded form.'
+                          type: string
+                          enum:
+                            - Available
+                            - Credit
+                            - Emergency
+                            - Pre-Agreed
+                            - Temporary
+                        Amount:
+                          type: object
+                          required:
+                            - Amount
+                            - Currency
+                          description: Amount of money of the credit line.
+                          properties:
+                            Amount:
+                              $ref: >-
+                                #/components/schemas/OBActiveCurrencyAndAmount
+                            Currency:
+                              $ref: >-
+                                #/components/schemas/ActiveOrHistoricCurrencyCode
+              minItems: 1
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    OBReadTransaction:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+            $ref: '#/components/schemas/OBReadDataTransaction'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    OBError:
+      type: object
+      properties:
+        ErrorCode:
+          description: 'Low level textual error code, e.g., BH.OBF.Field.Missing'
+          type: string
+          #Below is an example
+          x-namespaced-enum:
+            - BH.OBF.Field.Expected
+            - BH.OBF.Field.Invalid
+            - BH.OBF.Field.InvalidDate
+            - BH.OBF.Field.Missing
+            - BH.OBF.Field.Unexpected
+            - BH.OBF.Header.Invalid
+            - BH.OBF.Header.Missing
+            - BH.OBF.Reauthenticate
+            - BH.OBF.Resource.ConsentMismatch
+            - BH.OBF.Resource.InvalidConsentStatus
+            - BH.OBF.Resource.InvalidFormat
+            - BH.OBF.Resource.NotFound
+            - BH.OBF.Rules.AfterCutOffDateTime
+            - BH.OBF.Rules.DuplicateReference
+            - BH.OBF.Signature.Invalid
+            - BH.OBF.Signature.InvalidClaim
+            - BH.OBF.Signature.Malformed
+            - BH.OBF.Signature.Missing
+            - BH.OBF.Signature.MissingClaim
+            - BH.OBF.Signature.Unexpected
+            - BH.OBF.UnexpectedError
+            - BH.OBF.Unsupported.AccountIdentifier
+            - BH.OBF.Unsupported.AccountSecondaryIdentifier
+            - BH.OBF.Unsupported.Currency
+            - BH.OBF.Unsupported.Frequency
+            - BH.OBF.Unsupported.LocalInstrument
+            - BH.OBF.Unsupported.Scheme
+        Message:
+          description: >-
+            A description of the error that occurred. e.g., 'A mandatory field
+            isn't supplied' or 'RequestedExecutionDateTime must be in future'
+
+            OBIE doesn't standardise this field
+          type: string
+          minLength: 1
+          maxLength: 500
+        Path:
+          description: >-
+            Recommended but optional reference to the JSON Path of the field
+            with error, e.g., Data.Initiation.InstructedAmount.Currency
+          type: string
+          minLength: 1
+          maxLength: 500
+        Url:
+          description: >-
+            URL to help remediate the problem, or provide more information, or
+            to API Reference, or help etc
+          type: string
+      required:
+        - ErrorCode
+        - Message
+      additionalProperties: false
+      minProperties: 1
+    OBReadDataTransaction:
+      type: object
+      properties:
+        Transaction:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBTransaction'        
+    OBTransaction:
+      oneOf:
+        - $ref: '#/components/schemas/OBTransactionBasic'
+        - $ref: '#/components/schemas/OBTransactionDetail'
+    OBTransactionBasic:
+      type: object
+      description: Provides further details on an entry in the report.
+      required:
+        - AccountId
+        - CreditDebitIndicator
+        - Status
+        - BookingDateTime
+        - Amount
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        TransactionId:
+          $ref: '#/components/schemas/TransactionId'
+        TransactionReference:
+          $ref: '#/components/schemas/TransactionReference'
+        StatementReference:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatementReference'
+        CreditDebitIndicator:
+          $ref: '#/components/schemas/OBCreditDebitCodeTransaction'
+        Status:
+          $ref: '#/components/schemas/OBEntryStatusCode'  
+        BookingDateTime:
+          $ref: '#/components/schemas/BookingDateTime'
+        ValueDateTime:
+          $ref: '#/components/schemas/ValueDateTime'
+        AddressLine:
+          $ref: '#/components/schemas/AddressLine'
+        Amount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountTransaction'
+        ChargeAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountTransactionCharges'
+        CurrencyExchange:
+          $ref: '#/components/schemas/OBCurrencyExchange'
+        BankTransactionCode:
+          $ref: '#/components/schemas/OBBankTransactionCodeStructure'
+        ProprietaryBankTransactionCode:
+          $ref: '#/components/schemas/ProprietaryBankTransactionCodeStructure'
+        CardInstrument:
+          $ref: '#/components/schemas/OBTransactionCardInstrument'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+    OBTransactionDetail:
+      type: object
+      description: Provides further details on an entry in the report.
+      required:
+        - AccountId
+        - CreditDebitIndicator
+        - Status
+        - BookingDateTime
+        - Amount
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        TransactionId:
+          $ref: '#/components/schemas/TransactionId'
+        TransactionReference:
+          $ref: '#/components/schemas/TransactionReference'
+        StatementReference:
+          type: array
+          items:
+            $ref: '#/components/schemas/StatementReference'
+        CreditDebitIndicator:
+          $ref: '#/components/schemas/OBCreditDebitCodeTransaction'
+        Status:
+          $ref: '#/components/schemas/OBEntryStatusCode'
+        BookingDateTime:
+          $ref: '#/components/schemas/BookingDateTime'
+        ValueDateTime:
+          $ref: '#/components/schemas/ValueDateTime'
+        TransactionInformation:
+          $ref: '#/components/schemas/TransactionInformation'
+        AddressLine:
+          $ref: '#/components/schemas/AddressLine'
+        Amount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountTransaction'
+        ChargeAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountTransactionCharges'
+        CurrencyExchange:
+          $ref: '#/components/schemas/OBCurrencyExchange'
+        BankTransactionCode:
+          $ref: '#/components/schemas/OBBankTransactionCodeStructure'
+        ProprietaryBankTransactionCode:
+          $ref: '#/components/schemas/ProprietaryBankTransactionCodeStructure'
+        Balance:
+          $ref: '#/components/schemas/OBTransactionCashBalance'
+        MerchantDetails:
+          $ref: '#/components/schemas/OBMerchantDetails'
+        CreditorAgent:
+          $ref: >-
+            #/components/schemas/OBBranchAndFinancialInstitutionIdentificationCreditor
+        CreditorAccount:
+          $ref: '#/components/schemas/OBCashCreditorAccount'
+        DebtorAgent:
+          $ref: >-
+            #/components/schemas/OBBranchAndFinancialInstitutionIdentificationDebtor
+        DebtorAccount:
+          $ref: '#/components/schemas/OBCashDebitorAccount'
+        CardInstrument:
+          $ref: '#/components/schemas/OBTransactionCardInstrument'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'        
+    OBBankTransactionCodeStructure:
+      type: object
+      required:
+        - Code
+        - SubCode
+      description: >-
+        Set of elements used to fully identify the type of underlying
+        transaction resulting in an entry.
+      properties:
+        Code:
+          description: Specifies the family within a domain.
+          type: string
+          minLength: 1
+          maxLength: 4
+        SubCode:
+          description: Specifies the sub-product family within a specific family.
+          type: string
+          minLength: 1
+          maxLength: 4      
+    OBTransactionCashBalance:
+      type: object
+      required:
+        - CreditDebitIndicator
+        - Type
+        - Amount
+      description: >-
+        Set of elements used to define the balance as a numerical representation
+        of the net increases and decreases in an account after a transaction
+        entry is applied to the account.
+      properties:
+        CreditDebitIndicator:
+          $ref: '#/components/schemas/OBCreditDebitCode'
+        Type:
+          $ref: '#/components/schemas/OBBalanceTypeCode'
+        Amount:
+          type: object
+          required:
+            - Amount
+            - Currency
+          description: >-
+            Amount of money of the cash balance after a transaction entry is
+            applied to the account..
+          properties:
+            Amount:
+              $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+            Currency:
+              $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    ProprietaryBankTransactionCodeStructure:
+      type: object
+      required:
+        - Code
+      description: Set of elements to fully identify a proprietary bank transaction code.
+      properties:
+        Code:
+          description: >-
+            Proprietary bank transaction code to identify the underlying
+            transaction.
+          type: string
+          minLength: 1
+          maxLength: 35
+        Issuer:
+          description: >-
+            Identification of the issuer of the proprietary bank transaction
+            code.
+          type: string
+          minLength: 1
+          maxLength: 35      
+    OBTransactionCardInstrument:
+      type: object
+      required:
+        - CardSchemeName
+      description: Set of elements to describe the card instrument used in the transaction.
+      properties:
+        CardSchemeName:
+          description: Name of the card scheme.
+          type: string
+          #Below is an example
+          enum:
+            - AmericanExpress
+            - Diners
+            - Discover
+            - MasterCard
+            - VISA
+        AuthorisationType:
+          description: The card authorisation type.
+          type: string
+          #Below is an example
+          enum:
+            - ConsumerDevice
+            - Contactless
+            - None
+            - PIN
+        Name:
+          description: Name of the cardholder using the card instrument.
+          type: string
+          minLength: 1
+          maxLength: 70
+        Identification:
+          description: >-
+            Identification assigned by an institution to identify the card
+            instrument used in the transaction. This identification is known by
+            the account owner, and may be masked.
+          type: string
+          minLength: 1
+          maxLength: 34      
+    OBErrorResponse:
+      description: >-
+        An array of detail error codes, and messages, and URLs to documentation
+        to help remediation.
+      type: object
+      properties:
+        Code:
+          description: 'High level textual error code, to help categorize the errors.'
+          type: string
+          minLength: 1
+          maxLength: 40
+        Id:
+          description: >-
+            A unique reference for the error instance, for audit purposes, in
+            case of unknown/unclassified errors.
+          type: string
+          minLength: 1
+          maxLength: 40
+        Message:
+          description: >-
+            Brief Error message, e.g., 'There is something wrong with the
+            request parameters provided'
+          type: string
+          minLength: 1
+          maxLength: 500
+        Errors:
+          items:
+            $ref: '#/components/schemas/OBError'
+          type: array
+          minItems: 1
+      required:
+        - Code
+        - Message
+        - Errors
+      additionalProperties: false      
+    OBExternalAccountIdentificationCode:
+      description: >-
+        Name of the identification scheme, in a coded form as published in an
+        external list.
+      type: string
+      x-namespaced-enum:
+        - BH.OBF.IBAN
+    OBExternalFinancialInstitutionIdentificationCode:
+      description: >-
+        Name of the identification scheme, in a coded form as published in an
+        external list.
+      type: string
+      x-namespaced-enum:
+        - BH.OBF.BICFI 
+    OBCreditDebitCode:
+      description: |-
+        Indicates whether the balance is a credit or a debit balance. 
+        Usage: A zero balance is considered to be a credit balance.
+      type: string
+      enum:
+        - Credit
+        - Debit  
+    OBCreditDebitCodeAmount:
+      description: |-
+        Indicates whether the amount is a credit or a debit. 
+        Usage: A zero amount is considered to be a credit amount.
+      type: string
+      enum:
+        - Credit
+        - Debit    
+    OBCreditDebitCodeTransaction:
+      description: Indicates whether the transaction is a credit or a debit entry.
+      type: string
+      enum:
+        - Credit
+        - Debit 
+    OBEntryStatusCode:
+      description: Status of a transaction entry on the books of the account servicer.
+      type: string
+      enum:
+        - Booked
+        - Pending   
+        - Interimpending
+    OBActiveOrHistoricCurrencyAndAmount:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: The amount of the most recent direct debit collection.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'    
+    OBActiveOrHistoricCurrencyAndAmountInstructed:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: >-
+        Amount of money to be moved between the debtor and creditor, before
+        deduction of charges, expressed in the currency as ordered by the
+        initiating party.
+
+        Usage: This amount has to be transported unchanged through the
+        transaction chain.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'      
+    OBActiveOrHistoricCurrencyAndAmountTransaction:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Amount of money in the cash transaction entry.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'    
+    OBActiveOrHistoricCurrencyAndAmountTransactionCharges:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Transaction charges to be paid by the charge bearer.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    OBActiveOrHistoricCurrencyAndAmountStatement:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Amount of money associated with the statement benefit type.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'      
+    OBActiveOrHistoricCurrencyAndAmountStatementFeeType:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Amount of money associated with the statement fee type.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'       
+    OBActiveOrHistoricCurrencyAndAmountStatementInterest:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Amount of money associated with the statement interest amount type.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'      
+    OBActiveOrHistoricCurrencyAndAmountType:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: Amount of money associated with the amount type.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'      
+    OBAccount:
+      oneOf:
+        - $ref: '#/components/schemas/OBAccountBasic'
+        - $ref: '#/components/schemas/OBAccountDetail'
+    OBAccountBasic:
+      type: object
+      description: >-
+        Unambiguous identification of the account to which credit and debit
+        entries are made.
+      required:
+        - AccountId
+        - Currency
+        - AccountType
+        - AccountSubType
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        Status:
+          $ref: '#/components/schemas/OBAccountStatusCode'
+        StatusUpdateDateTime:
+          $ref: '#/components/schemas/StatusUpdateDateTime'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
+        AccountType:
+          $ref: '#/components/schemas/OBExternalAccountTypeCode'
+        AccountSubType:
+          $ref: '#/components/schemas/OBExternalAccountSubTypeCode'
+        Description:
+          $ref: '#/components/schemas/Description'
+        Nickname:
+          $ref: '#/components/schemas/Nickname'
+        OpeningDate:
+          $ref: '#/components/schemas/OpeningDate'
+        MaturityDate:
+          $ref: '#/components/schemas/MaturityDate'
+    OBAccountDetail:
+      type: object
+      description: >-
+        Unambiguous identification of the account to which credit and debit
+        entries are made.
+      required:
+        - AccountId
+        - Currency
+        - AccountType
+        - AccountSubType
+        - Account
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        Status:
+          $ref: '#/components/schemas/OBAccountStatusCode'
+        StatusUpdateDateTime:
+          $ref: '#/components/schemas/StatusUpdateDateTime'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'
+        AccountType:
+          $ref: '#/components/schemas/OBExternalAccountTypeCode'
+        AccountSubType:
+          $ref: '#/components/schemas/OBExternalAccountSubTypeCode'
+        Description:
+          $ref: '#/components/schemas/Description'
+        Nickname:
+          $ref: '#/components/schemas/Nickname'
+        OpeningDate:
+          $ref: '#/components/schemas/OpeningDate'
+        MaturityDate:
+          $ref: '#/components/schemas/MaturityDate'
+        Account:
+          type: array
+          items:
+            type: object
+            description: Provides the details to identify an account.
+            required:
+              - SchemeName
+              - Identification
+            properties:
+              SchemeName:
+                $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+              Identification:
+                $ref: '#/components/schemas/Identification'
+              Name:
+                $ref: '#/components/schemas/Name'
+        Servicer:
+          $ref: '#/components/schemas/OBBranchAndFinancialInstitutionIdentification'  
+    OBBranchAndFinancialInstitutionIdentification:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: >-
+        Party that manages the account on behalf of the account owner, that is
+        manages the registration and booking of entries on the account,
+        calculates balances on the account and provides information about the
+        account.
+      properties:
+        SchemeName:
+          $ref: >-
+            #/components/schemas/OBExternalFinancialInstitutionIdentificationCode
+        Identification:
+          $ref: '#/components/schemas/ServicingInstitutionIdentification'        
+    OBBranchAndFinancialInstitutionIdentificationCreditor:
+      type: object
+      description: Financial institution servicing an account for the creditor.
+      properties:
+        SchemeName:
+          $ref: >-
+            #/components/schemas/OBExternalFinancialInstitutionIdentificationCode
+        Identification:
+          $ref: '#/components/schemas/IdentificationFinancialInstitution'
+        Name:
+          $ref: '#/components/schemas/NameAgent'
+        PostalAddress:
+          $ref: '#/components/schemas/OBPostalAddress'      
+    OBBranchAndFinancialInstitutionIdentificationDebtor:
+      type: object
+      description: Financial institution servicing an account for the debtor.
+      properties:
+        SchemeName:
+          $ref: >-
+            #/components/schemas/OBExternalFinancialInstitutionIdentificationCode
+        Identification:
+          $ref: '#/components/schemas/IdentificationFinancialInstitution'
+        Name:
+          $ref: '#/components/schemas/NameAgent'
+        PostalAddress:
+          $ref: '#/components/schemas/OBPostalAddress'      
+    OBBranchAndFinancialInstitutionIdentificationCreditorAgent:
+    
+      type: object
+      description: >-
+        Party that manages the account on behalf of the account owner, that is
+        manages the registration and booking of entries on the account,
+        calculates balances on the account and provides information about the
+        account.
+
+        This is the servicer of the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalFinancialInstitutionIdentificationCode'
+        Identification:
+          $ref: '#/components/schemas/ServicingInstitutionIdentification'
+        Name:
+          $ref: '#/components/schemas/NameAgent'
+        PostalAddress:
+          $ref: '#/components/schemas/OBPostalAddress'      
+    OBBranchAndFinancialInstitutionIdentificationCreditorAgentStandingOrder:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: >-
+        Party that manages the account on behalf of the account owner, that is
+        manages the registration and booking of entries on the account,
+        calculates balances on the account and provides information about the
+        account.
+
+        This is the servicer of the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: >-
+            #/components/schemas/OBExternalFinancialInstitutionIdentificationCode
+        Identification:
+          $ref: '#/components/schemas/IdentificationFinancialInstitution'      
+    OBBranchAndFinancialInstitutionIdentificationCreditorAgentFutureDatedPayments:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: >-
+        Party that manages the account on behalf of the account owner, that is
+        manages the registration and booking of entries on the account,
+        calculates balances on the account and provides information about the
+        account.
+
+        This is the servicer of the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: >-
+            #/components/schemas/OBExternalFinancialInstitutionIdentificationCode
+        Identification:
+          $ref: '#/components/schemas/ServicingInstitutionIdentification'          
+    OBMerchantDetails:
+      type: object
+      description: Details of the merchant involved in the transaction.
+      properties:
+        MerchantName:
+          description: Name by which the merchant is known.
+          type: string
+          minLength: 1
+          maxLength: 350
+        MerchantCategoryCode:
+          description: >-
+            Category code conform to ISO 18245, related to the type of services
+            or goods the merchant provides for the transaction.
+          type: string
+          minLength: 3
+          maxLength: 4      
+    OBCurrencyExchange:
+      type: object
+      required:
+        - SourceCurrency
+        - ExchangeRate
+      description: Set of elements used to provide details on the currency exchange.
+      properties:
+        SourceCurrency:
+          description: >-
+            Currency from which an amount is to be converted in a currency
+            conversion.
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+        TargetCurrency:
+          description: >-
+            Currency into which an amount is to be converted in a currency
+            conversion.
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+        UnitCurrency:
+          description: >-
+            Currency in which the rate of exchange is expressed in a currency
+            exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.
+          type: string
+          pattern: '^[A-Z]{3,3}$'
+        ExchangeRate:
+          description: >-
+            Factor used to convert an amount from one currency into another.
+            This reflects the price at which one currency was bought with
+            another currency.
+
+            Usage: ExchangeRate expresses the ratio between UnitCurrency and
+            QuotedCurrency (ExchangeRate = UnitCurrency/QuotedCurrency).
+          type: number
+        ContractIdentification:
+          description: >-
+            Unique identification to unambiguously identify the foreign exchange
+            contract.
+          type: string
+          minLength: 1
+          maxLength: 35
+        QuotationDate:
+          description: >-
+            Date and time at which an exchange rate is quoted.All dates in the
+            JSON payloads are represented in ISO 8601 date-time format. 
+
+            All date-time fields in responses must include the timezone. An
+            example is below:
+
+            2020-04-05T10:43:07+03:00
+          type: string
+          format: date-time
+        InstructedAmount:
+          type: object
+          required:
+            - Amount
+            - Currency
+          description: >-
+            Amount of money to be moved between the debtor and creditor, before
+            deduction of charges, expressed in the currency as ordered by the
+            initiating party.
+          properties:
+            Amount:
+              $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+            Currency:
+              $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    TransactionReference:
+      description: >-
+        Unique reference for the transaction. This reference is optionally
+        populated, and may as an example be the FPID in the Faster Payments
+        context.
+      type: string
+      minLength: 1
+      maxLength: 210  
+    TransactionInformation:
+      description: |-
+        Further details of the transaction. 
+        This is the transaction narrative, which is unstructured text.
+      type: string
+      minLength: 1
+      maxLength: 500  
+    StatementReference:
+      description: >-
+        Unique reference for the statement. This reference may be optionally
+        populated if available.
+      type: string
+      minLength: 1
+      maxLength: 35
+    ValueDateTime:
+      description: >-
+        Date and time at which assets become available to the account owner in
+        case of a credit entry, or cease to be available to the account owner in
+        case of a debit transaction entry.
+
+        Usage: If transaction entry status is pending and value date is present,
+        then the value date refers to an expected/requested value date.
+
+        For transaction entries subject to availability/float and for which
+        availability information is provided, the value date must not be used.
+        In this case the availability component identifies the number of
+        availability days.All dates in the JSON payloads are represented in ISO
+        8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    OBSupplementaryData:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: >-
+        Additional information that can not be captured in the structured fields
+        and/or any other specific block.  
+    OBCashCreditorAccount:
+      type: object
+      description: >-
+        Unambiguous identification of the account of the creditor, in the case
+        of a debit transaction.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+        Identification:
+          $ref: '#/components/schemas/Identification'
+        Name:
+          $ref: '#/components/schemas/Name'
+    OBCashDebitorAccount:
+      type: object
+      description: >-
+        Unambiguous identification of the account of the debtor, in the case of
+        a crebit transaction.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+        Identification:
+          $ref: '#/components/schemas/Identification'
+        Name:
+          $ref: '#/components/schemas/Name'
+    OBReadBeneficiary:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            Beneficiary:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBBeneficiary'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'  
+    OBBeneficiaryTypeCode:
+      description: Specifies the Beneficiary Type.
+      type: string
+      enum:
+        - Trusted
+        - Ordinary      
+    OBBeneficiary:
+      oneOf:
+        - $ref: '#/components/schemas/OBBeneficiaryBasic'
+        - $ref: '#/components/schemas/OBBeneficiaryDetail'
+    OBBeneficiaryBasic:
+      required: 
+        - BeneficiaryType
+      type: object
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        BeneficiaryId:
+          $ref: '#/components/schemas/BeneficiaryId'
+        BeneficiaryType:
+          $ref: '#/components/schemas/OBBeneficiaryTypeCode'  
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+    OBBeneficiaryDetail:
+      required: 
+        - BeneficiaryType
+      type: object
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        BeneficiaryId:
+          $ref: '#/components/schemas/BeneficiaryId'
+        BeneficiaryType:
+          $ref: '#/components/schemas/OBBeneficiaryTypeCode'  
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+        CreditorAgent:
+          $ref: >-
+            #/components/schemas/OBBranchAndFinancialInstitutionIdentificationCreditorAgent
+        CreditorAccount:
+          $ref: '#/components/schemas/OBCashAccount'
+    Reference:
+      description: >-
+        Unique reference, as assigned by the creditor, to unambiguously refer to
+        the payment transaction.
+
+        Usage: If available, the initiating party should provide this reference
+        in the structured remittance information, to enable reconciliation by
+        the creditor upon receipt of the amount of money.
+
+        If the business context requires the use of a creditor reference or a
+        payment remit identification, and only one identifier can be passed
+        through the end-to-end chain, the creditor's reference or payment
+        remittance identification should be quoted in the end-to-end transaction
+        identification.
+      type: string
+      minLength: 1
+      maxLength: 35  
+    OBCashAccount:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: Provides the details to identify the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+        Identification:
+          $ref: '#/components/schemas/Identification'
+        Name:
+          $ref: '#/components/schemas/Name'  
+    OBCashAccountStandingOrder:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: Provides the details to identify the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+        Identification:
+          description: Beneficiary account identification.
+          type: string
+          minLength: 1
+          maxLength: 256
+        Name:
+          $ref: '#/components/schemas/Name'      
+    OBCashAccountFutureDatedPayment:
+      type: object
+      required:
+        - SchemeName
+        - Identification
+      description: Provides the details to identify the beneficiary account.
+      properties:
+        SchemeName:
+          $ref: '#/components/schemas/OBExternalAccountIdentificationCode'
+        Identification:
+          description: Beneficiary account identification.
+          type: string
+          minLength: 1
+          maxLength: 256
+        Name:
+          $ref: '#/components/schemas/Name'           
+    OBReadDirectDebit:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            DirectDebit:
+              type: array
+              items:
+                type: object
+                description: Account to or from which a cash entry is made.
+                required:
+                  - AccountId
+                  - MandateIdentification
+                  - Name
+                properties:
+                  AccountId:
+                    $ref: '#/components/schemas/AccountId'
+                  DirectDebitId:
+                    $ref: '#/components/schemas/DirectDebitId'
+                  MandateIdentification:
+                    $ref: '#/components/schemas/MandateIdentification'
+                  DirectDebitStatusCode:
+                    $ref: '#/components/schemas/OBExternalDirectDebitStatusCode'
+                  Name:
+                    $ref: '#/components/schemas/NameServiceUser'
+                  PreviousPaymentDateTime:
+                    $ref: '#/components/schemas/PreviousPaymentDateTime'
+                  Frequency:
+                    description: >-
+                      Regularity with which direct debit instructions are to be
+                      created and processed.
+                    type: string
+                    x-namespaced-enum:
+                      - BH.OBF.Annual
+                      - BH.OBF.Daily
+                      - BH.OBF.Fortnightly
+                      - BH.OBF.HalfYearly
+                      - BH.OBF.Monthly
+                      - BH.OBF.NotKnown
+                      - BH.OBF.Quarterly
+                      - BH.OBF.Weekly
+                  PreviousPaymentAmount:
+                    $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmount'
+                  SupplementaryData:
+                    $ref: '#/components/schemas/OBSupplementaryData'  
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    MandateIdentification:
+      description: >-
+        Direct Debit reference. For AUDDIS service users provide Core Reference.
+        For non AUDDIS service users provide Core reference if possible or last
+        used reference.
+      type: string
+      minLength: 1
+      maxLength: 35      
+    OBExternalDirectDebitStatusCode:
+      description: Specifies the status of the direct debit in code form.
+      type: string
+      enum:
+        - Active
+        - Inactive  
+    PreviousPaymentDateTime:
+      description: >-
+        Date of most recent direct debit collection.All dates in the JSON
+        payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time    
+    DateTime:
+      description: >-
+        Date and time associated with the date time type.All dates in the JSON
+        payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    #Start of Postal Address
+    OBPostalAddress:
+      type: object
+      description: >-
+        Information that locates and identifies a specific address, as defined
+        by postal services.
+      properties:
+        AddressType:
+          $ref: '#/components/schemas/OBAddressTypeCode'
+        Department:
+          description: Identification of a division of a large organisation or building.
+          type: string
+          minLength: 1
+          maxLength: 70
+        SubDepartment:
+          description: >-
+            Identification of a sub-division of a large organisation or
+            building.
+          type: string
+          minLength: 1
+          maxLength: 70
+        AddressLine:
+          type: array
+          items:
+            description: >-
+              Information that locates and identifies a specific address, as
+              defined by postal services, presented in free format text.
+            type: string
+            minLength: 1
+            maxLength: 70
+          minItems: 0
+          maxItems: 7  
+        StreetName:
+          $ref: '#/components/schemas/StreetName'
+        BuildingNumber:
+          $ref: '#/components/schemas/BuildingNumber'
+        PostCode:
+          $ref: '#/components/schemas/PostCode'
+        TownName:
+          $ref: '#/components/schemas/TownName'
+        CountrySubDivision:
+          $ref: '#/components/schemas/CountrySubDivision'
+        Country:
+          $ref: '#/components/schemas/CountryCode'
+    OBAddressTypeCode:
+      description: Identifies the nature of the postal address.
+      type: string
+      enum:
+        - Business
+        - Correspondence
+        - DeliveryTo
+        - MailTo
+        - POBox
+        - Postal
+        - Residential
+        - Statement      
+    StreetName:
+      description: Name of a street or thoroughfare.
+      type: string
+      minLength: 1
+      maxLength: 70
+    TownName:
+      description: >-
+        Name of a built-up area, with defined boundaries, and a local
+        government.
+      type: string
+      minLength: 1
+      maxLength: 35    
+    BuildingNumber:
+      description: Number that identifies the position of a building on a street.
+      type: string
+      minLength: 1
+      maxLength: 16
+    PostCode:
+      description: >-
+        Identifier consisting of a group of letters and/or numbers that is added
+        to a postal address to assist the sorting of mail.
+      type: string
+      minLength: 1
+      maxLength: 16  
+    CountryCode:
+      description: 'Nation with its own government, occupying a particular territory.'
+      type: string
+      pattern: '^[A-Z]{2,2}$'  
+    CountrySubDivision:
+      description: 'Identifies a subdivision of a country such as state, region, county.'
+      type: string
+      minLength: 1
+      maxLength: 35  
+    #End of Postal Address 
+    Frequency:
+      description: >-
+        Individual Definitions:
+
+        NotKnown - Not Known
+
+        EvryDay - Every day
+
+        EvryWorkgDay - Every working day
+
+        IntrvlDay - An interval specified in number of calendar days (02 to 31)
+
+        IntrvlWkDay - An interval specified in weeks (01 to 09), and the day
+        within the week (01 to 07)
+
+        WkInMnthDay - A monthly interval, specifying the week of the month (01
+        to 05) and day within the week (01 to 07)
+
+        IntrvlMnthDay - An interval specified in months (between 01 to 06, 12,
+        24), specifying the day within the month (-05 to -01, 01 to 31)
+
+        QtrDay - Quarterly (either ENGLISH, SCOTTISH, or RECEIVED)
+
+        ENGLISH = Paid on the 25th March, 24th June, 29th September and 25th
+        December.
+
+        SCOTTISH = Paid on the 2nd February, 15th May, 1st August and 11th
+        November.
+
+        RECEIVED = Paid on the 20th March, 19th June, 24th September and 20th
+        December.
+
+        Individual Patterns:
+
+        NotKnown (ScheduleCode)
+
+        EvryDay (ScheduleCode)
+
+        EvryWorkgDay (ScheduleCode)
+
+        IntrvlDay:NoOfDay (ScheduleCode + NoOfDay)
+
+        IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks +
+        DayInWeek)
+
+        WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth +
+        DayInWeek)
+
+        IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode +
+        IntervalInMonths + DayInMonth)
+
+        QtrDay: + either (ENGLISH, SCOTTISH or RECEIVED) ScheduleCode +
+        QuarterDay
+
+        The regular expression for this element combines five smaller versions
+        for each permitted pattern. To aid legibility - the components are
+        presented individually here:
+
+        NotKnown
+
+        EvryDay
+
+        EvryWorkgDay
+
+        IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1])
+
+        IntrvlWkDay:0[1-9]:0[1-7]
+
+        WkInMnthDay:0[1-5]:0[1-7]
+
+        IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01])
+
+        QtrDay:(ENGLISH|SCOTTISH|RECEIVED)
+
+        Full Regular Expression:
+
+        ^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+      type: string
+      pattern: >-
+        ^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH|SCOTTISH|RECEIVED))$
+    FinalPaymentDateTime:
+      description: >-
+        The date on which the final payment for a Standing Order schedule will
+        be made.All dates in the JSON payloads are represented in ISO 8601
+        date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time
+    FirstPaymentDateTime:
+      description: >-
+        The date on which the first payment for a Standing Order schedule will
+        be made.All dates in the JSON payloads are represented in ISO 8601
+        date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time    
+    NextPaymentDateTime:
+      description: >-
+        The date on which the next payment for a Standing Order schedule will be
+        made.All dates in the JSON payloads are represented in ISO 8601
+        date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time  
+    LastPaymentDateTime:
+      description: >-
+        The date on which the last (most recent) payment for a Standing Order
+        schedule was made.All dates in the JSON payloads are represented in ISO
+        8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time
+    NumberOfPayments:
+      description: >-
+        Number of the payments that will be made in completing this frequency
+        sequence including any executed since the sequence start date.
+      type: string
+      minLength: 1
+      maxLength: 35  
+    OBExternalStandingOrderStatusCode:
+      description: Specifies the status of the standing order in code form.
+      type: string
+      enum:
+        - Active
+        - Inactive  
+    OBActiveOrHistoricCurrencyAndAmountFirstStandingOrder:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: The amount of the first Standing Order
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'    
+    OBActiveOrHistoricCurrencyAndAmountNextStandingOrder:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: The amount of the next Standing Order.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    OBActiveOrHistoricCurrencyAndAmountLastStandingOrder:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: The amount of the last (most recent) Standing Order instruction.
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    OBActiveOrHistoricCurrencyAndAmountFinalStandingOrder:
+      type: object
+      required:
+        - Amount
+        - Currency
+      description: The amount of the final Standing Order
+      properties:
+        Amount:
+          $ref: '#/components/schemas/OBActiveCurrencyAndAmount'
+        Currency:
+          $ref: '#/components/schemas/ActiveOrHistoricCurrencyCode'      
+    OBReadStandingOrder:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            StandingOrder:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBStandingOrder'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'
+    OBStandingOrder:
+      oneOf:
+        - $ref: '#/components/schemas/OBStandingOrderBasic'
+        - $ref: '#/components/schemas/OBStandingOrderDetail'
+    OBStandingOrderBasic:
+      type: object
+      required:
+        - AccountId
+        - Frequency
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        StandingOrderId:
+          $ref: '#/components/schemas/StandingOrderId'
+        Frequency:
+          $ref: '#/components/schemas/Frequency'
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        FirstPaymentDateTime:
+          $ref: '#/components/schemas/FirstPaymentDateTime'
+        NextPaymentDateTime:
+          $ref: '#/components/schemas/NextPaymentDateTime'
+        LastPaymentDateTime:
+          $ref: '#/components/schemas/LastPaymentDateTime'
+        FinalPaymentDateTime:
+          $ref: '#/components/schemas/FinalPaymentDateTime'
+        NumberOfPayments:
+          $ref: '#/components/schemas/NumberOfPayments'
+        StandingOrderStatusCode:
+          $ref: '#/components/schemas/OBExternalStandingOrderStatusCode'
+        FirstPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountFirstStandingOrder'
+        NextPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountNextStandingOrder'
+        LastPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountLastStandingOrder'
+        FinalPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountFinalStandingOrder'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+    OBStandingOrderDetail:
+      type: object
+      required:
+        - AccountId
+        - Frequency
+        - CreditorAccount
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        StandingOrderId:
+          $ref: '#/components/schemas/StandingOrderId'
+        Frequency:
+          $ref: '#/components/schemas/Frequency'
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        FirstPaymentDateTime:
+          $ref: '#/components/schemas/FirstPaymentDateTime'
+        NextPaymentDateTime:
+          $ref: '#/components/schemas/NextPaymentDateTime'
+        LastPaymentDateTime:
+          $ref: '#/components/schemas/LastPaymentDateTime'
+        FinalPaymentDateTime:
+          $ref: '#/components/schemas/FinalPaymentDateTime'
+        NumberOfPayments:
+          $ref: '#/components/schemas/NumberOfPayments'
+        StandingOrderStatusCode:
+          $ref: '#/components/schemas/OBExternalStandingOrderStatusCode'
+        FirstPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountFirstStandingOrder'
+        NextPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountNextStandingOrder'
+        LastPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountLastStandingOrder'
+        FinalPaymentAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountFinalStandingOrder'
+        CreditorAgent:
+          $ref: >-
+            #/components/schemas/OBBranchAndFinancialInstitutionIdentificationCreditorAgentStandingOrder
+        CreditorAccount:
+          $ref: '#/components/schemas/OBCashAccountStandingOrder'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'    
+    
+    OBReadOffer:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            Offer:
+              type: array
+              items:
+                type: object
+                required:
+                  - AccountId
+                properties:
+                  AccountId:
+                    $ref: '#/components/schemas/AccountId'
+                  OfferId:
+                    description: >-
+                      A unique and immutable identifier used to identify the
+                      offer resource. This identifier has no meaning to the
+                      account owner.
+                    type: string
+                    minLength: 1
+                    maxLength: 40
+                  OfferType:
+                    description: 'Offer type, in a coded form.'
+                    type: string
+                    enum:
+                      - BalanceTransfer
+                      - LimitIncrease
+                      - MoneyTransfer
+                      - Other
+                      - PromotionalRate
+                  Description:
+                    description: Further details of the offer.
+                    type: string
+                    minLength: 1
+                    maxLength: 500
+                  StartDateTime:
+                    description: >-
+                      Date and time at which the offer starts.All dates in the
+                      JSON payloads are represented in ISO 8601 date-time
+                      format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2020-04-05T10:43:07+03:00
+                    type: string
+                    format: date-time
+                  EndDateTime:
+                    description: >-
+                      Date and time at which the offer ends.All dates in the
+                      JSON payloads are represented in ISO 8601 date-time
+                      format. 
+
+                      All date-time fields in responses must include the
+                      timezone. An example is below:
+
+                      2020-04-05T10:43:07+03:00
+                    type: string
+                    format: date-time
+                  Rate:
+                    description: Rate associated with the offer type.
+                    type: string
+                    pattern: '^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$'
+                  Value:
+                    description: Value associated with the offer type.
+                    type: integer
+                  Term:
+                    description: Further details of the term of the offer.
+                    type: string
+                    minLength: 1
+                    maxLength: 500
+                  URL:
+                    description: >-
+                      URL (Uniform Resource Locator) where documentation on the
+                      offer can be found
+                    type: string
+                    format: uri
+                    minLength: 1
+                    maxLength: 256
+                  Amount:
+                    type: object
+                    required:
+                      - Amount
+                      - Currency
+                    description: Amount of money associated with the offer type.
+                    properties:
+                      Amount:
+                        $ref: >-
+                          #/components/schemas/OBActiveCurrencyAndAmount
+                      Currency:
+                        $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'
+                  Fee:
+                    type: object
+                    required:
+                      - Amount
+                      - Currency
+                    description: Fee associated with the offer type.
+                    properties:
+                      Amount:
+                        $ref: >-
+                          #/components/schemas/OBActiveCurrencyAndAmount
+                      Currency:
+                        $ref: '#/components/schemas/ActiveOrHistoricCurrencyCodeMaintenanceAgency'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    
+    OBExternalPartyTypeCode:
+      description: 'Party type, in a coded form.'
+      type: string
+      enum:
+        - Delegate
+        - Joint
+        - Sole
+    OBPartyRelationships:
+      type: object
+      description: The Party's relationships with other resources.
+      properties:
+        Account:
+          type: object
+          required:
+            - Related
+            - Id
+          description: Relationship to the Account resource.
+          properties:
+            Related:
+              description: Absolute URI to the related resource.
+              type: string
+              format: uri
+            Id:
+              description: >-
+                Unique identification as assigned by the ASPSP to uniquely
+                identify the related resource.
+              type: string
+              minLength: 1
+              maxLength: 40    
+    OBExternalLegalStructureTypeCode:
+      description: Legal standing of the party.
+      type: string
+      x-namespaced-enum:
+        - BH.OBF.CIC
+        - BH.OBF.CIO
+        - BH.OBF.Charity
+        - BH.OBF.CoOp
+        - BH.OBF.GeneralPartnership
+        - BH.OBF.Individual
+        - BH.OBF.LimitedLiabilityPartnership
+        - BH.OBF.LimitedPartnership
+        - BH.OBF.PrivateLimitedCompany
+        - BH.OBF.PublicLimitedCompany
+        - BH.OBF.ScottishLimitedPartnership
+        - BH.OBF.Sole          
+    OBExternalAccountRoleCode:
+      description: A party’s role with respect to the related account.
+      type: string
+      x-namespaced-enum:
+        - BH.OBF.Administrator
+        - BH.OBF.Beneficiary
+        - BH.OBF.CustodianForMinor
+        - BH.OBF.Granter
+        - BH.OBF.LegalGuardian
+        - BH.OBF.OtherParty
+        - BH.OBF.PowerOfAttorney
+        - BH.OBF.Principal
+        - BH.OBF.Protector
+        - BH.OBF.RegisteredShareholderName
+        - BH.OBF.SecondaryOwner
+        - BH.OBF.SeniorManagingOfficial
+        - BH.OBF.Settlor
+        - BH.OBF.SuccessorOnDeath    
+    OBReadParties:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            Party:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBPartyDetail'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'
+    OBPartyDetail:
+      type: object
+      required:
+        - PartyId
+      properties:
+        PartyId:
+          $ref: '#/components/schemas/PartyId'
+        PartyNumber:
+          $ref: '#/components/schemas/PartyNumber'
+        PartyType:
+          $ref: '#/components/schemas/OBExternalPartyTypeCode'
+        Name:
+          $ref: '#/components/schemas/NameParty'
+        FullLegalName:
+          $ref: '#/components/schemas/FullLegalName'
+        LegalStructure:
+          $ref: '#/components/schemas/OBExternalLegalStructureTypeCode'
+        BeneficialOwnership:
+          type: boolean
+        AccountRole:
+          $ref: '#/components/schemas/OBExternalAccountRoleCode'
+        EmailAddress:
+          $ref: '#/components/schemas/EmailAddress'
+        Phone:
+          $ref: '#/components/schemas/PhoneNumber'
+        Mobile:
+          $ref: '#/components/schemas/MobileNumber'
+        Relationships:
+          $ref: '#/components/schemas/OBPartyRelationships'
+        Address:
+          type: array
+          items:
+            type: object
+            description: Postal address of a party.
+            required:
+              - Country
+            properties:
+              AddressType:
+                $ref: '#/components/schemas/OBAddressTypeCode'
+              AddressLine:
+                type: array
+                items:
+                  description: >-
+                    Information that locates and identifies a specific address,
+                    as defined by postal services, that is presented in free
+                    format text.
+                  type: string
+                  minLength: 1
+                  maxLength: 70
+                minItems: 0
+                maxItems: 5
+              StreetName:
+                $ref: '#/components/schemas/StreetName'
+              BuildingNumber:
+                $ref: '#/components/schemas/BuildingNumber'
+              PostCode:
+                $ref: '#/components/schemas/PostCode'
+              TownName:
+                $ref: '#/components/schemas/TownName'
+              CountrySubDivision:
+                $ref: '#/components/schemas/CountrySubDivision'
+              Country:
+                $ref: '#/components/schemas/CountryCode'      
+    OBReadParty:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            Party:
+              $ref: '#/components/schemas/OBPartyDetail'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'            
+    
+    FutureDatedPaymentDateTime:
+      description: >-
+        The date on which the future dated payment will be made.All dates in the
+        JSON payloads are represented in ISO 8601 date-time format. 
+
+        All date-time fields in responses must include the timezone. An example
+        is below:
+
+        2020-04-05T10:43:07+03:00
+      type: string
+      format: date-time
+    FutureDatedPaymentId:
+      description: >-
+        A unique and immutable identifier used to identify the future dated payment
+        resource. This identifier has no meaning to the account owner.
+      type: string
+      minLength: 1
+      maxLength: 40      
+    OBExternalFutureDatedTypeCode:
+      description: Specifies the future dated payment date type requested
+      type: string
+      enum:
+        - Arrival
+        - Execution  
+    DebtorReference:
+      description: >-
+        A reference value provided by the PSU to the PISP while setting up the
+        future dated payment.
+      type: string
+      minLength: 1
+      maxLength: 35    
+    OBReadFutureDatedPayment:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          type: object
+          properties:
+            FutureDatedPayment:
+              type: array
+              items:
+                $ref: '#/components/schemas/OBFutureDatedPayment'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    OBFutureDatedPayment:
+      oneOf:
+        - $ref: '#/components/schemas/OBFutureDatedPaymentBasic'
+        - $ref: '#/components/schemas/OBFutureDatedPaymentDetail'
+    OBFutureDatedPaymentBasic:
+      type: object
+      required:
+        - AccountId
+        - ScheduledPaymentDateTime
+        - ScheduledType
+        - InstructedAmount
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        FutureDatedPaymentId:
+          $ref: '#/components/schemas/FutureDatedPaymentId'
+        FutureDatedPaymentDateTime:
+          $ref: '#/components/schemas/FutureDatedPaymentDateTime'
+        FutureDatedType:
+          $ref: '#/components/schemas/OBExternalFutureDatedTypeCode'
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        DebtorReference:
+          $ref: '#/components/schemas/DebtorReference'
+        InstructedAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountInstructed'
+    OBFutureDatedPaymentDetail:
+      type: object
+      required:
+        - AccountId
+        - ScheduledPaymentDateTime
+        - ScheduledType
+        - InstructedAmount
+        - CreditorAccount
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        FutureDatedPaymentId:
+          $ref: '#/components/schemas/FutureDatedPaymentId'
+        FutureDatedPaymentDateTime:
+          $ref: '#/components/schemas/FutureDatedPaymentDateTime'
+        FutureDatedType:
+          $ref: '#/components/schemas/OBExternalFutureDatedTypeCode'
+        Reference:
+          $ref: '#/components/schemas/Reference'
+        DebtorReference:
+          $ref: '#/components/schemas/DebtorReference'
+        InstructedAmount:
+          $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountInstructed'
+        CreditorAgent:
+          $ref: >-
+            #/components/schemas/OBBranchAndFinancialInstitutionIdentificationCreditorAgentFutureDatedPayments
+        CreditorAccount:
+          $ref: '#/components/schemas/OBCashAccountFutureDatedPayment'      
+          
+    StatementId:
+      description: >-
+        Unique identifier for the statement resource within an servicing
+        institution. This identifier is both unique and immutable.
+      type: string
+      minLength: 1
+      maxLength: 40      
+    OBRate:
+      description: >-
+        Rate charged for Statement Fee (where it is charged in terms of a rate
+        rather than an amount)
+      type: number  
+    OBRatePercentage:
+      description: >-
+        field representing a percentage (e.g. 0.05 represents 5% and 0.9525
+        represents 95.25%). Note the number of decimal places may vary.
+      type: number  
+    OBExternalStatementTypeCode:
+      description: 'Statement type, in a coded form.'
+      type: string
+      enum:
+        - AccountClosure
+        - AccountOpening
+        - Annual
+        - Interim
+        - RegularPeriodic
+    OBExternalStatementValueTypeCode:
+      description: 'Statement value type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.AirMilesPoints
+        - BH.OBF.AirMilesPointsBalance
+        - BH.OBF.Credits
+        - BH.OBF.Debits
+        - BH.OBF.HotelPoints
+        - BH.OBF.HotelPointsBalance
+        - BH.OBF.RetailShoppingPoints
+        - BH.OBF.RetailShoppingPointsBalance  
+    OBExternalStatementBenefitTypeCode:
+      description: 'Benefit type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.Cashback
+        - BH.OBF.Insurance
+        - BH.OBF.TravelDiscount
+        - BH.OBF.TravelInsurance
+    OBExternalStatementDateTimeTypeCode:
+      description: 'Date time type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.BalanceTransferPromoEnd
+        - BH.OBF.DirectDebitDue
+        - BH.OBF.LastPayment
+        - BH.OBF.LastStatement
+        - BH.OBF.NextStatement
+        - BH.OBF.PaymentDue
+        - BH.OBF.PurchasePromoEnd
+        - BH.OBF.StatementAvailable
+    OBExternalStatementFeeFrequencyCode:
+      description: How frequently the fee is applied to the Account.
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.ChargingPeriod
+        - BH.OBF.PerTransactionAmount
+        - BH.OBF.PerTransactionPercentage
+        - BH.OBF.Quarterly
+        - BH.OBF.StatementMonthly
+        - BH.OBF.Weekly
+    OBExternalStatementFeeRateTypeCode:
+      description: Description that may be available for the statement fee rate type.
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.AER
+        - BH.OBF.EAR
+    OBExternalStatementFeeTypeCode:
+      description: 'Fee type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.Annual
+        - BH.OBF.BalanceTransfer
+        - BH.OBF.CashAdvance
+        - BH.OBF.CashTransaction
+        - BH.OBF.ForeignCashTransaction
+        - BH.OBF.ForeignTransaction
+        - BH.OBF.Gambling
+        - BH.OBF.LatePayment
+        - BH.OBF.MoneyTransfer
+        - BH.OBF.Monthly
+        - BH.OBF.Overlimit
+        - BH.OBF.PostalOrder
+        - BH.OBF.PrizeEntry
+        - BH.OBF.StatementCopy
+        - BH.OBF.Total
+    OBExternalStatementInterestFrequencyCode:
+      description: Specifies the statement fee type requested
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.Daily
+        - BH.OBF.HalfYearly
+        - BH.OBF.Monthly
+        - BH.OBF.PerStatementDate
+        - BH.OBF.Quarterly
+        - BH.OBF.Weekly
+        - BH.OBF.Yearly
+    OBExternalStatementInterestRateTypeCode:
+      description: Description that may be available for the statement Interest rate type.
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.BOEBaseRate
+        - BH.OBF.FixedRate
+        - BH.OBF.Gross
+        - BH.OBF.LoanProviderBaseRate
+        - BH.OBF.Net
+    OBExternalStatementInterestTypeCode:
+      description: 'Interest amount type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.BalanceTransfer
+        - BH.OBF.Cash
+        - BH.OBF.EstimatedNext
+        - BH.OBF.Purchase
+        - BH.OBF.Total
+    OBExternalStatementRateTypeCode:
+      description: 'Statement rate type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.AnnualBalanceTransfer
+        - BH.OBF.AnnualBalanceTransferAfterPromo
+        - BH.OBF.AnnualBalanceTransferPromo
+        - BH.OBF.AnnualCash
+        - BH.OBF.AnnualPurchase
+        - BH.OBF.AnnualPurchaseAfterPromo
+        - BH.OBF.AnnualPurchasePromo
+        - BH.OBF.MonthlyBalanceTransfer
+        - BH.OBF.MonthlyCash
+        - BH.OBF.MonthlyPurchase
+    OBExternalStatementAmountTypeCode:
+      description: 'Amount type, in a coded form.'
+      type: string
+      #Below is an example
+      x-namespaced-enum:
+        - BH.OBF.ArrearsClosingBalance
+        - BH.OBF.AvailableBalance
+        - BH.OBF.AverageBalanceWhenInCredit
+        - BH.OBF.AverageBalanceWhenInDebit
+        - BH.OBF.AverageDailyBalance
+        - BH.OBF.BalanceTransferClosingBalance
+        - BH.OBF.CashClosingBalance
+        - BH.OBF.ClosingBalance
+        - BH.OBF.CreditLimit
+        - BH.OBF.CurrentPayment
+        - BH.OBF.DirectDebitPaymentDue
+        - BH.OBF.FSCSInsurance
+        - BH.OBF.MinimumPaymentDue
+        - BH.OBF.PendingTransactionsBalance
+        - BH.OBF.PreviousClosingBalance
+        - BH.OBF.PreviousPayment
+        - BH.OBF.PurchaseClosingBalance
+        - BH.OBF.StartingBalance
+        - BH.OBF.TotalAdjustments
+        - BH.OBF.TotalCashAdvances
+        - BH.OBF.TotalCharges
+        - BH.OBF.TotalCredits
+        - BH.OBF.TotalDebits
+        - BH.OBF.TotalPurchases    
+    Rate:
+      description: Rate associated with the statement rate type.
+      type: string
+      pattern: '^(-?\d{1,3}){1}(\.\d{1,4}){0,1}$'    
+    Value:
+      description: Value associated with the statement value type.
+      type: string
+      minLength: 1
+      maxLength: 40  
+    OBReadStatement:
+      type: object
+      required:
+        - Data
+      properties:
+        Data:
+          $ref: '#/components/schemas/OBReadDataStatement'
+        Links:
+          $ref: '#/components/schemas/Links'
+        Meta:
+          $ref: '#/components/schemas/Meta'      
+    OBReadDataStatement:
+      type: object
+      properties:
+        Statement:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBStatement'      
+    OBStatement:
+      oneOf:
+        - $ref: '#/components/schemas/OBStatementBasic'
+        - $ref: '#/components/schemas/OBStatementDetail'
+    OBStatementBasic:
+      type: object
+      description: Provides further details on a statement resource.
+      required:
+        - AccountId
+        - Type
+        - StartDateTime
+        - EndDateTime
+        - CreationDateTime
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        StatementId:
+          $ref: '#/components/schemas/StatementId'
+        StatementReference:
+          $ref: '#/components/schemas/StatementReference'
+        Type:
+          $ref: '#/components/schemas/OBExternalStatementTypeCode'
+        StartDateTime:
+          $ref: '#/components/schemas/StartDateTime'
+        EndDateTime:
+          $ref: '#/components/schemas/EndDateTime'
+        CreationDateTime:
+          $ref: '#/components/schemas/CreationDateTime'
+        StatementDescription:
+          type: array
+          items:
+            description: >-
+              Other descriptions that may be available for the statement
+              resource.
+            type: string
+            minLength: 1
+            maxLength: 500
+        StatementBenefit:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a benefit or reward
+              amount for the statement resource.
+            required:
+              - Type
+              - Amount
+            properties:
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementBenefitTypeCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatement'
+        StatementFee:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a fee for the statement
+              resource.
+            required:
+              - CreditDebitIndicator
+              - Type
+              - Amount
+            properties:
+              Description:
+                $ref: '#/components/schemas/DescriptionStatement'
+              CreditDebitIndicator:
+                $ref: '#/components/schemas/OBCreditDebitCodeAmount'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementFeeTypeCode'
+              Rate:
+                $ref: '#/components/schemas/OBRate'
+              RateType:
+                $ref: '#/components/schemas/OBExternalStatementFeeRateTypeCode'
+              Frequency:
+                $ref: '#/components/schemas/OBExternalStatementFeeFrequencyCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatementFeeType'
+        StatementInterest:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic interest
+              amount related to the statement resource.
+            required:
+              - CreditDebitIndicator
+              - Type
+              - Amount
+            properties:
+              Description:
+                $ref: '#/components/schemas/DescriptionStatementInterest'
+              CreditDebitIndicator:
+                $ref: '#/components/schemas/OBCreditDebitCodeAmount'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementInterestTypeCode'
+              Rate:
+                $ref: '#/components/schemas/OBRatePercentage'
+              RateType:
+                $ref: '#/components/schemas/OBExternalStatementInterestRateTypeCode'
+              Frequency:
+                $ref: '#/components/schemas/OBExternalStatementInterestFrequencyCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatementInterest'
+        StatementDateTime:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic date time for
+              the statement resource.
+            required:
+              - DateTime
+              - Type
+            properties:
+              DateTime:
+                $ref: '#/components/schemas/DateTime'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementDateTimeTypeCode'
+        StatementRate:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic rate related
+              to the statement resource.
+            required:
+              - Rate
+              - Type
+            properties:
+              Rate:
+                $ref: '#/components/schemas/Rate'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementRateTypeCode'
+        StatementValue:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic number value
+              related to the statement resource.
+            required:
+              - Value
+              - Type
+            properties:
+              Value:
+                $ref: '#/components/schemas/Value'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementValueTypeCode'
+    OBStatementDetail:
+      type: object
+      description: Provides further details on a statement resource.
+      required:
+        - AccountId
+        - Type
+        - StartDateTime
+        - EndDateTime
+        - CreationDateTime
+      properties:
+        AccountId:
+          $ref: '#/components/schemas/AccountId'
+        StatementId:
+          $ref: '#/components/schemas/StatementId'
+        StatementReference:
+          $ref: '#/components/schemas/StatementReference'
+        Type:
+          $ref: '#/components/schemas/OBExternalStatementTypeCode'
+        StartDateTime:
+          $ref: '#/components/schemas/StartDateTime'
+        EndDateTime:
+          $ref: '#/components/schemas/EndDateTime'
+        CreationDateTime:
+          $ref: '#/components/schemas/CreationDateTime'
+        StatementDescription:
+          type: array
+          items:
+            description: >-
+              Other descriptions that may be available for the statement
+              resource.
+            type: string
+            minLength: 1
+            maxLength: 500
+        StatementBenefit:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a benefit or reward
+              amount for the statement resource.
+            required:
+              - Type
+              - Amount
+            properties:
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementBenefitTypeCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatement'
+        StatementFee:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a fee for the statement
+              resource.
+            required:
+              - CreditDebitIndicator
+              - Type
+              - Amount
+            properties:
+              Description:
+                $ref: '#/components/schemas/DescriptionStatement'
+              CreditDebitIndicator:
+                $ref: '#/components/schemas/OBCreditDebitCodeAmount'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementFeeTypeCode'
+              Rate:
+                $ref: '#/components/schemas/OBRate'
+              RateType:
+                $ref: '#/components/schemas/OBExternalStatementFeeRateTypeCode'
+              Frequency:
+                $ref: '#/components/schemas/OBExternalStatementFeeFrequencyCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatementFeeType'
+        StatementInterest:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic interest
+              amount related to the statement resource.
+            required:
+              - CreditDebitIndicator
+              - Type
+              - Amount
+            properties:
+              Description:
+                $ref: '#/components/schemas/DescriptionStatement'
+              CreditDebitIndicator:
+                $ref: '#/components/schemas/OBCreditDebitCodeAmount'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementInterestTypeCode'
+              Rate:
+                $ref: '#/components/schemas/OBRatePercentage'
+              RateType:
+                $ref: '#/components/schemas/OBExternalStatementInterestRateTypeCode'
+              Frequency:
+                $ref: '#/components/schemas/OBExternalStatementInterestFrequencyCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountStatementInterest'
+        StatementAmount:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic amount for
+              the statement resource.
+            required:
+              - CreditDebitIndicator
+              - Type
+              - Amount
+            properties:
+              CreditDebitIndicator:
+                $ref: '#/components/schemas/OBCreditDebitCodeAmount'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementAmountTypeCode'
+              Amount:
+                $ref: '#/components/schemas/OBActiveOrHistoricCurrencyAndAmountType'
+        StatementDateTime:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic date time for
+              the statement resource.
+            required:
+              - DateTime
+              - Type
+            properties:
+              DateTime:
+                $ref: '#/components/schemas/DateTime'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementDateTimeTypeCode'
+        StatementRate:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic rate related
+              to the statement resource.
+            required:
+              - Rate
+              - Type
+            properties:
+              Rate:
+                $ref: '#/components/schemas/Rate'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementRateTypeCode'
+        StatementValue:
+          type: array
+          items:
+            type: object
+            description: >-
+              Set of elements used to provide details of a generic number value
+              related to the statement resource.
+            required:
+              - Value
+              - Type
+            properties:
+              Value:
+                $ref: '#/components/schemas/Value'
+              Type:
+                $ref: '#/components/schemas/OBExternalStatementValueTypeCode'        
+    File:
+      type: object
+      properties: {}
+    
+    OBReadSupplementaryAccountInfo:
+      type: object
+      required:
+        - Data
+      description: >-
+        Supplementary account info associated with the Account
+      properties:
+        Data:
+          type: object
+          properties:
+            ReadAccount:
+              type: object
+              description: Account Information
+              required:
+                - AccountId
+                - DateTime
+              properties:
+                AccountID:
+                  description: 'A unique and immutable identifier used to identify the account resource. This identifier has no meaning to the account owner.'
+                  type: string 
+                AccountOpeningDate:
+                  description: 'Account opening Date and Time'
+                  type: string
+                  format: date-time  
+                ReadCASAInfo:
+                  type: object
+                  description: CASA information
+                  required:
+                    - Rate
+                  properties:
+                    LienAmount:
+                      description: 'Lien amount marked'
+                      type: string
+                    Rate:
+                      description: 'Rate charged for the account (where it is charged in terms of a rate rather than an amount)'
+                      type: string
+                    JointHolderName:
+                      description: 'List of joint account holder name'
+                      type: string
+                ReadDepositInfo:
+                  type: object
+                  description: Deposit information
+                  required:
+                    - Rate
+                    - InitialDepositAmount
+                    - DepositFrequency
+                    - MaturityAmount
+                    - MaturityDate
+                  properties:
+                    Rate:
+                      description: 'Interest rate / profit rate for islamic banks'
+                      type: string
+                    InitialDepositAmount:
+                      description: 'Initial deposit amount'
+                      type: string
+                    DepositFrequency:
+                      description: 'How frequently the deposit is made to the Account.'
+                      type: string
+                      x-namespaced-enum:
+                       - BH.OBF.Annually
+                       - BH.OBF.Quarterly
+                       - BH.OBF.StatementMonthly
+                       - BH.OBF.Weekly
+                       - BH.OBF.Daily
+                    MaturityAmount:
+                      description: 'Maturity Amount'
+                      type: string
+                    MaturityDate:
+                      description: 'Maturity Date'
+                      type: string
+                      format: date-time
+                    JointHolderName:
+                      description: 'List of joint account holder name'
+                      type: string
+                ReadLoanMortgageInfo: 
+                  type: object
+                  description: Loan Mortgage information
+                  required:
+                    - Rate
+                    - LoanAmount
+                    - DisbursedAmount
+                    - OutstandingLoanAmount
+                    - Numberofinstallments
+                    - LoanFrequency
+                  properties:
+                    Rate:
+                      description: 'Interest rate / profit rate for islamic banks'
+                      type: string
+                    LoanAmount:
+                      description: 'Initial Loan Amount'
+                      type: string
+                    DisbursedAmount:
+                      description: 'Disbursed Amount till date'
+                      type: string
+                    OutstandingLoanAmount:
+                      description: 'Outstanding Loan Amount'
+                      type: string
+                    Numberofinstallments:
+                      description: 'Number of installments'
+                      type: string
+                    LoanFrequency:
+                      description: How frequently the instalment is applied to the Account.
+                      type: string
+                      x-namespaced-enum:
+                       - BH.OBF.Annually
+                       - BH.OBF.Quarterly
+                       - BH.OBF.StatementMonthly
+                       - BH.OBF.Weekly
+                       - BH.OBF.Daily
+                    JointHolderName:
+                      description: 'List of joint account holder name'
+                      type: string
+                ReadCreditCardInfo:
+                  type: object
+                  description: Credit Card information
+                  required:
+                    - Rate
+                    - CardLimit
+                  properties:
+                    Rate:
+                      description: 'Interest rate / profit rate for islamic banks'
+                      type: string
+                    CardLimit:
+                      description: 'Card Limit'
+                      type: string
+                    GracePeriod:
+                      description: 'The duration after the due date during which the payment can be received withour penalty'
+                      type: string
+                    URL:
+                      description: 'Uniform resource locator of the specified product'
+                      type: string
+                ReadEWalletInfo:
+                  type: object
+                  description: EWallet information
+                  required:
+                    - Charge
+                    - ChargeFrequency
+                  properties:
+                    Charge:
+                      description: ''
+                      type: string
+                    ChargeFrequency:
+                      description: 'How frequently the fee is applied to the Account.'
+                      type: string 
+                      x-namespaced-enum:
+                       - BH.OBF.Annually
+                       - BH.OBF.Quarterly
+                       - BH.OBF.StatementMonthly
+                       - BH.OBF.Weekly
+                       - BH.OBF.Daily
+      
+  securitySchemes:
+    TPPOAuth2Security:
+      type: oauth2
+      description: TPP client credential authorisation flow with the ASPSP
+      flows:
+        clientCredentials:
+          #Below is an example  
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            accounts: Ability to read Accounts information
+    PSUOAuth2Security:
+      type: oauth2
+      description: >-
+        OAuth flow, it is required when the PSU needs to perform SCA with the
+        ASPSP when a TPP wants to access an ASPSP resource owned by the PSU
+      flows:
+        authorizationCode:
+          #Below is an example  
+          authorizationUrl: 'https://authserver.example/authorization'
+          tokenUrl: 'https://authserver.example/token'
+          scopes:
+            accounts: Ability to read Accounts information
