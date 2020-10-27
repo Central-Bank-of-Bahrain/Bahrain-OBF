@@ -1,0 +1,272 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "title" : "Event Notification API Specification - TPP Endpoints",
+    "description" : "OpenAPI for Event Notification API Specification - TPP Endpoints",
+    "termsOfService" : "https://www.cbb.gov.bh/terms-and-conditions-of-use/",
+    "contact" : {
+      "name" : "Mr. Martin Pinto",
+      "email" : "martin@cbb.gov.bh"
+    },
+    "license" : {
+      "name" : "TBC-licence",
+      "url" : "tbc.com"
+    },
+    "version" : "1.0"
+  },
+  "servers" : [ {
+    "url" : "/"
+  } ],
+  "paths" : {
+    "/event-notifications" : {
+      "post" : {
+        "tags" : [ "Event Notification" ],
+        "summary" : "The ASPSP to send an event-notification resource to a TPP",
+        "parameters" : [ {
+          "name" : "x-fapi-financial-id",
+          "in" : "header",
+          "description" : "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.",
+          "required" : true,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        }, {
+          "name" : "x-fapi-interaction-id",
+          "in" : "header",
+          "description" : "An RFC4122 UID used as a correlation id.",
+          "required" : false,
+          "style" : "simple",
+          "explode" : false,
+          "schema" : {
+            "type" : "string"
+          }
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBEventNotificationParam"
+        },
+        "responses" : {
+          "202" : {
+            "description" : "Accepted"
+          }
+        }
+      }
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "OBEvent" : {
+        "type" : "object",
+        "properties" : {
+          "urn:bh:org:openbanking:events:resource-update" : {
+            "$ref" : "#/components/schemas/OBEventResourceUpdate"
+          },
+          "urn:bh:org:openbanking:events:account-access-consent-linked-account-update" : {
+            "$ref" : "#/components/schemas/OBEventAccountAccessConsentLinkedAccountUpdate"
+          },
+          "urn:bh:org:openbanking:events:consent-authorization-revoked" : {
+            "$ref" : "#/components/schemas/OBEventConsentAuthorizationRevoked"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Events."
+      },
+      "OBEventLink" : {
+        "minProperties" : 1,
+        "required" : [ "link", "version" ],
+        "type" : "object",
+        "properties" : {
+          "version" : {
+            "maxLength" : 10,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Resource version."
+          },
+          "link" : {
+            "type" : "string",
+            "description" : "Resource link."
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Resource links to other available versions of the resource."
+      },
+      "OBEventNotification" : {
+        "required" : [ "aud", "events", "iat", "iss", "jti", "sub", "toe", "txn" ],
+        "type" : "object",
+        "properties" : {
+          "iss" : {
+            "type" : "string",
+            "description" : "Issuer."
+          },
+          "iat" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Issued At. ",
+            "format" : "int32"
+          },
+          "jti" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "JWT ID."
+          },
+          "aud" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Audience."
+          },
+          "sub" : {
+            "type" : "string",
+            "description" : "Subject",
+            "format" : "uri"
+          },
+          "txn" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Transaction Identifier."
+          },
+          "toe" : {
+            "minimum" : 0,
+            "type" : "integer",
+            "description" : "Time of Event.",
+            "format" : "int32"
+          },
+          "events" : {
+            "$ref" : "#/components/schemas/OBEvent"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "The resource-update event."
+      },
+      "OBEventResourceUpdate" : {
+        "required" : [ "subject" ],
+        "type" : "object",
+        "properties" : {
+          "subject" : {
+            "$ref" : "#/components/schemas/OBEventSubject"
+          }
+        },
+        "description" : "Resource-Update Event."
+      },
+      "OBEventAccountAccessConsentLinkedAccountUpdate" : {
+        "required" : [ "subject" ],
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "Reason for the Account Access Consent Linked Account Update event."
+          },
+          "subject" : {
+            "$ref" : "#/components/schemas/OBEventSubject"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Resource-Update Event."
+      },
+      "OBEventConsentAuthorizationRevoked" : {
+        "type" : "object",
+        "properties" : {
+          "reason" : {
+            "type" : "string",
+            "description" : "Reason for the Consent Authorization Revoked event."
+          },
+          "subject" : {
+            "$ref" : "#/components/schemas/OBEventSubject"
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "Resource-Update Event."
+      },
+      "OBEventSubject" : {
+        "required" : [ "http://openbanking.org.bh/rid", "http://openbanking.org.bh/rlk", "http://openbanking.org.bh/rty", "subject_type" ],
+        "type" : "object",
+        "properties" : {
+          "subject_type" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Subject type for the updated resource. "
+          },
+          "http://openbanking.org.bh/rid" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Resource Id for the updated resource."
+          },
+          "http://openbanking.org.bh/rty" : {
+            "maxLength" : 128,
+            "minLength" : 1,
+            "type" : "string",
+            "description" : "Resource Type for the updated resource."
+          },
+          "http://openbanking.org.bh/rlk" : {
+            "minItems" : 1,
+            "type" : "array",
+            "description" : "Resource links to other available versions of the resource.",
+            "items" : {
+              "$ref" : "#/components/schemas/OBEventLink"
+            }
+          }
+        },
+        "additionalProperties" : false,
+        "description" : "The resource-update event."
+      }
+    },
+    "responses" : { },
+    "parameters" : {
+      "x-fapi-financial-id-Param" : {
+        "name" : "x-fapi-financial-id",
+        "in" : "header",
+        "description" : "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.",
+        "required" : true,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "x-fapi-interaction-id-Param" : {
+        "name" : "x-fapi-interaction-id",
+        "in" : "header",
+        "description" : "An RFC4122 UID used as a correlation id.",
+        "required" : false,
+        "style" : "simple",
+        "explode" : false,
+        "schema" : {
+          "type" : "string"
+        }
+      }
+    },
+    "requestBodies" : {
+      "OBEventNotificationParam" : {
+        "description" : "Create an Callback URI",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBEventNotification"
+            }
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "TPPOAuth2Security" : {
+        "type" : "oauth2",
+        "description" : "TPP client credential authorisation flow with the ASPSP",
+        "flows" : {
+          "clientCredentials" : {
+            "tokenUrl" : "https://authserver.example/token",
+            "scopes" : {
+              "accounts" : "Ability to read Accounts information",
+              "fundsconfirmations" : "Ability to confirm funds",
+              "payments" : "Generic payment scope"
+            }
+          }
+        }
+      }
+    }
+  }
+}
