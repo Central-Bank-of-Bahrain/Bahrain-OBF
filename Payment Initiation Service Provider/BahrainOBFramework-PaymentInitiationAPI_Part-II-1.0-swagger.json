@@ -1,0 +1,3523 @@
+{
+  "openapi" : "3.0.0",
+  "info" : {
+    "version" : "1.0",
+    "title" : "Payment Initiation API - Part II",
+    "description" : "OpenAPI for Payment Initiation API Specification",
+    "termsOfService" : "https://www.XYZ.gov.XX/terms-and-conditions-of-use/",
+    "contact" : {
+      "name" : "Mr. XYZ",
+      "email" : "XYX@dd.gov.XX"
+    }
+  },
+  "paths" : {
+    "/domestic-standing-order-consents" : {
+      "post" : {
+        "tags" : [ "Domestic Standing Orders Consents" ],
+        "summary" : "Create Domestic Standing Order Consents",
+        "operationId" : "CreateDomesticStandingOrderConsents",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201DomesticStandingOrderConsentsCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteDomesticStandingOrderConsent"
+        }
+      }
+    },
+    "/domestic-standing-order-consents/{ConsentId}" : {
+      "get" : {
+        "tags" : [ "Domestic Standing Orders Consents" ],
+        "summary" : "Get Domestic Standing Order Consents",
+        "operationId" : "GetDomesticStandingOrderConsentsConsentId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ConsentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200DomesticStandingOrderConsentsConsentIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/domestic-standing-orders" : {
+      "post" : {
+        "tags" : [ "Domestic Standing Orders" ],
+        "summary" : "Create Domestic Standing Orders",
+        "operationId" : "CreateDomesticStandingOrders",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201DomesticStandingOrdersCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "UserOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteDomesticStandingOrder"
+        }
+      }
+    },
+    "/domestic-standing-orders/{DomesticStandingOrderId}" : {
+      "get" : {
+        "tags" : [ "Domestic Standing Orders" ],
+        "summary" : "Get Domestic Standing Orders",
+        "operationId" : "GetDomesticStandingOrdersDomesticStandingOrderId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/DomesticStandingOrderId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200DomesticStandingOrdersDomesticStandingOrderIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/domestic-standing-orders/{DomesticStandingOrderId}/payment-details" : {
+      "get" : {
+        "tags" : [ "Domestic Standing Orders" ],
+        "summary" : "Get Standing Orders Payment Details",
+        "operationId" : "GetDomesticStandingOrdersDomesticStandingOrderIdPaymentDetails",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/DomesticStandingOrderId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200DomesticStandingOrdersDomesticStandingOrderIdPaymentDetailsRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-future-dated-payment-consents" : {
+      "post" : {
+        "tags" : [ "International Future Dated Payment Consents" ],
+        "summary" : "Create International Future Dated Payment Consents",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201InternationalFutureDatedPaymentConsentsCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteInternationalFutureDatedConsentParam"
+        }
+      }
+    },
+    "/international-future-dated-payment-consents/{ConsentId}" : {
+      "get" : {
+        "tags" : [ "International Future Dated Payment Consents" ],
+        "summary" : "Get International Future Dated Payment Consents ConsentId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ConsentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalFutureDatedPaymentConsentsConsentIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-future-dated-payment-consents/{ConsentId}/funds-confirmation" : {
+      "get" : {
+        "tags" : [ "International Future Dated Payment Consents" ],
+        "summary" : "Get International Future Dated Payment Consents ConsentId Funds Confirmation",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ConsentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalFutureDatedPaymentConsentsConsentIdFundsConfirmationRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "UserOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-future-dated-payments" : {
+      "post" : {
+        "tags" : [ "International Future Dated Payments" ],
+        "summary" : "Create International Future Dated Payments",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201InternationalFutureDatedPaymentsCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "UserOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteInternationalFutureDatedParam"
+        }
+      }
+    },
+    "/international-future-dated-payments/{InternationalFutureDatedPaymentId}" : {
+      "get" : {
+        "tags" : [ "International Future Dated Payments" ],
+        "summary" : "Get International Future Dated Payments",
+        "operationId" : "GetInternationalFutureDatedPaymentsInternationalFutureDatedPaymentId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/InternationalFutureDatedPaymentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalFutureDatedPaymentsInternationalFutureDatedPaymentIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-future-dated-payments/{InternationalFutureDatedPaymentId}/payment-details" : {
+      "get" : {
+        "tags" : [ "International Future Dated Payments" ],
+        "summary" : "Get International Future Dated Payments International Future Dated PaymentId Payment Details",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/InternationalFutureDatedPaymentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalFutureDatedPaymentsInternationalFutureDatedPaymentIdPaymentDetailsRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-standing-order-consents" : {
+      "post" : {
+        "tags" : [ "International Standing Order Consents" ],
+        "summary" : "Create International Standing Order Consents",
+        "operationId" : "CreateInternationalStandingOrderConsents",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201InternationalStandingOrderConsentsCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteInternationalStandingOrderConsentParam"
+        }
+      }
+    },
+    "/international-standing-order-consents/{ConsentId}" : {
+      "get" : {
+        "tags" : [ "International Standing Order Consents" ],
+        "summary" : "Get International Standing Order Consents ConsentId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/ConsentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalStandingOrderConsentsConsentIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-standing-orders" : {
+      "post" : {
+        "tags" : [ "International Standing Orders" ],
+        "summary" : "Create International Standing Orders",
+        "operationId" : "CreateInternationalStandingOrders",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        }, {
+          "$ref" : "#/components/parameters/x-idempotency-key"
+        }, {
+          "$ref" : "#/components/parameters/x-jws-signature"
+        } ],
+        "responses" : {
+          "201" : {
+            "$ref" : "#/components/responses/201InternationalStandingOrdersCreated"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "UserOAuth2Security" : [ "payments" ]
+        } ],
+        "requestBody" : {
+          "$ref" : "#/components/requestBodies/OBWriteInternationalStandingOrderParam"
+        }
+      }
+    },
+    "/international-standing-orders/{InternationalStandingOrderPaymentId}" : {
+      "get" : {
+        "tags" : [ "International Standing Orders" ],
+        "summary" : "Get International Standing Orders International Standing Order PaymentId",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/InternationalStandingOrderPaymentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    },
+    "/international-standing-orders/{InternationalStandingOrderPaymentId}/payment-details" : {
+      "get" : {
+        "tags" : [ "International Standing Orders" ],
+        "summary" : "Get Payment Details",
+        "operationId" : "GetInternationalStandingOrdersInternationalStandingOrderPaymentIdPaymentDetails",
+        "parameters" : [ {
+          "$ref" : "#/components/parameters/InternationalStandingOrderPaymentId"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-auth-date"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-customer-ip-address"
+        }, {
+          "$ref" : "#/components/parameters/x-fapi-interaction-id"
+        }, {
+          "$ref" : "#/components/parameters/Authorisation"
+        } ],
+        "responses" : {
+          "200" : {
+            "$ref" : "#/components/responses/200InternationalStandingOrdersInternationalStandingOrderPaymentIdPaymentDetailsRead"
+          },
+          "400" : {
+            "$ref" : "#/components/responses/400Error"
+          },
+          "401" : {
+            "$ref" : "#/components/responses/401Error"
+          },
+          "403" : {
+            "$ref" : "#/components/responses/403Error"
+          },
+          "404" : {
+            "$ref" : "#/components/responses/404Error"
+          },
+          "405" : {
+            "$ref" : "#/components/responses/405Error"
+          },
+          "406" : {
+            "$ref" : "#/components/responses/406Error"
+          },
+          "429" : {
+            "$ref" : "#/components/responses/429Error"
+          },
+          "500" : {
+            "$ref" : "#/components/responses/500Error"
+          }
+        },
+        "security" : [ {
+          "TPPOAuth2Security" : [ "payments" ]
+        } ]
+      }
+    }
+  },
+  "components" : {
+    "parameters" : {
+      "ConsentId" : {
+        "name" : "ConsentId",
+        "in" : "path",
+        "description" : "ConsentId",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "InternationalFutureDatedPaymentId" : {
+        "name" : "InternationalFutureDatedPaymentId",
+        "in" : "path",
+        "description" : "InternationalFutureDatedPaymentId",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "InternationalStandingOrderPaymentId" : {
+        "name" : "InternationalStandingOrderPaymentId",
+        "in" : "path",
+        "description" : "InternationalStandingOrderPaymentId",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "x-fapi-auth-date" : {
+        "in" : "header",
+        "name" : "x-fapi-auth-date",
+        "required" : false,
+        "description" : "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+        "schema" : {
+          "type" : "string",
+          "pattern" : "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
+        }
+      },
+      "x-fapi-customer-ip-address" : {
+        "in" : "header",
+        "name" : "x-fapi-customer-ip-address",
+        "required" : false,
+        "description" : "The PSU's IP address if the PSU is currently logged in with the TPP.",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "x-fapi-interaction-id" : {
+        "in" : "header",
+        "name" : "x-fapi-interaction-id",
+        "required" : false,
+        "description" : "An RFC4122 UID used as a correlation id.",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "Authorisation" : {
+        "in" : "header",
+        "name" : "Authorisation",
+        "required" : true,
+        "description" : "An Authorisation Token as per https://tools.ietf.org/html/rfc6750",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "x-idempotency-key" : {
+        "name" : "x-idempotency-key",
+        "in" : "header",
+        "description" : "Every request will be processed only once per x-idempotency-key.  The\nIdempotency Key will be valid for 24 hours.\n",
+        "required" : true,
+        "schema" : {
+          "type" : "string",
+          "pattern" : "^(?!\\s)(.*)(\\S)$",
+          "maxLength" : 40
+        }
+      },
+      "x-jws-signature" : {
+        "in" : "header",
+        "name" : "x-jws-signature",
+        "required" : true,
+        "description" : "A detached JWS signature of the body of the payload.",
+        "schema" : {
+          "type" : "string"
+        }
+      },
+      "DomesticStandingOrderId" : {
+        "name" : "DomesticStandingOrderId",
+        "in" : "path",
+        "description" : "DomesticStandingOrderId",
+        "required" : true,
+        "schema" : {
+          "type" : "string"
+        }
+      }
+    },
+    "responses" : {
+      "201DomesticStandingOrderConsentsCreated" : {
+        "description" : "Domestic Standing Order Consents Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrderConsentResponse"
+            }
+          }
+        }
+      },
+      "200DomesticStandingOrderConsentsConsentIdRead" : {
+        "description" : "Domestic Standing Order Consents Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrderConsentResponse"
+            }
+          }
+        }
+      },
+      "201DomesticStandingOrdersCreated" : {
+        "description" : "Domestic Standing Orders Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrderResponse"
+            }
+          }
+        }
+      },
+      "200DomesticStandingOrdersDomesticStandingOrderIdRead" : {
+        "description" : "Domestic Standing Orders Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrderResponse"
+            }
+          }
+        }
+      },
+      "200DomesticStandingOrdersDomesticStandingOrderIdPaymentDetailsRead" : {
+        "description" : "Payment Details Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWritePaymentDetailsResponse"
+            }
+          }
+        }
+      },
+      "201InternationalFutureDatedPaymentConsentsCreated" : {
+        "description" : "International Future Dated Payment Consents Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDatedConsentResponse"
+            }
+          }
+        }
+      },
+      "200InternationalFutureDatedPaymentConsentsConsentIdRead" : {
+        "description" : "International FutureDated Payment Consents Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDatedConsentResponse"
+            }
+          }
+        }
+      },
+      "200InternationalFutureDatedPaymentConsentsConsentIdFundsConfirmationRead" : {
+        "description" : "International Future Dated Payment Consents Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteFundsConfirmationResponse"
+            }
+          }
+        }
+      },
+      "201InternationalFutureDatedPaymentsCreated" : {
+        "description" : "International Future Dated Payments Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDatedResponse"
+            }
+          }
+        }
+      },
+      "200InternationalFutureDatedPaymentsInternationalFutureDatedPaymentIdRead" : {
+        "description" : "International Future Dated Payments Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDatedResponse"
+            }
+          }
+        }
+      },
+      "200InternationalFutureDatedPaymentsInternationalFutureDatedPaymentIdPaymentDetailsRead" : {
+        "description" : "Payment Details Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWritePaymentDetailsResponse"
+            }
+          }
+        }
+      },
+      "201InternationalStandingOrderConsentsCreated" : {
+        "description" : "International Standing Order Consents Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrderConsentResponse"
+            }
+          }
+        }
+      },
+      "200InternationalStandingOrderConsentsConsentIdRead" : {
+        "description" : "International Standing Order Consents Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrderConsentResponse"
+            }
+          }
+        }
+      },
+      "201InternationalStandingOrdersCreated" : {
+        "description" : "International Standing Orders Created",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrderResponse"
+            }
+          }
+        }
+      },
+      "200InternationalStandingOrdersInternationalStandingOrderPaymentIdRead" : {
+        "description" : "International Standing Orders Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrderResponse"
+            }
+          }
+        }
+      },
+      "200InternationalStandingOrdersInternationalStandingOrderPaymentIdPaymentDetailsRead" : {
+        "description" : "Payment Details Read",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWritePaymentDetailsResponse"
+            }
+          }
+        }
+      },
+      "400Error" : {
+        "description" : "Bad request",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBErrorResponse"
+            }
+          }
+        }
+      },
+      "401Error" : {
+        "description" : "Unauthorized",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "403Error" : {
+        "description" : "Forbidden",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBErrorResponse"
+            }
+          }
+        }
+      },
+      "404Error" : {
+        "description" : "Not found",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "405Error" : {
+        "description" : "Method Not Allowed",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "406Error" : {
+        "description" : "Not Acceptable",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "429Error" : {
+        "description" : "Too Many Requests",
+        "headers" : {
+          "Retry-After" : {
+            "description" : "Number in seconds to wait",
+            "schema" : {
+              "type" : "integer"
+            }
+          },
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        }
+      },
+      "500Error" : {
+        "description" : "Internal Server Error",
+        "headers" : {
+          "x-fapi-interaction-id" : {
+            "description" : "An RFC4122 UID used as a correlation id.",
+            "schema" : {
+              "type" : "string"
+            }
+          },
+          "x-jws-signature" : {
+            "description" : "Header containing a detached JWS signature of the body of the payload.\n",
+            "schema" : {
+              "type" : "string"
+            }
+          }
+        },
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBErrorResponse"
+            }
+          }
+        }
+      }
+    },
+    "requestBodies" : {
+      "OBWriteDomesticStandingOrderConsent" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrderConsent"
+            }
+          }
+        },
+        "required" : true
+      },
+      "OBWriteDomesticStandingOrder" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteDomesticStandingOrder"
+            }
+          }
+        },
+        "required" : true
+      },
+      "OBWriteInternationalFutureDatedConsentParam" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDatedConsent"
+            }
+          }
+        },
+        "required" : true
+      },
+      "OBWriteInternationalFutureDatedParam" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalFutureDated"
+            }
+          }
+        },
+        "required" : true
+      },
+      "OBWriteInternationalStandingOrderConsentParam" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrderConsent"
+            }
+          }
+        },
+        "required" : true
+      },
+      "OBWriteInternationalStandingOrderParam" : {
+        "description" : "Default",
+        "content" : {
+          "application/json" : {
+            "schema" : {
+              "$ref" : "#/components/schemas/OBWriteInternationalStandingOrder"
+            }
+          }
+        },
+        "required" : true
+      }
+    },
+    "schemas" : {
+      "ActiveOrHistoricCurrencyCode" : {
+        "description" : "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 \"Codes for the representation of currencies and funds\".",
+        "type" : "string",
+        "pattern" : "^[A-Z]{3,3}$"
+      },
+      "BuildingNumber" : {
+        "description" : "Number that identifies the position of a building on a street.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 16
+      },
+      "CountryCode" : {
+        "description" : "Nation with its own government.",
+        "type" : "string",
+        "pattern" : "^[A-Z]{2,2}$"
+      },
+      "Department" : {
+        "description" : "Identification of a division of a large organisation or building.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 70
+      },
+      "ISODateTime" : {
+        "description" : "All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+00:00",
+        "type" : "string",
+        "format" : "date-time"
+      },
+      "Identification" : {
+        "description" : "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 256
+      },
+      "IdentificationFinancial" : {
+        "description" : "Unique and unambiguous identification of a financial institution or a branch of a financial institution.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 35
+      },
+      "Links" : {
+        "type" : "object",
+        "description" : "Links relevant to the payload",
+        "properties" : {
+          "Self" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "First" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "Prev" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "Next" : {
+            "type" : "string",
+            "format" : "uri"
+          },
+          "Last" : {
+            "type" : "string",
+            "format" : "uri"
+          }
+        },
+        "additionalProperties" : false,
+        "required" : [ "Self" ]
+      },
+      "Meta" : {
+        "title" : "MetaData",
+        "type" : "object",
+        "description" : "Meta Data relevant to the payload",
+        "properties" : {
+          "TotalPages" : {
+            "type" : "integer",
+            "format" : "int32"
+          },
+          "FirstAvailableDateTime" : {
+            "$ref" : "#/components/schemas/ISODateTime"
+          },
+          "LastAvailableDateTime" : {
+            "$ref" : "#/components/schemas/ISODateTime"
+          }
+        },
+        "additionalProperties" : false
+      },
+      "OBAmount" : {
+        "description" : "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
+        "type" : "string",
+        "pattern" : "^\\d{1,13}$|^\\d{1,13}\\.\\d{1,5}$"
+      },
+      "OBActiveOrHistoricCurrencyAndAmount" : {
+        "type" : "object",
+        "required" : [ "Amount", "Currency" ],
+        "description" : "Amount of money associated with the charge type.",
+        "properties" : {
+          "Amount" : {
+            "$ref" : "#/components/schemas/OBAmount"
+          },
+          "Currency" : {
+            "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+          }
+        }
+      },
+      "OBActiveCurrencyAndAmount" : {
+        "description" : "A number of monetary units specified in an active currency where the unit of currency is explicit and compliant with ISO 4217.",
+        "type" : "string",
+        "pattern" : "^\\d{1,13}.\\d{1,5}$"
+      },
+      "OBAddressTypeCode" : {
+        "description" : "Identifies the nature of the postal address.",
+        "type" : "string",
+        "enum" : [ "Business", "Correspondence", "DeliveryTo", "MailTo", "POBox", "Postal", "Residential", "Statement" ]
+      },
+      "OBChargeBearerTypeCode" : {
+        "description" : "Specifies which party/parties will bear the charges associated with the processing of the payment transaction.",
+        "type" : "string",
+        "enum" : [ "BorneByCreditor", "BorneByDebtor", "FollowingServiceLevel", "Shared" ]
+      },
+      "OBError" : {
+        "type" : "object",
+        "properties" : {
+          "ErrorCode" : {
+            "description" : "Low level textual error code, e.g., XYZ.OBF.Field.Missing",
+            "type" : "string",
+            "x-namespaced-enum" : [ "XYZ.OBF.Field.Expected", "XYZ.OBF.Field.Invalid", "XYZ.OBF.Field.InvalidDate", "XYZ.OBF.Field.Missing", "XYZ.OBF.Field.Unexpected", "XYZ.OBF.Header.Invalid", "XYZ.OBF.Header.Missing", "XYZ.OBF.Reauthenticate", "XYZ.OBF.Resource.ConsentMismatch", "XYZ.OBF.Resource.InvalidConsentStatus", "XYZ.OBF.Resource.InvalidFormat", "XYZ.OBF.Resource.NotFound", "XYZ.OBF.Rules.AfterCutOffDateTime", "XYZ.OBF.Rules.DuplicateReference", "XYZ.OBF.Signature.Invalid", "XYZ.OBF.Signature.InvalidClaim", "XYZ.OBF.Signature.Malformed", "XYZ.OBF.Signature.Missing", "XYZ.OBF.Signature.MissingClaim", "XYZ.OBF.Signature.Unexpected", "XYZ.OBF.UnexpectedError", "XYZ.OBF.Unsupported.AccountIdentifier", "XYZ.OBF.Unsupported.AccountSecondaryIdentifier", "XYZ.OBF.Unsupported.Currency", "XYZ.OBF.Unsupported.Frequency", "XYZ.OBF.Unsupported.LocalInstrument", "XYZ.OBF.Unsupported.Scheme" ]
+          },
+          "Message" : {
+            "description" : "A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future'\nOBF doesn't standardise this field",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 500
+          },
+          "Path" : {
+            "description" : "Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 500
+          },
+          "Url" : {
+            "description" : "URL to help remediate the problem, or provide more information, or to API Reference, or help etc",
+            "type" : "string"
+          }
+        },
+        "required" : [ "ErrorCode", "Message" ],
+        "additionalProperties" : false,
+        "minProperties" : 1
+      },
+      "OBErrorResponse" : {
+        "description" : "An array of detail error codes, and messages, and URLs to documentation to help remediation.",
+        "type" : "object",
+        "properties" : {
+          "Code" : {
+            "description" : "High level textual error code, to help categorize the errors.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 40
+          },
+          "Id" : {
+            "description" : "A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 40
+          },
+          "Message" : {
+            "description" : "Brief Error message, e.g., 'There is something wrong with the request parameters provided'",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 500
+          },
+          "Errors" : {
+            "items" : {
+              "$ref" : "#/components/schemas/OBError"
+            },
+            "type" : "array",
+            "minItems" : 1
+          }
+        },
+        "required" : [ "Code", "Message", "Errors" ],
+        "additionalProperties" : false
+      },
+      "OBExternalAccountIdentificationCode" : {
+        "description" : "Name of the identification scheme, in a coded form as published in an external list. 1. \"XYZ.OBF.IBAN\" is specified as the SchemeName in the Account Identification Section (either DebtorAccount or CreditorAccount). 2. “XYZ.OBF.PAN” is specified as the SchemeName in the Account Identification Section (either DebtorAccount or CreditorAccount). 3. “XYZ.OBF.BBAN” is specified as the SchemeName in the Account Identification Section (CreditorAccount).",
+        "type" : "string",
+        "x-namespaced-enum" : [ "XYZ.OBF.IBAN", "XYZ.OBF.PAN", "XYZ.OBF.BBAN" ]
+      },
+      "OBExternalPaymentChargeTypeCode" : {
+        "description" : "Charge type, in a coded form.",
+        "type" : "string",
+        "x-namespaced-enum" : [ "XYZ.OBF.DNS" ]
+      },
+      "OBExternalLocalInstrumentCodeInternational" : {
+        "description" : "User community specific instrument.\nUsage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level.",
+        "type" : "string",
+        "x-namespaced-enum" : [ "XYZ.OBF.SWIFT", "XYZ.OBF.GCCNET" ]
+      },
+      "OBExternalLocalInstrumentCode" : {
+        "description" : "User community specific instrument.\nUsage: This element is used to specify a local instrument, local clearing option and/or further qualify the service or service level.",
+        "type" : "string",
+        "x-namespaced-enum" : [ "XYZ.OBF.DNS" ]
+      },
+      "OBPostalAddress" : {
+        "type" : "object",
+        "description" : "Information that locates and identifies a specific address, as defined by postal services.",
+        "properties" : {
+          "AddressType" : {
+            "$ref" : "#/components/schemas/OBAddressTypeCode"
+          },
+          "Department" : {
+            "$ref" : "#/components/schemas/Department"
+          },
+          "SubDepartment" : {
+            "$ref" : "#/components/schemas/SubDepartment"
+          },
+          "AddressLine" : {
+            "type" : "array",
+            "items" : {
+              "description" : "Information that locates and identifies a specific address, as defined by postal services, presented in free format text.",
+              "type" : "string",
+              "minLength" : 1,
+              "maxLength" : 70
+            },
+            "minItems" : 0,
+            "maxItems" : 7
+          },
+          "StreetName" : {
+            "$ref" : "#/components/schemas/StreetName"
+          },
+          "BuildingNumber" : {
+            "$ref" : "#/components/schemas/BuildingNumber"
+          },
+          "PostCode" : {
+            "$ref" : "#/components/schemas/PostCode"
+          },
+          "TownName" : {
+            "$ref" : "#/components/schemas/TownName"
+          },
+          "CountrySubDivision" : {
+            "$ref" : "#/components/schemas/CountrySubDivision"
+          },
+          "Country" : {
+            "$ref" : "#/components/schemas/CountryCode"
+          }
+        }
+      },
+      "CountrySubDivision" : {
+        "description" : "Identifies a subdivision of a country such as state, region, county.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 35
+      },
+      "OBRisk" : {
+        "type" : "object",
+        "description" : "The Risk section is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring for Payments.",
+        "properties" : {
+          "PaymentContextCode" : {
+            "description" : "Specifies the payment context",
+            "type" : "string",
+            "enum" : [ "BillPayment", "EcommerceGoods", "EcommerceServices", "Other", "PartyToParty" ]
+          },
+          "MerchantCategoryCode" : {
+            "description" : "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+            "type" : "string",
+            "minLength" : 3,
+            "maxLength" : 4
+          },
+          "MerchantCustomerIdentification" : {
+            "description" : "The unique customer identifier of the PSU with the merchant.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 70
+          },
+          "DeliveryAddress" : {
+            "type" : "object",
+            "required" : [ "TownName", "Country" ],
+            "description" : "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
+            "properties" : {
+              "AddressLine" : {
+                "type" : "array",
+                "items" : {
+                  "description" : "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                  "type" : "string",
+                  "minLength" : 1,
+                  "maxLength" : 70
+                },
+                "minItems" : 0,
+                "maxItems" : 2
+              },
+              "StreetName" : {
+                "$ref" : "#/components/schemas/StreetName"
+              },
+              "BuildingNumber" : {
+                "$ref" : "#/components/schemas/BuildingNumber"
+              },
+              "PostCode" : {
+                "$ref" : "#/components/schemas/PostCode"
+              },
+              "TownName" : {
+                "$ref" : "#/components/schemas/TownName"
+              },
+              "CountrySubDivision" : {
+                "type" : "array",
+                "items" : {
+                  "description" : "Identifies a subdivision of a country, for instance state, region, county.",
+                  "type" : "string",
+                  "minLength" : 1,
+                  "maxLength" : 35
+                },
+                "minItems" : 0,
+                "maxItems" : 2
+              },
+              "Country" : {
+                "description" : "Nation with its own government, occupying a particular territory.",
+                "type" : "string",
+                "pattern" : "^[A-Z]{2,2}$"
+              }
+            }
+          }
+        }
+      },
+      "OBSupplementaryData" : {
+        "type" : "object",
+        "properties" : { },
+        "additionalProperties" : true,
+        "description" : "Additional information that can not be captured in the structured fields and/or any other specific block."
+      },
+      "OBWriteFundsConfirmationResponse" : {
+        "type" : "object",
+        "required" : [ "Data" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "properties" : {
+              "FundsAvailableResult" : {
+                "type" : "object",
+                "required" : [ "FundsAvailableDateTime", "FundsAvailable" ],
+                "description" : "Result of a funds availability check.",
+                "properties" : {
+                  "FundsAvailableDateTime" : {
+                    "description" : "Date and time at which the funds availability check was generated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  },
+                  "FundsAvailable" : {
+                    "description" : "Flag to indicate the availability of funds given the Amount in the consent request.",
+                    "type" : "boolean"
+                  }
+                }
+              },
+              "SupplementaryData" : {
+                "$ref" : "#/components/schemas/OBSupplementaryData"
+              }
+            }
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "PostCode" : {
+        "description" : "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 16
+      },
+      "StreetName" : {
+        "description" : "Name of a street or thoroughfare.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 70
+      },
+      "SubDepartment" : {
+        "description" : "Identification of a sub-division of a large organisation or building.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 70
+      },
+      "TownName" : {
+        "description" : "Name of a built-up area, with defined boundaries, and a local government.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 35
+      },
+      "OBExchangeRateResponse" : {
+        "type" : "object",
+        "required" : [ "UnitCurrency", "ExchangeRate", "RateType" ],
+        "description" : "Further detailed information on the exchange rate that has been used in the payment transaction.",
+        "properties" : {
+          "UnitCurrency" : {
+            "description" : "Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.",
+            "type" : "string",
+            "pattern" : "^[A-Z]{3,3}$"
+          },
+          "ExchangeRate" : {
+            "description" : "The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.",
+            "type" : "number"
+          },
+          "RateType" : {
+            "description" : "Specifies the type used to complete the currency exchange.",
+            "type" : "string",
+            "enum" : [ "Actual", "Agreed", "Indicative" ]
+          },
+          "ContractIdentification" : {
+            "description" : "Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 256
+          },
+          "ExpirationDateTime" : {
+            "description" : "Specified date and time the exchange rate agreement will expire.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          }
+        }
+      },
+      "OBDomesticStandingOrderInitiation" : {
+        "type" : "object",
+        "required" : [ "Frequency", "FirstPaymentDateTime", "FirstPaymentAmount", "CreditorAccount" ],
+        "description" : "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor for a domestic standing order.",
+        "properties" : {
+          "Frequency" : {
+            "description" : "Individual Definitions:\n\n  NotKnown - Not known\n  EvryDay - Every day\n  EvryWorkgDay - Every working day\n  IntrvlDay - An interval specified in number of calendar days (02 to 31)\n  IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07)\n  WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07)\n  IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-05 to -01, 01 to 31)\n  QtrDay - Quarterly (ENGLISH)\n  ENGLISH = Paid on the 25th March, 24th June, 29th September and 25th December.\n\n\nIndividual Patterns:\nNotKnown (ScheduleCode) EvryDay (ScheduleCode) EvryWorkgDay (ScheduleCode) IntrvlDay:NoOfDay (ScheduleCode + NoOfDay) IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek) WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek) IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)\nQtrDay: + either (ENGLISH) ScheduleCode + QuarterDay\nThe regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:\nNotKnown EvryDay EvryWorkgDay IntrvlDay:((0[2-9])\\|([1-2][0-9])\\|3[0-1]) IntrvlWkDay:0[1-9]:0[1-7] WkInMnthDay:0[1-5]:0[1-7] IntrvlMnthDay:(0[1-6]\\|12\\|24):(-0[1-5]\\|0[1-9]\\|[12][0-9]\\|3[01]) QtrDay:(ENGLISH)\nFull Regular Expression:\n^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH))$",
+            "type" : "string",
+            "pattern" : "^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH))$"
+          },
+          "Reference" : {
+            "description" : "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.\nUsage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.\nIf the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "NumberOfPayments" : {
+            "description" : "Number of the payments that will be made in completing this frequency sequence including any executed since the sequence start date.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "FirstPaymentDateTime" : {
+            "description" : "The date on which the first payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "RecurringPaymentDateTime" : {
+            "description" : "The date on which the first recurring payment for a Standing Order schedule will be made. \nUsage: This must be populated only if the first recurring date is different to the first payment date.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "FinalPaymentDateTime" : {
+            "description" : "The date on which the final payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "FirstPaymentAmount" : {
+            "type" : "object",
+            "required" : [ "Amount", "Currency" ],
+            "description" : "The amount of the first Standing Order",
+            "properties" : {
+              "Amount" : {
+                "$ref" : "#/components/schemas/OBActiveCurrencyAndAmount"
+              },
+              "Currency" : {
+                "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+              }
+            }
+          },
+          "RecurringPaymentAmount" : {
+            "type" : "object",
+            "required" : [ "Amount", "Currency" ],
+            "description" : "The amount of the recurring Standing Order",
+            "properties" : {
+              "Amount" : {
+                "$ref" : "#/components/schemas/OBActiveCurrencyAndAmount"
+              },
+              "Currency" : {
+                "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+              }
+            }
+          },
+          "FinalPaymentAmount" : {
+            "type" : "object",
+            "required" : [ "Amount", "Currency" ],
+            "description" : "The amount of the final Standing Order",
+            "properties" : {
+              "Amount" : {
+                "$ref" : "#/components/schemas/OBActiveCurrencyAndAmount"
+              },
+              "Currency" : {
+                "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+              }
+            }
+          },
+          "DebtorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification" ],
+            "description" : "Provides the details to identify the debtor account.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels.\nNote, the account name is not the product name or the nickname of the account.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "CreditorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification", "Name" ],
+            "description" : "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level.\nNote, the account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "SupplementaryData" : {
+            "$ref" : "#/components/schemas/OBSupplementaryData"
+          }
+        }
+      },
+      "OBInternationalFutureDatedInitiation" : {
+        "type" : "object",
+        "required" : [ "InstructionIdentification", "LocalInstrument", "RequestedExecutionDateTime", "CurrencyOfTransfer", "InstructedAmount", "CreditorAccount" ],
+        "description" : "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor for a single future-dated international payment.",
+        "properties" : {
+          "InstructionIdentification" : {
+            "description" : "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction.\nUsage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "EndToEndIdentification" : {
+            "description" : "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.\nUsage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.\nOB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "LocalInstrument" : {
+            "$ref" : "#/components/schemas/OBExternalLocalInstrumentCodeInternational"
+          },
+          "InstructionPriority" : {
+            "description" : "Indicator of the urgency or order of importance that the instructing party would like the instructed party to apply to the processing of the instruction.",
+            "type" : "string",
+            "enum" : [ "Normal", "Urgent" ]
+          },
+          "Purpose" : {
+            "description" : "Specifies the external purpose code in the format of character string with a maximum length of 4 characters.\nThe list of valid codes is an external code list published separately.\nExternal code sets can be downloaded from www.iso20022.org.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 4
+          },
+          "ExtendedPurpose" : {
+            "description" : "Specifies the purpose of an international payment, when there is no corresponding 4 character code available in the ISO20022 list of Purpose Codes.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 140
+          },
+          "ChargeBearer" : {
+            "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+          },
+          "RequestedExecutionDateTime" : {
+            "description" : "Date at which the initiating party requests the clearing agent to process the payment. \nUsage: This is the date on which the debtor's account is to be debited.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "CurrencyOfTransfer" : {
+            "description" : "Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.",
+            "type" : "string",
+            "pattern" : "^[A-Z]{3,3}$"
+          },
+          "DestinationCountryCode" : {
+            "description" : "Country in which Credit Account is domiciled. Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).",
+            "type" : "string",
+            "pattern" : "[A-Z]{2,2}"
+          },
+          "InstructedAmount" : {
+            "type" : "object",
+            "required" : [ "Amount", "Currency" ],
+            "description" : "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.\nUsage: This amount has to be transported unchanged through the transaction chain.",
+            "properties" : {
+              "Amount" : {
+                "$ref" : "#/components/schemas/OBActiveCurrencyAndAmount"
+              },
+              "Currency" : {
+                "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+              }
+            }
+          },
+          "ExchangeRateInformation" : {
+            "type" : "object",
+            "required" : [ "UnitCurrency", "RateType" ],
+            "description" : "Provides details on the currency exchange rate and contract.",
+            "properties" : {
+              "UnitCurrency" : {
+                "description" : "Currency in which the rate of exchange is expressed in a currency exchange. In the example 1GBP = xxxCUR, the unit currency is GBP.",
+                "type" : "string",
+                "pattern" : "^[A-Z]{3,3}$"
+              },
+              "ExchangeRate" : {
+                "description" : "The factor used for conversion of an amount from one currency to another. This reflects the price at which one currency was bought with another currency.",
+                "type" : "number"
+              },
+              "RateType" : {
+                "description" : "Specifies the type used to complete the currency exchange.",
+                "type" : "string",
+                "enum" : [ "Actual", "Agreed", "Indicative" ]
+              },
+              "ContractIdentification" : {
+                "description" : "Unique and unambiguous reference to the foreign exchange contract agreed between the initiating party/creditor and the debtor agent.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 256
+              }
+            }
+          },
+          "DebtorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification" ],
+            "description" : "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels.\nNote, the account name is not the product name or the nickname of the account.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "Creditor" : {
+            "type" : "object",
+            "description" : "Party to which an amount of money is due.",
+            "properties" : {
+              "Name" : {
+                "description" : "Name by which a party is known and which is usually used to identify that party.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 140
+              },
+              "PostalAddress" : {
+                "$ref" : "#/components/schemas/OBPostalAddress"
+              }
+            }
+          },
+          "CreditorAgent" : {
+            "type" : "object",
+            "description" : "Financial institution servicing an account for the creditor.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalFinancialInstitutionIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/IdentificationFinancial"
+              },
+              "Name" : {
+                "$ref" : "#/components/schemas/Name"
+              },
+              "PostalAddress" : {
+                "$ref" : "#/components/schemas/OBPostalAddress"
+              }
+            }
+          },
+          "CreditorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification", "Name" ],
+            "description" : "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level.\nNote, the account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "RemittanceInformation" : {
+            "type" : "object",
+            "description" : "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
+            "properties" : {
+              "RemittanceDescription" : {
+                "description" : "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 140
+              },
+              "Reference" : {
+                "description" : "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.\nUsage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.\nIf the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.\nOB: The Faster Payments Scheme can only accept 18 characters for the ReferenceInformation field - which is where this ISO field will be mapped.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 35
+              }
+            }
+          },
+          "SupplementaryData" : {
+            "$ref" : "#/components/schemas/OBSupplementaryData"
+          }
+        }
+      },
+      "OBWriteDomesticStandingOrderConsent" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "Permission", "Initiation" ],
+            "properties" : {
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBDomesticStandingOrderInitiation"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteDomesticStandingOrderConsentResponse" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Permission", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of consent resource in code form.",
+                "type" : "string",
+                "enum" : [ "Authorised", "AwaitingAuthorisation", "Consumed", "Rejected" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "CutOffDateTime" : {
+                "description" : "Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBDomesticStandingOrderInitiation"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBWriteDomesticStandingOrder" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBDomesticStandingOrderInitiation"
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteDomesticStandingOrderResponse" : {
+        "type" : "object",
+        "required" : [ "Data" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "DomesticStandingOrderId", "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Initiation" ],
+            "properties" : {
+              "DomesticStandingOrderId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the domestic standing order resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 40
+              },
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of the payment order resource.",
+                "type" : "string",
+                "enum" : [ "Cancelled", "InitiationCompleted", "InitiationFailed", "InitiationPending" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Debtor" : {
+                "$ref" : "#/components/schemas/OBDebtorIdentification"
+              },
+              "Refund" : {
+                "type" : "object",
+                "required" : [ "Account" ],
+                "description" : "Unambiguous identification of the refund account to which a refund will be made as a result of the transaction.",
+                "properties" : {
+                  "Account" : {
+                    "type" : "object",
+                    "required" : [ "SchemeName", "Identification", "Name" ],
+                    "description" : "Provides the details to identify an account.",
+                    "properties" : {
+                      "SchemeName" : {
+                        "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+                      },
+                      "Identification" : {
+                        "$ref" : "#/components/schemas/Identification"
+                      },
+                      "Name" : {
+                        "description" : "Name of the account, as assigned by the account servicing institution.\nUsage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                        "type" : "string",
+                        "minLength" : 1,
+                        "maxLength" : 70
+                      }
+                    }
+                  }
+                }
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBDomesticStandingOrderInitiation"
+              }
+            }
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBWritePaymentDetailsResponse" : {
+        "type" : "object",
+        "required" : [ "Data" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "properties" : {
+              "PaymentStatus" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Payment status details.",
+                  "required" : [ "PaymentTransactionId", "Status", "StatusUpdateDateTime" ],
+                  "properties" : {
+                    "PaymentTransactionId" : {
+                      "description" : "Unique identifier for the transaction within an servicing institution. This identifier is both unique and immutable.",
+                      "type" : "string",
+                      "minLength" : 1,
+                      "maxLength" : 210
+                    },
+                    "Status" : {
+                      "description" : "Status of a transfe, as assigned by the transaction administrator.",
+                      "type" : "string",
+                      "enum" : [ "Accepted", "AcceptedCancellationRequest", "AcceptedCreditSettlementCompleted", "AcceptedCustomerProfile", "AcceptedFundsChecked", "AcceptedSettlementCompleted", "AcceptedSettlementInProcess", "AcceptedTechnicalValidation", "AcceptedWithChange", "AcceptedWithoutPosting", "Cancelled", "NoCancellationProcess", "PartiallyAcceptedCancellationRequest", "PartiallyAcceptedTechnicalCorrect", "PaymentCancelled", "Pending", "PendingCancellationRequest", "Received", "Rejected", "RejectedCancellationRequest" ]
+                    },
+                    "StatusUpdateDateTime" : {
+                      "description" : "Date and time at which the status was assigned to the transfer.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                      "type" : "string",
+                      "format" : "date-time"
+                    },
+                    "StatusDetail" : {
+                      "type" : "object",
+                      "required" : [ "Status", "LocalInstrument" ],
+                      "description" : "Payment status details as per underlying Payment Rail.",
+                      "properties" : {
+                        "LocalInstrument" : {
+                          "$ref" : "#/components/schemas/OBExternalLocalInstrumentCode"
+                        },
+                        "Status" : {
+                          "description" : "Status of a transfer, as assigned by the transaction administrator.",
+                          "type" : "string",
+                          "minLength" : 1,
+                          "maxLength" : 128
+                        },
+                        "StatusReason" : {
+                          "description" : "Reason Code provided for the status of a transfer.",
+                          "type" : "string",
+                          "enum" : [ "Cancelled", "PendingFailingSettlement", "PendingSettlement", "Proprietary", "ProprietaryRejection", "Suspended", "Unmatched" ]
+                        },
+                        "StatusReasonDescription" : {
+                          "description" : "Reason provided for the status of a transfer.",
+                          "type" : "string",
+                          "minLength" : 1,
+                          "maxLength" : 256
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBExternalFinancialInstitutionIdentificationCode" : {
+        "description" : "Name of the identification scheme, in a coded form as published in an external list.",
+        "type" : "string",
+        "x-namespaced-enum" : [ "XYZ.OBF.BICFI", "XYZ.OBF.NCC" ]
+      },
+      "OBWriteInternationalFutureDatedConsent" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "Permission", "Initiation" ],
+            "properties" : {
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalFutureDatedInitiation"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteInternationalFutureDatedConsentResponse" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Permission", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of consent resource in code form.",
+                "type" : "string",
+                "enum" : [ "Authorised", "AwaitingAuthorisation", "Consumed", "Rejected" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "CutOffDateTime" : {
+                "description" : "Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "ExpectedExecutionDateTime" : {
+                "description" : "Expected execution date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "ExpectedSettlementDateTime" : {
+                "description" : "Expected settlement date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Debtor" : {
+                "$ref" : "#/components/schemas/OBDebtorIdentification"
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "ExchangeRateInformation" : {
+                "$ref" : "#/components/schemas/OBExchangeRateResponse"
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalFutureDatedInitiation"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBWriteInternationalFutureDated" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalFutureDatedInitiation"
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteInternationalFutureDatedResponse" : {
+        "type" : "object",
+        "required" : [ "Data" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "InternationalFutureDatedPaymentId", "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Initiation" ],
+            "properties" : {
+              "InternationalFutureDatedPaymentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the international future dated payment resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 40
+              },
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the message was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of the payment order resource.",
+                "type" : "string",
+                "enum" : [ "Cancelled", "InitiationCompleted", "InitiationFailed", "InitiationPending" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "ExpectedExecutionDateTime" : {
+                "description" : "Expected execution date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "ExpectedSettlementDateTime" : {
+                "description" : "Expected settlement date and time for the payment resource.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Debtor" : {
+                "$ref" : "#/components/schemas/OBDebtorIdentification"
+              },
+              "Refund" : {
+                "type" : "object",
+                "required" : [ "Account" ],
+                "properties" : {
+                  "Creditor" : {
+                    "type" : "object",
+                    "description" : "Set of elements used to identify a person or an organisation.",
+                    "properties" : {
+                      "Name" : {
+                        "description" : "Name by which a party is known and which is usually used to identify that party.",
+                        "type" : "string",
+                        "minLength" : 1,
+                        "maxLength" : 140
+                      },
+                      "PostalAddress" : {
+                        "$ref" : "#/components/schemas/OBPostalAddress"
+                      }
+                    }
+                  },
+                  "Agent" : {
+                    "type" : "object",
+                    "description" : "Set of elements used to uniquely and unambiguously identify a financial institution or a branch of a financial institution.",
+                    "properties" : {
+                      "SchemeName" : {
+                        "$ref" : "#/components/schemas/OBExternalFinancialInstitutionIdentificationCode"
+                      },
+                      "Identification" : {
+                        "$ref" : "#/components/schemas/IdentificationFinancial"
+                      },
+                      "Name" : {
+                        "$ref" : "#/components/schemas/Name"
+                      },
+                      "PostalAddress" : {
+                        "$ref" : "#/components/schemas/OBPostalAddress"
+                      }
+                    }
+                  },
+                  "Account" : {
+                    "type" : "object",
+                    "required" : [ "SchemeName", "Identification", "Name" ],
+                    "description" : "Provides the details to identify an account.",
+                    "properties" : {
+                      "SchemeName" : {
+                        "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+                      },
+                      "Identification" : {
+                        "$ref" : "#/components/schemas/Identification"
+                      },
+                      "Name" : {
+                        "description" : "Name of the account, as assigned by the account servicing institution.\nUsage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                        "type" : "string",
+                        "minLength" : 1,
+                        "maxLength" : 70
+                      }
+                    }
+                  }
+                }
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "ExchangeRateInformation" : {
+                "$ref" : "#/components/schemas/OBExchangeRateResponse"
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalFutureDatedInitiation"
+              }
+            }
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBInternationalStandingOrder" : {
+        "type" : "object",
+        "required" : [ "Frequency", "FirstPaymentDateTime", "CurrencyOfTransfer", "InstructedAmount", "CreditorAccount" ],
+        "description" : "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor for an international standing order.",
+        "properties" : {
+          "Frequency" : {
+            "description" : "Individual Definitions:\nNotKnown - Not known EvryDay - Every day EvryWorkgDay - Every working day IntrvlDay - An interval specified in number of calendar days (02 to 31) IntrvlWkDay - An interval specified in weeks (01 to 09), and the day within the week (01 to 07) WkInMnthDay - A monthly interval, specifying the week of the month (01 to 05) and day within the week (01 to 07) IntrvlMnthDay - An interval specified in months (between 01 to 06, 12, 24), specifying the day within the month (-05 to -01, 01 to 31) QtrDay - Quarterly (ENGLISH) ENGLISH = Paid on the 25th March, 24th June, 29th September and 25th December.\nIndividual Patterns:\nNotKnown (ScheduleCode) EvryDay (ScheduleCode) EvryWorkgDay (ScheduleCode) IntrvlDay:NoOfDay (ScheduleCode + NoOfDay) IntrvlWkDay:IntervalInWeeks:DayInWeek (ScheduleCode + IntervalInWeeks + DayInWeek) WkInMnthDay:WeekInMonth:DayInWeek (ScheduleCode + WeekInMonth + DayInWeek) IntrvlMnthDay:IntervalInMonths:DayInMonth (ScheduleCode + IntervalInMonths + DayInMonth)\nQtrDay: + either (ENGLISH) ScheduleCode + QuarterDay\nThe regular expression for this element combines five smaller versions for each permitted pattern. To aid legibility - the components are presented individually here:\nNotKnown EvryDay EvryWorkgDay IntrvlDay:((0[2-9])\\|([1-2][0-9])\\|3[0-1]) IntrvlWkDay:0[1-9]:0[1-7] WkInMnthDay:0[1-5]:0[1-7] IntrvlMnthDay:(0[1-6]\\|12\\|24):(-0[1-5]\\|0[1-9]\\|[12][0-9]\\|3[01]) QtrDay:(ENGLISH)\nFull Regular Expression:\n^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH))$",
+            "type" : "string",
+            "pattern" : "^(NotKnown)$|^(EvryDay)$|^(EvryWorkgDay)$|^(IntrvlDay:((0[2-9])|([1-2][0-9])|3[0-1]))$|^(IntrvlWkDay:0[1-9]:0[1-7])$|^(WkInMnthDay:0[1-5]:0[1-7])$|^(IntrvlMnthDay:(0[1-6]|12|24):(-0[1-5]|0[1-9]|[12][0-9]|3[01]))$|^(QtrDay:(ENGLISH))$"
+          },
+          "Reference" : {
+            "description" : "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction.\nUsage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money.\nIf the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "NumberOfPayments" : {
+            "description" : "Number of the payments that will be made in completing this frequency sequence including any executed since the sequence start date.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 35
+          },
+          "FirstPaymentDateTime" : {
+            "description" : "The date on which the first payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "FinalPaymentDateTime" : {
+            "description" : "The date on which the final payment for a Standing Order schedule will be made.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+            "type" : "string",
+            "format" : "date-time"
+          },
+          "Purpose" : {
+            "description" : "Specifies the external purpose code in the format of character string with a maximum length of 4 characters.\nThe list of valid codes is an external code list published separately.\nExternal code sets can be downloaded from www.iso20022.org.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 4
+          },
+          "ExtendedPurpose" : {
+            "description" : "Specifies the purpose of an international payment, when there is no corresponding 4 character code available in the ISO20022 list of Purpose Codes.",
+            "type" : "string",
+            "minLength" : 1,
+            "maxLength" : 140
+          },
+          "ChargeBearer" : {
+            "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+          },
+          "CurrencyOfTransfer" : {
+            "description" : "Specifies the currency of the to be transferred amount, which is different from the currency of the debtor's account.",
+            "type" : "string",
+            "pattern" : "^[A-Z]{3,3}$"
+          },
+          "DestinationCountryCode" : {
+            "description" : "Country in which Credit Account is domiciled. Code to identify a country, a dependency, or another area of particular geopolitical interest, on the basis of country names obtained from the United Nations (ISO 3166, Alpha-2 code).",
+            "type" : "string",
+            "pattern" : "[A-Z]{2,2}"
+          },
+          "InstructedAmount" : {
+            "type" : "object",
+            "required" : [ "Amount", "Currency" ],
+            "description" : "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.\nUsage: This amount has to be transported unchanged through the transaction chain.",
+            "properties" : {
+              "Amount" : {
+                "$ref" : "#/components/schemas/OBActiveCurrencyAndAmount"
+              },
+              "Currency" : {
+                "$ref" : "#/components/schemas/ActiveOrHistoricCurrencyCode"
+              }
+            }
+          },
+          "DebtorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification" ],
+            "description" : "Provides the details to identify the debtor account.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels.\nNote, the account name is not the product name or the nickname of the account.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "Creditor" : {
+            "type" : "object",
+            "description" : "Party to which an amount of money is due.",
+            "properties" : {
+              "Name" : {
+                "description" : "Name by which a party is known and which is usually used to identify that party.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 140
+              },
+              "PostalAddress" : {
+                "$ref" : "#/components/schemas/OBPostalAddress"
+              }
+            }
+          },
+          "CreditorAgent" : {
+            "type" : "object",
+            "description" : "Party that manages the account on behalf of the account owner, that is manages the registration and booking of entries on the account, calculates balances on the account and provides information about the account.\nThis is the servicer of the beneficiary account.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalFinancialInstitutionIdentificationCode"
+              },
+              "Identification" : {
+                "description" : "Unique and unambiguous identification of the servicing institution.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 35
+              },
+              "Name" : {
+                "$ref" : "#/components/schemas/Name"
+              },
+              "PostalAddress" : {
+                "$ref" : "#/components/schemas/OBPostalAddress"
+              }
+            }
+          },
+          "CreditorAccount" : {
+            "type" : "object",
+            "required" : [ "SchemeName", "Identification", "Name" ],
+            "description" : "Provides the details to identify the beneficiary account.",
+            "properties" : {
+              "SchemeName" : {
+                "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+              },
+              "Identification" : {
+                "$ref" : "#/components/schemas/Identification"
+              },
+              "Name" : {
+                "description" : "The account name is the name or names of the account owner(s) represented at an account level.\nNote, the account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 70
+              }
+            }
+          },
+          "SupplementaryData" : {
+            "$ref" : "#/components/schemas/OBSupplementaryData"
+          }
+        }
+      },
+      "OBWriteInternationalStandingOrderConsent" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "Permission", "Initiation" ],
+            "properties" : {
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalStandingOrder"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteInternationalStandingOrderConsentResponse" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Permission", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of resource in code form.",
+                "type" : "string",
+                "enum" : [ "Authorised", "AwaitingAuthorisation", "Consumed", "Rejected" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Permission" : {
+                "description" : "Specifies the Open Banking service request types.",
+                "type" : "string",
+                "enum" : [ "Create" ]
+              },
+              "ReadRefundAccount" : {
+                "description" : "Specifies to share the refund account details with PISP",
+                "type" : "string",
+                "enum" : [ "No", "Yes" ]
+              },
+              "CutOffDateTime" : {
+                "description" : "Specified cut-off date and time for the payment consent.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Debtor" : {
+                "$ref" : "#/components/schemas/OBDebtorIdentification"
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalStandingOrder"
+              },
+              "Authorisation" : {
+                "type" : "object",
+                "required" : [ "AuthorisationType" ],
+                "description" : "The authorisation type request from the TPP.",
+                "properties" : {
+                  "AuthorisationType" : {
+                    "description" : "Type of authorisation flow requested.",
+                    "type" : "string",
+                    "enum" : [ "Single" ]
+                  },
+                  "CompletionDateTime" : {
+                    "description" : "Date and time at which the requested authorisation flow must be completed.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                    "type" : "string",
+                    "format" : "date-time"
+                  }
+                }
+              },
+              "SCASupportData" : {
+                "type" : "object",
+                "description" : "Supporting Data provided by TPP, when requesting SCA Exemption.",
+                "properties" : {
+                  "RequestedSCAExemptionType" : {
+                    "description" : "This field allows a PISP to request specific SCA Exemption for a Payment Initiation",
+                    "type" : "string"
+                  },
+                  "AppliedAuthenticationApproach" : {
+                    "description" : "Specifies a character string with a maximum length of 40 characters.\nUsage: This field indicates whether the PSU was subject to SCA performed by the TPP",
+                    "type" : "string",
+                    "enum" : [ "SCA" ]
+                  },
+                  "ReferencePaymentOrderId" : {
+                    "description" : "Specifies a character string with a maximum length of 140 characters.\nUsage: If the payment is recurring then the transaction identifier of the previous payment occurrence so that the ASPSP can verify that the PISP, amount and the payee are the same as the previous occurrence.",
+                    "type" : "string",
+                    "minLength" : 1,
+                    "maxLength" : 128
+                  }
+                }
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "OBWriteInternationalStandingOrder" : {
+        "type" : "object",
+        "required" : [ "Data", "Risk" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "ConsentId", "Initiation" ],
+            "properties" : {
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalStandingOrder"
+              }
+            }
+          },
+          "Risk" : {
+            "$ref" : "#/components/schemas/OBRisk"
+          }
+        }
+      },
+      "OBWriteInternationalStandingOrderResponse" : {
+        "type" : "object",
+        "required" : [ "Data" ],
+        "properties" : {
+          "Data" : {
+            "type" : "object",
+            "required" : [ "InternationalStandingOrderId", "ConsentId", "CreationDateTime", "Status", "StatusUpdateDateTime", "Initiation" ],
+            "properties" : {
+              "InternationalStandingOrderId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the international standing order resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 40
+              },
+              "ConsentId" : {
+                "description" : "OB: Unique identification as assigned by the ASPSP to uniquely identify the consent resource.",
+                "type" : "string",
+                "minLength" : 1,
+                "maxLength" : 128
+              },
+              "CreationDateTime" : {
+                "description" : "Date and time at which the resource was created.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Status" : {
+                "description" : "Specifies the status of resource in code form.",
+                "type" : "string",
+                "enum" : [ "Cancelled", "InitiationCompleted", "InitiationFailed", "InitiationPending" ]
+              },
+              "StatusUpdateDateTime" : {
+                "description" : "Date and time at which the resource status was updated.All dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2020-04-05T10:43:07+03:00",
+                "type" : "string",
+                "format" : "date-time"
+              },
+              "Debtor" : {
+                "$ref" : "#/components/schemas/OBDebtorIdentification"
+              },
+              "Refund" : {
+                "type" : "object",
+                "required" : [ "Account" ],
+                "properties" : {
+                  "Creditor" : {
+                    "type" : "object",
+                    "description" : "Set of elements used to identify a person or an organisation.",
+                    "properties" : {
+                      "Name" : {
+                        "description" : "Name by which a party is known and which is usually used to identify that party.",
+                        "type" : "string",
+                        "minLength" : 1,
+                        "maxLength" : 140
+                      },
+                      "PostalAddress" : {
+                        "$ref" : "#/components/schemas/OBPostalAddress"
+                      }
+                    }
+                  },
+                  "Agent" : {
+                    "type" : "object",
+                    "description" : "Set of elements used to uniquely and unambiguously identify a financial institution or a branch of a financial institution.",
+                    "properties" : {
+                      "SchemeName" : {
+                        "$ref" : "#/components/schemas/OBExternalFinancialInstitutionIdentificationCode"
+                      },
+                      "Identification" : {
+                        "$ref" : "#/components/schemas/IdentificationFinancial"
+                      },
+                      "Name" : {
+                        "$ref" : "#/components/schemas/Name"
+                      },
+                      "PostalAddress" : {
+                        "$ref" : "#/components/schemas/OBPostalAddress"
+                      }
+                    }
+                  },
+                  "Account" : {
+                    "type" : "object",
+                    "required" : [ "SchemeName", "Identification", "Name" ],
+                    "description" : "Provides the details to identify an account.",
+                    "properties" : {
+                      "SchemeName" : {
+                        "$ref" : "#/components/schemas/OBExternalAccountIdentificationCode"
+                      },
+                      "Identification" : {
+                        "$ref" : "#/components/schemas/Identification"
+                      },
+                      "Name" : {
+                        "description" : "Name of the account, as assigned by the account servicing institution.\nUsage: The account name is the name or names of the account owner(s) represented at an account level. The account name is not the product name or the nickname of the account.\nOB: ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+                        "type" : "string",
+                        "minLength" : 1,
+                        "maxLength" : 70
+                      }
+                    }
+                  }
+                }
+              },
+              "Charges" : {
+                "type" : "array",
+                "items" : {
+                  "type" : "object",
+                  "description" : "Set of elements used to provide details of a charge for the payment initiation.",
+                  "required" : [ "ChargeBearer", "Type", "Amount" ],
+                  "properties" : {
+                    "ChargeBearer" : {
+                      "$ref" : "#/components/schemas/OBChargeBearerTypeCode"
+                    },
+                    "Type" : {
+                      "$ref" : "#/components/schemas/OBExternalPaymentChargeTypeCode"
+                    },
+                    "Amount" : {
+                      "$ref" : "#/components/schemas/OBActiveOrHistoricCurrencyAndAmount"
+                    }
+                  }
+                }
+              },
+              "Initiation" : {
+                "$ref" : "#/components/schemas/OBInternationalStandingOrder"
+              }
+            }
+          },
+          "Links" : {
+            "$ref" : "#/components/schemas/Links"
+          },
+          "Meta" : {
+            "$ref" : "#/components/schemas/Meta"
+          }
+        }
+      },
+      "Name" : {
+        "description" : "Name by which an agent is known and which is usually used to identify that agent.",
+        "type" : "string",
+        "minLength" : 1,
+        "maxLength" : 140
+      },
+      "OBDebtorIdentification" : {
+        "type" : "object",
+        "description" : "Set of elements used to identify a person or an organisation.",
+        "properties" : {
+          "Name" : {
+            "type" : "string",
+            "description" : "The account name is the name or names of the account owner(s) represented at an account level, as displayed by the ASPSP's online channels. Note, the account name is not the product name or the nickname of the account.",
+            "minLength" : 0,
+            "maxLength" : 140
+          }
+        }
+      }
+    },
+    "securitySchemes" : {
+      "TPPOAuth2Security" : {
+        "type" : "oauth2",
+        "description" : "TPP client credential authorisation flow with the ASPSP",
+        "flows" : {
+          "clientCredentials" : {
+            "tokenUrl" : "https://authserver.example/token",
+            "scopes" : {
+              "payments" : "Generic payment scope"
+            }
+          }
+        }
+      },
+      "UserOAuth2Security" : {
+        "type" : "oauth2",
+        "description" : "OAuth flow, it is required when the User/Customer needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the User/Customer",
+        "flows" : {
+          "authorizationCode" : {
+            "authorizationUrl" : "https://authserver.example/authorization",
+            "tokenUrl" : "https://authserver.example/token",
+            "scopes" : {
+              "payments" : "Generic payment scope"
+            }
+          }
+        }
+      }
+    }
+  }
+}
