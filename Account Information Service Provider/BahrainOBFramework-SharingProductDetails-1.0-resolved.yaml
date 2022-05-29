@@ -1,0 +1,1210 @@
+---
+openapi: 3.0.0
+info:
+  title: Sharing Product Details
+  description: 'The Open API serves the business functions associated with Products offered by the bank. '
+  termsOfService: https://www.XYZ.gov.XYZ/terms-and-conditions-of-use/
+  contact:
+    name: Mr. XYZ
+    email: XYZ@XYZ.gov.XYZ
+  version: "1.0"
+servers:
+- url: /
+paths:
+  /sharing-product-details:
+    get:
+      tags:
+      - Sharing Product Details
+      summary: Get Sharing Product Details
+      parameters:
+      - name: x-fapi-auth-date
+        in: header
+        description: "The time when the User/Customer last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nWed, 27 May 2020 19:43:31 GMT+03:00"
+        required: false
+        style: simple
+        explode: false
+        schema:
+          pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)[+-][0-9]{2}:[0-9]{2}$
+          type: string
+      - name: x-fapi-customer-ip-address
+        in: header
+        description: The User/Customer's IP address if the User/Customer is currently logged in with the TPP.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: x-fapi-interaction-id
+        in: header
+        description: An RFC4122 UID used as a correlation id.
+        required: false
+        style: simple
+        explode: false
+        schema:
+          type: string
+      - name: Authorisation
+        in: header
+        description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: Products Read
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OBReadSharingProductDetails'
+        "400":
+          description: Bad request
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OBErrorResponse'
+        "401":
+          description: Unauthorized
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        "403":
+          description: Forbidden
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OBErrorResponse'
+        "404":
+          description: Not found
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        "405":
+          description: Method Not Allowed
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        "406":
+          description: Not Acceptable
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        "429":
+          description: Too Many Requests
+          headers:
+            Retry-After:
+              description: Number in seconds to wait
+              style: simple
+              explode: false
+              schema:
+                type: integer
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+        "500":
+          description: Internal Server Error
+          headers:
+            x-fapi-interaction-id:
+              description: An RFC4122 UID used as a correlation id.
+              style: simple
+              explode: false
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OBErrorResponse'
+      security:
+      - TPPOAuth2Security:
+        - products
+components:
+  schemas:
+    OBError:
+      minProperties: 1
+      required:
+      - ErrorCode
+      - Message
+      type: object
+      properties:
+        ErrorCode:
+          type: string
+          description: Low level textual error code, e.g., XYZ.OBF.Field.Missing
+          x-namespaced-enum:
+          - XYZ.OBF.Field.Expected
+          - XYZ.OBF.Field.Invalid
+          - XYZ.OBF.Field.InvalidDate
+          - XYZ.OBF.Field.Missing
+          - XYZ.OBF.Field.Unexpected
+          - XYZ.OBF.Header.Invalid
+          - XYZ.OBF.Header.Missing
+          - XYZ.OBF.Reauthenticate
+          - XYZ.OBF.Resource.ConsentMismatch
+          - XYZ.OBF.Resource.InvalidConsentStatus
+          - XYZ.OBF.Resource.InvalidFormat
+          - XYZ.OBF.Resource.NotFound
+          - XYZ.OBF.Rules.AfterCutOffDateTime
+          - XYZ.OBF.Rules.DuplicateReference
+          - XYZ.OBF.Signature.Invalid
+          - XYZ.OBF.Signature.InvalidClaim
+          - XYZ.OBF.Signature.Malformed
+          - XYZ.OBF.Signature.Missing
+          - XYZ.OBF.Signature.MissingClaim
+          - XYZ.OBF.Signature.Unexpected
+          - XYZ.OBF.UnexpectedError
+          - XYZ.OBF.Unsupported.AccountIdentifier
+          - XYZ.OBF.Unsupported.AccountSecondaryIdentifier
+          - XYZ.OBF.Unsupported.Currency
+          - XYZ.OBF.Unsupported.Frequency
+          - XYZ.OBF.Unsupported.LocalInstrument
+          - XYZ.OBF.Unsupported.Scheme
+        Message:
+          maxLength: 500
+          minLength: 1
+          type: string
+          description: |-
+            A description of the error that occurred. e.g., 'A mandatory field isn't supplied' or 'RequestedExecutionDateTime must be in future'
+            BOBF doesn't standardise this field
+        Path:
+          maxLength: 500
+          minLength: 1
+          type: string
+          description: Recommended but optional reference to the JSON Path of the field with error, e.g., Data.Initiation.InstructedAmount.Currency
+        Url:
+          type: string
+          description: URL to help remediate the problem, or provide more information, or to API Reference, or help etc
+      additionalProperties: false
+    OBErrorResponse:
+      required:
+      - Code
+      - Errors
+      - Message
+      type: object
+      properties:
+        Code:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: High level textual error code, to help categorize the errors.
+        Id:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: A unique reference for the error instance, for audit purposes, in case of unknown/unclassified errors.
+        Message:
+          maxLength: 500
+          minLength: 1
+          type: string
+          description: Brief Error message, e.g., 'There is something wrong with the request parameters provided'
+        Errors:
+          minItems: 1
+          type: array
+          items:
+            $ref: '#/components/schemas/OBError'
+      additionalProperties: false
+      description: An array of detail error codes, and messages, and URLs to documentation to help remediation.
+    OBSupplementaryData:
+      type: object
+      properties: {}
+      additionalProperties: true
+      description: 'Additional information that can not be captured in the structured fields and/or any other specific block.  '
+    OBReadSharingProductDetails:
+      required:
+      - Data
+      type: object
+      properties:
+        Data:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data'
+      description: Returns a collection of Sharing Product details.
+    OBReadSharingProductDetails_Data_ProductDetails:
+      required:
+      - CategoryCode
+      - CategoryName
+      - ProductCode
+      - ProductDescription
+      - Segment
+      - SubProductCode
+      type: object
+      properties:
+        CategoryName:
+          type: string
+          description: Producty category name used by ASPSPs
+        CategoryCode:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Product category code used by ASPSPs
+        ProductDescription:
+          maxLength: 350
+          minLength: 1
+          type: string
+          description: A brief description of the product
+        ProductCode:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Product Code for Banks operational purpose
+        SubProductCode:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Sub-Product Code for Banks operational purpose
+        ProductURL:
+          type: string
+          description: Product URL
+        Segment:
+          type: string
+          description: Product segment such as lifestyle, travel, reward points, etc.
+      description: Product details associated with the all product categories.
+      example: null
+    OBReadSharingProductDetails_Data_Features:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Payment and transaction currency as applicable on the selected card
+        OnetimeFee:
+          type: number
+          description: First time membership or fee in XYZD payable on getting a card
+        AnnualFeeAndCharges:
+          type: number
+          description: Recurring fees and charges in XYZD payable periodically
+        FeeWaiver:
+          type: string
+          description: This includes the conditions for fee waiver if any applicable on the selected card
+        AddOnCards:
+          type: string
+          description: This includes the conditions and limit for add on cards where a card holder can apply for add-on cards for his/her family under the same account
+        CardLimit:
+          type: string
+          description: Transaction limit offered by banks for the customer. This also includes the limits for sub transaction such as ATM withdrawal limit, merchant transaction limit, etc.
+        InterestRates:
+          type: string
+          description: Interest rate payable on repayment post due date
+      description: '''List of product features''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Eligibility:
+      type: object
+      properties:
+        DocumentsRequired:
+          type: string
+          description: List of documents required for getting a credit card
+        Age:
+          type: number
+          description: Age
+        EmploymentStatus:
+          type: string
+          description: Employment status
+        Income:
+          type: string
+          description: Income
+        CreditScore:
+          type: string
+          description: Credit score
+      description: '''This covers nationality, age, employment status, income and credit score''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Benefits:
+      type: object
+      properties:
+        OffersOnTheCard:
+          type: string
+          description: Some cards have great offers and discounts if used with a particular vendor, website or company. Also banks have tie ups with offices, educational institutions etc. and offer them special rates
+        RewardType:
+          type: string
+          description: Some cards are specifically made to suit customers spending habits. For e.g. travel, aviation, lifestyle, shopping, cashback etc.
+        RewardsProgram:
+          type: string
+          description: Rewards program offered by Banks including cashback and redeemable options. Fuel charge waivers and airport lounge access will also be covered here
+        JoiningGiftsOrBonus:
+          type: string
+          description: To get customers to apply for their card, banks offer welcome gifts and bonuses. This could be some latest gadget or bonus points and miles.
+        OtherBenefits:
+          type: string
+          description: Additional benefits if any
+      description: '''List of Benefits offered by this product''                   '
+      example: null
+    OBReadSharingProductDetails_Data_TermsAndConditions:
+      type: object
+      properties:
+        tnc-title:
+          type: string
+          description: Terms and conditions title
+        tnc-summary:
+          type: string
+          description: Terms and conditions summary
+        tnc-url:
+          type: string
+          description: Terms and conditions URL
+      description: '''This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements''                   '
+      example: null
+    OBReadSharingProductDetails_Data_CreditCards:
+      required:
+      - ProductDetails
+      type: object
+      properties:
+        ProductDetails:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ProductDetails'
+        Features:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Features'
+        Eligibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Eligibility'
+        Benefits:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Benefits'
+        TermsAndConditions:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_TermsAndConditions'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+      description: '''List of Credit card products'''
+      example: null
+    OBReadSharingProductDetails_Data_Features_1:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Payment and transaction currency as applicable on the selected loan type
+        InitialDeposit:
+          type: string
+          description: Initial amount payable by the customer in XYZD excluding taxes
+        HandlingFees/Supplementary:
+          type: string
+          description: Loan handling fees applicable for products in XYZD excluding taxes
+        MinTenure:
+          type: string
+          description: Minimum duration of loan period in months
+        MaxTenure:
+          type: string
+          description: Maximum duration of loan period in months
+        InterestRates:
+          type: string
+          description: Interest payable on repayment of the loan amount
+      description: '''List of product features''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Eligibility_1:
+      type: object
+      properties:
+        DocumentsRequired:
+          type: string
+          description: List of documents required for getting a loan
+        Age:
+          type: number
+          description: Age of the loan applicant
+        EmploymentStatus:
+          type: string
+          description: Employment status of the loan applicant
+        Income:
+          type: string
+          description: Income of the loan applicant
+        CreditScore:
+          type: string
+          description: Credit score of the loan applicant
+        Collateral:
+          type: string
+          description: list of collateral accepted against loan if applicable
+      description: '''This covers nationality, age, employment status, income and credit score''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Benefits_1:
+      type: object
+      properties:
+        BonusPack:
+          type: string
+          description: Free Priority/ Premium/ Easy Banking plan with credit card, 360° reward and welcome offers
+        FreeMortgageValueAssessment:
+          type: string
+          description: Free assessment of the value of the mortgage
+        AutoPaySetup:
+          type: string
+          description: One stop pay
+        E-cheque:
+          type: string
+          description: option of e cheque clearance
+        EarlyEMIPaymentOptions:
+          type: string
+          description: Benefit of early payment options
+        OtherBenefits:
+          type: string
+          description: Additional benefits if any
+      description: '''List of Benefits offered by this product''                   '
+      example: null
+    OBReadSharingProductDetails_Data_TermsAndConditions_1:
+      type: object
+      properties:
+        tnc-title:
+          type: string
+          description: Terms and conditions title
+        tnc-summary:
+          type: string
+          description: Any material conditions and specific features such as salary transfer, minimum equity for mortgage facility, loan to value ratio etc.
+        tnc-url:
+          type: string
+          description: Terms and conditions URL
+      description: '''This includes a summary of the terms and conditions such as hidden charges, compliance requirements and other bank specific requirements''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Loans:
+      required:
+      - ProductDetails
+      type: object
+      properties:
+        ProductDetails:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ProductDetails'
+        Features:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Features_1'
+        Eligibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Eligibility_1'
+        Benefits:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Benefits_1'
+        TermsAndConditions:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_TermsAndConditions_1'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+      description: '''List of Loans products'''
+      example: null
+    OBReadSharingProductDetails_Data_Features_2:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Payment and transaction currency as applicable on the selected CASA type
+        MinBalanceMaintenance:
+          type: string
+          description: Minimum balance to be maintained by the account holder in XYZD
+        HandlingFees/Supplementary:
+          type: string
+          description: Account handling fees applicable for products in XYZD excluding taxes per annum
+        OverdraftLimit:
+          type: string
+          description: Limit offered by banks for the customer based on turnover and spending levels in XYZD per month
+        InterestRates:
+          type: string
+          description: Interest payable on repayment of the loan amount
+        DepositRate:
+          type: string
+          description: Interest rate applicable for deposits only
+        MinDepositAmount:
+          type: string
+          description: Minimum one time deposit amount in XYZD
+      description: '''List of product features''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Eligibility_2:
+      type: object
+      properties:
+        DocumentsRequired:
+          type: string
+          description: List of documents required for opening a current account
+        Age:
+          type: number
+          description: Age of the applicant
+        EmploymentStatus:
+          type: string
+          description: Employment status of the applicant
+        Income:
+          type: string
+          description: Income of the applicant
+        CreditScore:
+          type: string
+          description: Credit score of the applicant
+      description: '''This covers nationality, age, employment status, income and credit score''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Benefits_2:
+      type: object
+      properties:
+        RelationshipManager:
+          type: string
+          description: This covers the benefits of availing RM under few conditions
+        ODprotection:
+          type: string
+          description: Enjoy Current Account Overdraft Protection for clearing cheques
+        MinBalance:
+          type: string
+          description: This describes the minimum balance required to keep the account active
+        AutoPaySetup:
+          type: string
+          description: One stop pay
+        MultipleDebitCards:
+          type: string
+          description: This includes details of add on debit cards where a account holder can apply for add-on cards for his/her employees under the same account
+        E-cheque:
+          type: string
+          description: Option of e cheque clearance
+        OtherBenefits:
+          type: string
+          description: Additional benefits if any
+      description: '''List of Benefits offered by this product''                   '
+      example: null
+    OBReadSharingProductDetails_Data_CASA:
+      required:
+      - ProductDetails
+      type: object
+      properties:
+        ProductDetails:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ProductDetails'
+        Features:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Features_2'
+        Eligibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Eligibility_2'
+        Benefits:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Benefits_2'
+        TermsAndConditions:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_TermsAndConditions'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+      description: '''List of CASA products'''
+      example: null
+    OBReadSharingProductDetails_Data_Features_3:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Payment and transaction currency as applicable on the selected Investment type
+        MinInvestmentRequirement:
+          type: string
+          description: Minimum investment required for opening the investment account in XYZD
+        HandlingFees/Supplementary:
+          type: string
+          description: Account handling fees applicable for products in XYZD excluding taxes per annum
+        AnnualFees:
+          type: string
+          description: Recurring fees and charges payable periodically in XYZD excluding of taxes
+        InvestmentTenure:
+          type: string
+          description: Duration of investment period in months
+        DepositRate:
+          type: string
+          description: Interest rate applicable for deposits only
+        HistoricInvestmentRate:
+          type: string
+          description: This covers the historic rates that are gained by the investors in the selected fund
+      description: '''List of product features''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Eligibility_3:
+      type: object
+      properties:
+        DocumentsRequired:
+          type: string
+          description: List of documents required
+        Age:
+          type: number
+          description: Age of the applicant
+        EmploymentStatus:
+          type: string
+          description: Employment status of the applicant
+        Income:
+          type: string
+          description: Income of the applicant
+        CreditScore:
+          type: string
+          description: Credit score of the applicant
+      description: '''This covers nationality, age, employment status, income and credit score''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Benefits_3:
+      type: object
+      properties:
+        SIPOptions:
+          type: string
+          description: This covers the broader systematic investment plan option that a customer can opt for
+        QuickerInvestmentWithdrawal:
+          type: string
+          description: Customer can withdraw the investments within 24 hours of the request submitted
+        MinimumInvestment:
+          type: string
+          description: This describes the minimum annual investment required to keep the account active
+        AutoPaySetup:
+          type: string
+          description: One stop pay
+        OtherBenefits:
+          type: string
+          description: Additional benefits if any
+      description: '''List of Benefits offered by this product''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Investment:
+      required:
+      - ProductDetails
+      type: object
+      properties:
+        ProductDetails:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ProductDetails'
+        Features:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Features_3'
+        Eligibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Eligibility_3'
+        Benefits:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Benefits_3'
+        TermsAndConditions:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_TermsAndConditions'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+      description: '''List of Investment products'''
+      example: null
+    OBReadSharingProductDetails_Data_Features_4:
+      type: object
+      properties:
+        Currency:
+          type: string
+          description: Payment and transaction currency as applicable on the selected service type
+        MinFundTransfer:
+          type: string
+          description: Minimum fund transfer applicable for the type of service selected in XYZD
+        HandlingFees/Supplementary:
+          type: string
+          description: Account handling fees applicable for products in XYZD excluding taxes per annum
+        TypesOfFundTransfer:
+          type: string
+          description: This covers different type of fund transfer that banks offer to the customers
+      description: '''List of product features''                   '
+      example: null
+    OBReadSharingProductDetails_Data_Benefits_4:
+      type: object
+      properties:
+        InternationalPayment:
+          type: string
+          description: International payment with other currency pay-outs
+        OtherBenefits:
+          type: string
+          description: Additional benefits if any
+      description: '''List of Benefits offered by this product''                   '
+      example: null
+    OBReadSharingProductDetails_Data_FundTransferServices:
+      required:
+      - ProductDetails
+      type: object
+      properties:
+        ProductDetails:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ProductDetails'
+        Features:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Features_4'
+        Eligibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Eligibility_3'
+        Benefits:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Benefits_4'
+        TermsAndConditions:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_TermsAndConditions'
+        SupplementaryData:
+          $ref: '#/components/schemas/OBSupplementaryData'
+      description: '''List of Fund Transfer Services products'''
+      example: null
+    OBReadSharingProductDetails_Data_ATM_OtherAccessibility:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name of the Accessibility.
+        Description:
+          type: string
+          description: Description of the specified Accessibility.
+      description: Information that describes the OtherAccessibility.
+      example: null
+    OBReadSharingProductDetails_Data_ATM_OtherATMServices:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name of the Accessibility.
+        Description:
+          type: string
+          description: Description of the specified Accessibility.
+      description: Information that describes the OtherATMServices.
+      example: null
+    OBReadSharingProductDetails_Data_ATM_Location_OtherLocationCategory:
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Long name associated with the specified location category
+        Description:
+          type: string
+          description: Description to describe the purpose of the location category
+      description: Information that describes the OtherLocationCategory.
+      example: null
+    OBReadSharingProductDetails_Data_ATM_Location_PostalAddress_GeoLocation:
+      required:
+      - Latitude
+      - Longitude
+      type: object
+      properties:
+        Latitude:
+          type: string
+          description: Latitude measured in decimal degrees
+        Longitude:
+          type: string
+          description: Angular measurement of the distance of a location on the earth east or west of the Greenwich observatory.The longitude is measured in decimal degrees.
+      description: Geographic location of the ATM specified by geographic coordinates or UTM coordinates.
+      example: null
+    OBReadSharingProductDetails_Data_ATM_Location_PostalAddress:
+      type: object
+      properties:
+        AddressLine:
+          maxItems: 2
+          minItems: 0
+          type: array
+          items:
+            maxLength: 70
+            minLength: 1
+            type: string
+            description: Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.
+        StreetName:
+          maxLength: 70
+          minLength: 1
+          type: string
+          description: Name of a street.
+        BuildingNumber:
+          maxLength: 16
+          minLength: 1
+          type: string
+          description: Number that identifies the position of a building on a street.
+        PostCode:
+          maxLength: 16
+          minLength: 1
+          type: string
+          description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.
+        TownName:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Name of a built-up area, with defined boundaries, and a local government.
+        CountrySubDivision:
+          maxLength: 35
+          minLength: 1
+          type: string
+          description: Identifies a subdivision of a country such as state, region, county.
+        Country:
+          pattern: ^[A-Z]{2,2}$
+          type: string
+          description: Nation with its own government, occupying a particular territory.
+        GeoLocation:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_Location_PostalAddress_GeoLocation'
+      description: Information that locates and identifies a specific address, as defined by postal services or in free format text.
+      example: null
+    OBReadSharingProductDetails_Data_ATM_Location:
+      type: object
+      properties:
+        LocationCategory:
+          type: string
+          description: Indicates the environment of the ATM.
+          enum:
+          - BranchExternal
+          - BranchInternal
+          - BranchLobby
+          - Other
+          - RetailerOutlet
+          - RemoteUnit
+        OtherLocationCategory:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_Location_OtherLocationCategory'
+        PostalAddress:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_Location_PostalAddress'
+      description: Information that describes the OtherATMServices.
+      example: null
+    OBReadSharingProductDetails_Data_ATM:
+      type: object
+      properties:
+        Identification:
+          type: string
+          description: Unique and unambiguous identification of a branch of a financial institution
+        ATMServices:
+          type: string
+          description: Describes the type of transaction available for a customer on an ATM.
+          enum:
+          - Balance
+          - BillPayments
+          - CashDeposits
+          - CharityDonation
+          - ChequeDeposits
+          - CashWithdrawal
+          - EnvelopeDeposit
+          - FastCash
+          - MobileBankingRegistration
+          - MobilePaymentRegistration
+          - MobilePhoneTopUp
+          - OrderStatement
+          - Other
+          - PINActivation
+          - PINChange
+          - PINUnblock
+          - MiniStatement
+        Access24HoursIndicator:
+          maxLength: 350
+          minLength: 1
+          type: string
+          description: Indicates that the ATM is available for use by customers 24 hours per day
+        Accessibility:
+          type: string
+          description: Indicates Types of Accessibility
+          enum:
+          - AudioCashMachine
+          - AutomaticDoors
+          - ExternalRamp
+          - InductionLoop
+          - InternalRamp
+          - LevelAccess
+          - LowerLevelCounter
+          - Other
+          - WheelchairAccess
+        SupportedLanguages:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard
+        SupportedCurrencies:
+          type: string
+          description: All ISO 4217 defined currency  supported by the ATM
+        MinimumPossibleAmount:
+          type: string
+          description: Minimum amount allowed for a transaction in the service
+        OtherAccessibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_OtherAccessibility'
+        OtherATMServices:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_OtherATMServices'
+        Location:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_Location'
+      description: Environment of the ATM.
+      example: null
+    OBReadSharingProductDetails_Data_OBATM:
+      required:
+      - ATM
+      type: object
+      properties:
+        ATM:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM'
+      description: '''List of ATM'''
+      example: null
+    OBReadSharingProductDetails_Data_Branch_OtherServiceandFacility:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Name of the Accessibility.
+        Description:
+          type: string
+          description: Description of the specified Accessibility.
+      description: Information that describes the OtherServiceandFacility.
+      example: null
+    OBReadSharingProductDetails_Data_Branch_ContactInfo_OtherContactType:
+      required:
+      - Description
+      - Name
+      type: object
+      properties:
+        Name:
+          type: string
+          description: Long name associated with the code
+        Description:
+          type: string
+          description: Description to describe the purpose of the code.
+      description: Information that describes the OtherServiceandFacility.
+      example: null
+    OBReadSharingProductDetails_Data_Branch_ContactInfo:
+      required:
+      - ContactContent
+      - ContactDescription
+      - ContactType
+      type: object
+      properties:
+        ContactType:
+          type: string
+          description: Contact type such Phone, Fax and email
+          enum:
+          - AlternateEmail
+          - AlternateFax
+          - AlternatePhone
+          - Email
+          - Fax
+          - Other
+          - Phone
+        ContactContent:
+          type: string
+          description: Collection of information that identifies a phone/Fax number/ email, as defined by telecom services.
+        ContactDescription:
+          type: string
+          description: Description of contact such as main phone number, alternate phone number, Fax number, alternate fax number, email and alternate email
+        OtherContactType:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Branch_ContactInfo_OtherContactType'
+      description: Communication device number or electronic address used for communication.
+      example: null
+    OBReadSharingProductDetails_Data_Branch:
+      type: object
+      properties:
+        Identification:
+          type: string
+          description: Unique and unambiguous identification of a branch of a financial institution
+        Name:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Name by which a branch is known and which is usually used to identify that branch
+        Type:
+          type: string
+          description: Codeset to indicate if a branch is physically in 1 location or is mobile
+          enum:
+          - Mobile
+          - Physical
+        Accessibility:
+          type: string
+          description: Accessibility is the ability and ease a customer can access a service, good, associate, or facility. Features which make the Bank accessible to disabled people
+          enum:
+          - AutomaticDoors
+          - AudioCashMachine
+          - ExternalRamp
+          - HelpingHandUnit
+          - InductionLoop
+          - InternalRamp
+          - LevelAccess
+          - LowerLevelCounter
+          - Other
+          - WheelchairAccess
+        SupportedLanguages:
+          maxLength: 40
+          minLength: 1
+          type: string
+          description: Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard
+        SupportedCurrencies:
+          type: string
+          description: All ISO 4217 defined currency  supported by the Branch
+        OtherAccessibility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_OtherAccessibility'
+        OtherServiceandFacility:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Branch_OtherServiceandFacility'
+        ContactInfo:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Branch_ContactInfo'
+        PostalAddress:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_ATM_Location_PostalAddress'
+      description: Associated Branch details.
+      example: null
+    OBReadSharingProductDetails_Data_OBBranch:
+      required:
+      - Branch
+      type: object
+      properties:
+        Branch:
+          $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Branch'
+      description: '''Environment of the Branch'''
+      example: null
+    OBReadSharingProductDetails_Data:
+      type: object
+      properties:
+        CreditCards:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_CreditCards'
+        Loans:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Loans'
+        CASA:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_CASA'
+        Investment:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_Investment'
+        FundTransferServices:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_FundTransferServices'
+        OBATM:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_OBATM'
+        OBBranch:
+          type: array
+          items:
+            $ref: '#/components/schemas/OBReadSharingProductDetails_Data_OBBranch'
+      description: Aligning with the read write specs structure.
+      example: null
+  responses:
+    "400Error":
+      description: Bad request
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    "401Error":
+      description: Unauthorized
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+    "403Error":
+      description: Forbidden
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    "404Error":
+      description: Not found
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+    "405Error":
+      description: Method Not Allowed
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+    "406Error":
+      description: Not Acceptable
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+    "429Error":
+      description: Too Many Requests
+      headers:
+        Retry-After:
+          description: Number in seconds to wait
+          style: simple
+          explode: false
+          schema:
+            type: integer
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+    "500Error":
+      description: Internal Server Error
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBErrorResponse'
+    "200SharingProductDetailsRead":
+      description: Products Read
+      headers:
+        x-fapi-interaction-id:
+          description: An RFC4122 UID used as a correlation id.
+          style: simple
+          explode: false
+          schema:
+            type: string
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/OBReadSharingProductDetails'
+  parameters:
+    Authorisation:
+      name: Authorisation
+      in: header
+      description: An Authorisation Token as per https://tools.ietf.org/html/rfc6750
+      required: true
+      style: simple
+      explode: false
+      schema:
+        type: string
+    x-fapi-customer-ip-address:
+      name: x-fapi-customer-ip-address
+      in: header
+      description: The User/Customer's IP address if the User/Customer is currently logged in with the TPP.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+    x-fapi-auth-date:
+      name: x-fapi-auth-date
+      in: header
+      description: "The time when the User/Customer last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nWed, 27 May 2020 19:43:31 GMT+03:00"
+      required: false
+      style: simple
+      explode: false
+      schema:
+        pattern: ^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \d{4} \d{2}:\d{2}:\d{2} (GMT|UTC)[+-][0-9]{2}:[0-9]{2}$
+        type: string
+    x-fapi-interaction-id:
+      name: x-fapi-interaction-id
+      in: header
+      description: An RFC4122 UID used as a correlation id.
+      required: false
+      style: simple
+      explode: false
+      schema:
+        type: string
+  securitySchemes:
+    TPPOAuth2Security:
+      type: oauth2
+      description: TPP client credential authorisation flow with the ASPSP
+      flows:
+        clientCredentials:
+          tokenUrl: https://authserver.example/token
+          scopes:
+            products: Ability to read products information
