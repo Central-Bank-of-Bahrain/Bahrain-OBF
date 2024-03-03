@@ -5,8 +5,8 @@ info:
   description: 'The Open API serves the business functions associated with Products offered by the bank. '
   termsOfService: 'https://www.cbb.gov.bh/terms-and-conditions-of-use/'
   contact:
-    name: Mr. Martin Pinto 
-    email: martin@cbb.gov.bh
+    name: Anonymous
+    email: N/A
   #Below field to be updated.
   license:
     name: ''
